@@ -3,3 +3,7 @@
 # Ignore intermediate build files
 /logs/log-issues_files/
 /logs/log-questions_files/
+# Only include .tex and .pdf files from the /papers/ directory
+/papers/*
+!/papers/*.tex
+!/papers/*.pdf
