@@ -1,0 +1,40 @@
+---
+title: "Issues Log"
+format:
+    html:
+        toc: true
+        code-fold: true
+---
+
+
+In this log, I record the issues I am encountering related to the project. 
+For each issue, I provide the following: 
+
+- Issue ID
+- Category if relates to: 
+    - Paper
+    - Background
+    - Methodology
+    - Data 
+    - Results
+- Issue
+- Resolution (if resolved)
+- Date
+
+
+
+::: {.callout-note collapse="true"}
+## Issue ID: I001
+
+**Category:** Paper
+
+**Issue:** Write the issue here.
+
+**Resolution:** Add the resolution here when resolved.
+
+**Date:** YYYY-MM-DD
+:::
+
+
+
+

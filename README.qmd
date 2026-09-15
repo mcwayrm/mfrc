@@ -1,0 +1,41 @@
+---
+title: "README: Minnesota Forest Resources Council Project"
+author: "Ryan McWay"
+format:
+    html:
+        toc: true
+        code-fold: true
+---
+
+# Overview 
+
+This project contains resources and scripts related to the Minnesota Forest Resources Council (MFRC). 
+The purpose of this project is to assess the monetary and non-monetary value of Minnesota family forests.
+The main approach for this project involves collecting and analyzing data on Minnesota family forests to determine their economic and ecological contributions within the concept of ecosystem services.
+
+
+# Structure of the Project
+
+The project is organized into the following directory format, which contains data, scripts, and logs that facilitate data collection, analysis, and reporting. Key components include:
+
+- `data/`: Contains raw and processed data related to Minnesota family forests.
+- `scripts/`: Includes scripts for data processing, analysis, and visualization.
+- `logs/`: Stores logs for issues and questions encountered during the project.
+- `README.qmd`: Provides an overview and documentation for the project.
+
+# Usage
+
+To use this project, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Ensure that all required dependencies for the scripts are installed.
+3. Place any new raw data files in the `data/` directory.
+4. Within the `scripts/` directory, run the `scripts/run-pipeline.sh` script to execute the data processing and analysis workflow.
+5. While in development, I am using `scripts/plan-analysis.qmd` to plan and document the analysis steps.
+6. Record any issues or questions in the `logs/` directory that arise during the execution of the scripts.
+
+# Blame
+
+If you encounter any issues or have questions regarding the project, please refer to the logs in the `logs/` directory or contact the project maintainer -- Ryan McWay (mcway005@umn.edu).
+We wish to acknowledge that generative AI tools were used to assist in the creation and editing of this project. 
+

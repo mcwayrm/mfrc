@@ -1,0 +1,40 @@
+---
+title: "Questions Log"
+format:
+    html:
+        toc: true
+        code-fold: true
+---
+
+
+In this log, I record the questions I have related to the project. 
+For each question, I provide the following: 
+
+- Question ID
+- Category if relates to: 
+    - Paper
+    - Background
+    - Methodology
+    - Data 
+    - Results
+- Question
+- Answer (if resolved)
+- Date
+
+
+
+::: {.callout-note collapse="true"}
+## Question ID: Q001
+
+**Category:** Paper
+
+**Question:** Write the question here.
+
+**Answer:** Add the answer here when resolved.
+
+**Date:** YYYY-MM-DD
+:::
+
+
+
+
