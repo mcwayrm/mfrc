@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.4.5)  15 SEP 2026 18:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.4.5)  15 SEP 2026 19:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -279,27 +279,27 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 Package natbib Warning: Empty `thebibliography' environment on input line 8.
 
-) [2] (./report.aux)
+) [2] [3] (./report.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 6508E4D58CEE850C53C0DCB0EFAE46DE;2119.
+(rerunfilecheck)             Checksum: 00512B4759EA4A9A62613DB6D1869AA2;2810.
  ) 
 Here is how much of TeX's memory you used:
- 9335 strings out of 469453
- 144884 string characters out of 5466066
- 561798 words of memory out of 5000000
- 37887 multiletter control sequences out of 15000+600000
+ 9340 strings out of 469453
+ 144930 string characters out of 5466066
+ 561799 words of memory out of 5000000
+ 37889 multiletter control sequences out of 15000+600000
  638476 words of font info for 60 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 75i,6n,79p,339b,445s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,6n,79p,388b,445s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk>
-Output written on report.pdf (2 pages, 76818 bytes).
+Output written on report.pdf (3 pages, 79930 bytes).
 PDF statistics:
- 347 PDF objects out of 1000 (max. 8388607)
- 107 compressed objects within 2 object streams
- 22 named destinations out of 1000 (max. 500000)
- 105 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 365 PDF objects out of 1000 (max. 8388607)
+ 119 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 500000)
+ 121 words of extra memory for PDF output out of 10000 (max. 10000000)
 

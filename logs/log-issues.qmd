@@ -28,11 +28,11 @@ For each issue, I provide the following:
 
 **Category:** Paper
 
-**Issue:** Write the issue here.
+**Issue:** Need to update the main report to format with a title page for MFRC with input on styling. 
 
-**Resolution:** Add the resolution here when resolved.
+**Resolution:** TBD
 
-**Date:** YYYY-MM-DD
+**Date:** 2026-09-15
 :::
 
 

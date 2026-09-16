@@ -1,0 +1,38 @@
+---
+title: "Analysis Plan"
+author: "Ryan McWay"
+---
+
+This document outlines the analysis plan.
+This should document both temporary paths as well as the developed steps which I will label as `tasks` in the `run-pipeline.sh`. 
+The objective is to determine value from ecosystem services. So I will seperate the sections into details related to specific ecosystem services. 
+
+# General Overview of Minnesota Family Forests 
+
+TODO: general picture of Minnesota family forests, including size, distribution, ownership patterns, and key characteristics. Help to place the dashboard, and Emily's findings within the context of the national, North American, and global forest landscape.
+I will use this as description of the background in the report. 
+
+# Ecosystem Service: Timber Provision
+
+TODO: Describe the importance of timber provision from Minnesota family forests, including current harvest levels, market value, and management practices. Outline the data sources and analytical steps to assess the economic value of timber.
+
+
+# Ecosystem Service: Carbon Sequestration
+
+TODO: Describe the importance of carbon sequestration from Minnesota family forests, including current carbon stocks, sequestration rates, and potential climate benefits. Outline the data sources and analytical steps to assess the economic value of carbon sequestration.
+
+
+# Ecosystem Service: Habitat Support (Biodiversity) 
+
+TODO: Describe the importance of habitat support and biodiversity from Minnesota family forests, including key species, habitat quality, and ecological significance. Outline the data sources and analytical steps to assess the value of habitat support and biodiversity.
+
+
+# Ecosystem Service: Health Benefits 
+
+Both water and air purification services.
+    - Water Quality 
+    - Air Quality
+- Physical 
+- Mental
+
+
