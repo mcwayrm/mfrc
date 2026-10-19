@@ -4,9 +4,11 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
+\usepackage{longtable}
 \usepackage{graphicx}
 \usepackage{natbib}
 \usepackage{hyperref}
+\usepackage{pdflscape}
 
 \hypersetup{
 	colorlinks=true,
@@ -15,7 +17,9 @@
 	urlcolor=blue
 }
 
-\title{\bf{Valuing Minnesota Family Forests: \\ Economic and Ecological Contributions}}
+\title{\bf{Valuing Minnesota Family Forests: \\ Economic and Ecological Contributions\thanks{
+	This project recieved considerable support from David Wilson and Amanda Hoffman.
+}}}
 \author{Ryan McWay}
 \date{\today}
 
@@ -24,9 +28,7 @@
 \maketitle
 
 \begin{abstract}
-This report assesses the monetary and non-monetary value of Minnesota family forests, with particular attention to the ecosystem services they provide.
-- Should this be internal or external facing? 
-- Treat this as developing a tool: either a framework or an application (ambitous) for policy recommendation decisions
+This report assesses the monetary and non-monetary value of Minnesota family forests, with particular attention to the ecosystem services they provide. First, it establishes a framework for evaluating these services in both ecological and economic terms. Then, for a selection of high priority ecosystem services I estimate the economic value attributable to Minnesota forests. I demonstrate heterogeneity in value across forest conditions, ownership types, and across the time horizion 2003 - 2023. This report therefore provides both a conceptual framework and empirical analysis for understanding the value of Minnesota family forests.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Family Forests; Ecosystem Services; Forest Valuation; Minnesota
@@ -62,80 +64,387 @@ Define the study area, forest-owner population, ecosystem services, and time per
 - within the context of Gross-ecosystem product (GEP) value and natural capital accounting
 - This is not a strict accounting approach, but will attempt to be congruent with SEEA-EA accounting framework.
 
-\subsubsection{Ecosystem 1:}
+
+\subsection{List of Potential Ecosystem Services attributable to Forests}
+
+\begin{landscape}
+\small
+\setlength{\tabcolsep}{2pt}
+\begin{longtable}{@{}p{0.68in}p{0.85in}p{0.38in}p{0.83in}p{0.75in}p{1.25in}p{0.52in}p{0.55in}@{}}
+\toprule
+Ecosystem Service & Forest Mechanism & Feasibility & Feasibility: Quantity & Feasibility: Price & Feasibility: Lambda & Category & Direct/Indirect \\
+\midrule
+\endfirsthead
+\toprule
+Ecosystem Service & Forest Mechanism & Feasibility & Feasibility: Quantity & Feasibility: Price & Feasibility: Lambda & Category & Direct/Indirect \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Timber Provision & Wood products & High & MN FIA forest raster; FIA species, DBH, height, merchantable volume and growth; cell area; ownership and access overlays & MN stumpage prices by species/grade; harvest and haul costs & Net timber rent: $\sum_i A_i Q_i^{sust}(P_i-C_i)$ & Provisioning & Direct \\
+Carbon Sequestration & photosynthetic uptake stored in biomass and soils & High & MN FIA forest raster; repeated FIA carbon stocks, growth, mortality and removals; cell area & Social cost of carbon or carbon price per tCO2e & Annual flow: $\sum_i A_i[(C_{i,t2}-C_{i,t1})/\Delta t](44/12)P_{CO2}$ & Regulating & Indirect \\
+Carbon Storage & carbon held in live biomass, deadwood, litter, and soil & High & MN FIA forest raster; carbon stock by pool (tC/ha); cell area & Social cost of carbon per tCO2e & Stock value: $\sum_i A_i C_i(44/12)P_{SCC}$; $\lambda=1$ & Regulating & Indirect \\
+Habitat Support for biodiversity & Forest composition and structure support species and habitat & Medium & MN FIA forest raster; FIA species composition and stand structure; species range/occurrence data; cell area & Species-specific WTP or restoration cost per quality-adjusted ha & $V=\sum_i A_i H_i u_i\lambda_i$ & Supporting & Indirect (intermediate) \\
+
+Recreation: Hunting & Forests provide game habitat and hunting settings & High & MN FIA forest raster; hunter-days/trips by location and game; licenses and participation survey & Consumer surplus per trip/day from travel-cost or stated-preference estimates & $V=\sum_j D_j CS_j\lambda_j$; forest-attributable share & Cultural & Direct \\
+Recreation: Fishing & Forested watersheds support fish habitat and water quality & High & MN FIA forest raster; lake/river watersheds; angler-days/trips and fishery data & Consumer surplus per trip/day from travel-cost estimates & $V=\sum_j D_j CS_j\lambda_j$; forest-watershed-attributable share & Cultural & Direct \\
+Recreation: Nature recreation & Forest settings support day-use hiking, camping, wildlife viewing, paddling and biking & High & MN FIA forest raster; visits/user-days by forested site; trail counters and permits & Consumer surplus per visit from travel-cost demand model & $V=\sum_j D_j CS_j\lambda_j$; forest-attribute share & Cultural & Direct \\
+Recreation: Nature tourism & Forest landscapes draw overnight and long-distance visitors & High & MN FIA forest raster; overnight trips, visitor-days and lodging/campground nights by destination & Consumer surplus per trip from travel-cost demand model (including transport and lodging costs) & $V=\sum_j T_j CS_j\lambda_j$; forest-purpose share & Cultural & Direct \\
+Recreation: Winter and motorized & Trails for snowmobiling, skiing, ATV, snowshoeing & High & Trail miles or user days (registrations, permits) & Travel cost; trail pass and registration fees & Share of trip value due to forest setting vs. equipment and trail grooming & Cultural & Direct \\
+Habitat Support for biodiversity & Structurally diverse forest supporting species richness & Medium & habitat acres and species richness & Species-specific WTP or replacement/restoration cost & Share of habitat value attributable to forest type & Supporting & Indirect (intermediate) \\
+Water Quality Regulation (Riparian Buffers) & Riparian forest buffers retain nitrogen and phosphorus before delivery to streams & Medium & InVEST NDR nutrient export with buffers vs. no-buffer counterfactual; kg N and P per year by watershed & Avoided treatment/damage cost or nutrient-credit price per kg N/P & $\Delta E_{\mathrm{family\ forest}}/\Delta E_{\mathrm{all\ buffers}}$ & Regulating & Indirect \\
+Air quality regulation & Canopy removes particulate matter and gaseous pollutants & Medium & MN FIA forest raster; canopy/leaf area and pollutant removal by species; exposed population & Marginal health damages avoided per ton removed & $V=\sum_{i,p} R_{ip}MD_{ip}\lambda_{ip}$; canopy-attributable share & Regulating & Indirect \\
+Local climate regulation & Shade and evapotranspiration cooling; windbreaks & Medium & Canopy cover; degrees of cooling; reduced heating/cooling kWh & Avoided energy cost & Share of energy savings attributable to trees vs. building characteristics & Regulating & Indirect \\
+Erosion control and soil retention & Roots and litter stabilize slopes and banks & Medium & Tons of soil retained (RUSLE, forest vs. counterfactual cover) & Replacement cost (dredging, lost productivity) & Forest-attributable share vs. other cover types & Regulating & Indirect \\
+Woody biomass energy & Mill residues, harvest slash, pellets & Medium & Dry tons of biomass & Delivered biomass or pellet price & Strip harvest and processing labor and capital & Provisioning & Direct \\
+Property value amenity & Proximity to or views of forest & Medium & Homes within a set distance of forest & Hedonic price premium & Ratio of premium to forest attribute (acres, canopy \%) & Cultural & Direct (capitalized into land value) \\
+Physical and mental health & Reduced stress, physical activity, lower heat and air pollution exposure & Medium & Visits or green-space exposure & Avoided healthcare costs; QALY or VSL-based & Dose-response attributable to forest vs. other green space & Cultural & Indirect \\
+Non-timber forest products (NTFP) & Berries, nuts, syrups, mushrooms, root extracts, cosmetic extracts & Medium & harvest (permits, gathering surveys) & market prices & production function residual (resource rent) & Provisioning & Direct \\
+Nature disaster prevention & Healthy forests have erosion prevention to mitigate flooding, drought, storm impacts & Medium & acres forested floodplain, flood/wildfire frequency & Avoided damages (FEMA claims, property loss) & Forest share of risk reduction vs. engineered defenses & Regulating & Indirect \\
+Water Supply & Infiltration, groundwater recharge, baseflow regulation & Low & Cubic meters of yield from forested watersheds & utility water rates less treatment and distribution costs & residual after removing treatment and capital/labor & Provisioning & Direct \\
+Fuelwood & Subsistence energy production via deadwood collection & Low & Cords gathered & stumpage cordwood price & Regress out labor and transport to recover residual. & Provisioning & Direct \\
+Soil capitalization & soil formation via agroforestry services & Low & SOC accumulated, topsoil retained & avoided erosion damage, fertilizer cost & forest attributable share & Supporting & Indirect \\
+Nature education & Forested sites serve as outdoor classrooms for environmental learning (school field trips, scouting, nature centers, interpretive trails, forest schools, field stations) & Low & Scouting activities or presence of nature education programs in forests & Travel cost & Infeasible. What is attributable to the forest vs. what is human capital/knowledge transfer. & Cultural & Indirect \\
+Cultural value of identity & Forests as a sense of identity provided to local populations & Low & PPIG survey attachment measures & Stated WTP preferences & Infeasible. & Cultural & Indirect \\
+Pollination & Native bee and insect habitat that supports adjacent crops & Low & Crop acres within foraging range of forest & Managed hive rental rates or crop yield uplift & Share of yield uplift due to wild vs. managed pollinators & Regulating & Indirect (intermediate) \\
+Pest and disease regulation & Predator habitat (birds, bats, insects) & Low & Reduced pest outbreak frequency or acres & Avoided pesticide and crop-loss costs & Forest-attributable share & Regulating & Indirect (intermediate) \\
+Nutrient cycling and primary production & Litterfall, decomposition, biomass growth & Low & Net primary productivity & Not separately priced (intermediate input to timber, carbon, soil) & Infeasible, since this would double-count & Supporting & Indirect (intermediate) \\
+Genetic resources / bioprospecting & Genetic diversity of plants, fungi, microbes & Low & Not well-defined & Option value or pharma royalties & Infeasible & Provisioning & Direct (option value) \\
+Existence and bequest value & Satisfaction from knowing forests persist & Low & Households with positive WTP & Contingent valuation or choice experiments & Hard to separate from other values; use WTP per attribute & Cultural & Indirect (non-use) \\
+Tribal and Indigenous cultural uses & Maple sugaring, ceremonial and subsistence harvest, treaty rights & Low & Participation and harvest levels (tribal data, with consent) & Mostly non-market; avoid imposing market prices & Infeasible and arguably inappropriate to monetize & Cultural & Direct and indirect \\
+Scientific research & Long-term research sites and experimental forests & Low & Research funding or publications tied to the site & Research expenditure (cost-based) & Infeasible & Cultural & Indirect \\
+\end{longtable}
+
+\end{landscape}
+\normalsize
 
 
-\paragraph{Data.}
-Describe the datasets, their provenance, preparation, and any important limitations.
-
-\paragraph{Valuation Approach.}
-Explain the monetary and non-monetary valuation methods, assumptions, and analytical steps.
-
-\paragraph{Estimated Value}
-Present the estimated monetary and non-monetary values for the ecosystem service, including any relevant tables, figures, or summary statistics.
-Mainly supply, use, and monetary value. 
-
-
+% -----------------------------------------------------
+% 		Timber Provisions
+% -----------------------------------------------------
 \subsubsection{Ecosystem 1: Timber Provision}
 
 
 \paragraph{Data.}
-Smoothed (Krigged) map of forest characteristics across MN.
-FIA data on timber characteristics.
+Use the Minnesota FIA forest raster as the spatial base, with each forest pixel $i$ having area $A_i$ in hectares. Attach FIA estimates of species, diameter, height, merchantable volume, annual growth, mortality, and removals to the forest pixels. Add forest-ownership data if the estimate is restricted to family forests, and road, mill, and species/grade-specific Minnesota stumpage-price data to estimate access and costs. The forest raster identifies the analysis footprint; FIA inventory attributes supply the forest measurements.
 
 \paragraph{Valuation Approach.}
-Lumber production given tree dimensions across forest. 
-Use current market prices. 
-Could potentially weight by market access (road network to nearest mills or major markets)
+For pixel $i$, calculate annual sustainable merchantable harvest quantity from FIA growth, mortality, removals, and the selected harvest/retention rule:
+\[
+Q_i=A_i q_i^{\mathrm{sust}},
+\]
+where $A_i$ is pixel area and $q_i^{\mathrm{sust}}$ is sustainable merchantable volume per hectare per year. Calculate the net stumpage price:
+\[
+P_i=p_{i,\mathrm{stumpage}}-c_{i,\mathrm{harvest}}-c_{i,\mathrm{haul}},
+\]
+using species- and grade-specific Minnesota prices and variable costs. 
+
+% Calculate the eligible family-forest share of the pixel from the ownership overlay: 
+Currently, set nature's contribution to be fully attributable to the eligible family forest:
+
+\[
+\lambda_i= 1.
+\]
+
+% \[
+% \lambda_i=\frac{A_{i,\mathrm{eligible\ family\ forest}}}{A_i}.
+% \]
+
+Then calculate
+\[
+V_{\mathrm{timber}}=\sum_i Q_iP_i\lambda_i,
+\]
+with $Q_i$ and $P_i$ in matching volume and currency units. Report the quantity and value period consistently; do not value the full standing inventory as an annual flow -- requires assumptions about rotation length and sustainable yield.
 
 
 \paragraph{Estimated Value}
 
 
-\subsubsection{Ecosystem 2: Carbon Sequestration and Storage}
+
+% -----------------------------------------------------
+% 		Carbon Sequestration	
+% -----------------------------------------------------
+\subsubsection{Ecosystem 2: Carbon Sequestration}
 
 
 \paragraph{Data.}
-Smoothed (Krigged) map of forest characteristics across MN.
-FIA carbon storage measure
-Carbon sequestration formula.
+Use the Minnesota FIA forest raster as the spatial base. Estimate change in carbon stocks per hectare from remeasured FIA plots or FIA annual estimates, accounting for growth, mortality, and removals over the measurement interval. Record the included carbon pools, inventory years, and cell area $A_i$; use a consistent pool definition across inventories. Obtain a social cost of carbon or carbon price in dollars per tCO2e.
 
 \paragraph{Valuation Approach.}
-Social cost of carbon approach.
+For pixel $i$, calculate annual net sequestration from repeated FIA carbon inventories, multiplying by pixel area and converting tC to tCO$_2$e:
+\[
+Q_i=A_i\left(\frac{C_{i,t_2}-C_{i,t_1}}{t_2-t_1}\right)\left(\frac{44}{12}\right),
+\]
+where the same carbon pools are included in both inventories. $\left(\frac{44}{12}\right)$ is molecular-weight conversion from carbon ($C$) to carbon dioxide ($CO_2$). 
+Carbon has an atomic mass of about 12. 
+$CO_2$ has a molecular mass of about $44:12$ for carbon $+ 16 \times 2$ for oxygen.
+So 1 tonne of carbon $= 44/12 \approx 3.667$ tonnes of $CO_2$.
+Select a social cost of carbon or carbon-market price, stated in a consistent dollar year:
+\[
+P_i=P_{\mathrm{CO_2}}\quad [\$/\mathrm{tCO_2e}].
+\]
+
+Currently, set nature's contribution to be fully attributable to the eligible family forest:
+
+\[
+\lambda_i= 1.
+\]
+
+Value the annual flow as
+\[
+V_{\mathrm{sequestration}}=\sum_i Q_iP_i\lambda_i,
+\]
+where $Q_i$ is annual net tCO$_2$e and $P_i$ is dollars per tCO$_2$e. The result is an annual flow value; do not add the full carbon-stock value to it without defining a non-overlapping valuation period.
 
 \paragraph{Estimated Value}
 
 
-\subsubsection{Ecosystem 3: Habitat Support}
+
+% -----------------------------------------------------
+% 		Carbon Storage
+% -----------------------------------------------------
+\subsubsection{Ecosystem 3: Carbon Storage}
 
 
 \paragraph{Data.}
-Bird populations. 
-Species range maps, species abundance data. 
-Biodiversity maps (often static estimates)
+The spatial base is the Minnesota FIA forest raster, with pixel area $A_i$. Required attributes are FIA carbon stocks per hectare by pool (live trees, deadwood, litter, and soil where available) and the pool coverage and inventory date. Convert carbon to CO2-equivalent using $44/12$.
 
 \paragraph{Valuation Approach.}
-Either travel cost hedonic modeling. 
-Or imputed value from literature review meta analysis. 
+For pixel $i$, calculate the total carbon stock in the included pools, multiplied by pixel area and converted from tC to tCO$_2$e:
+\[
+Q_i=A_i C_i\left(\frac{44}{12}\right),
+\]
+where $C_i$ is the combined pool stock in tC/ha. Select a social cost of carbon and state its dollar year:
+\[
+P_i=P_{\mathrm{SCC}}\quad [\$/\mathrm{tCO_2e}].
+\]
+Currently, set nature's contribution to be fully attributable to the eligible family forest:
+
+\[
+\lambda_i= 1.
+\]
+Value the stock as
+\[
+V_{\mathrm{storage}}=\sum_i Q_iP_i\lambda_i,
+\]
+where $Q_i$ is tCO$_2$e and $P_i$ is dollars per tCO$_2$e. This is a one-time stock value, not an annual flow; keep it separate from sequestration value to avoid double counting.
 
 \paragraph{Estimated Value}
 
 
-\subsubsection{Ecosystem 4: Nature Recreation}
+
+% -----------------------------------------------------
+% 		Habitat Support
+% -----------------------------------------------------
+\subsubsection{Ecosystem 4: Habitat Support for Biodiversity}
 
 
 \paragraph{Data.}
-Hunting and fishing participation data.
-Visitor counts at recreational sites.
-Surveys on recreational preferences and expenditures.
+Use the Minnesota FIA forest raster as the spatial base. Required forest attributes include FIA species composition, tree size and basal area, and available structural measures such as snags and down wood; add species range or occurrence data for the selected taxonomic groups. Derive a species-specific habitat suitability score $H_i$ for each pixel using a stated habitat model, then multiply by cell area $A_i$. Obtain a species-specific willingness-to-pay or restoration-cost estimate $u_i$ per quality-adjusted hectare and estimate the forest-attributable share $\lambda_i$.
 
 \paragraph{Valuation Approach.}
-Impute value from meta analysis of contingent valuation surveys. 
-Trick will be to measure values from tree support of this recreation (e.g., variation in hunting value by tree characteristics) -- simple OLS relationship.
+Calculate quality-adjusted habitat area for species $s$ and pixel $i$:
+\[
+Q_{is}=A_i H_{is},
+\]
+where $H_{is}$ is the habitat-suitability score from FIA composition/structure and species range or occurrence data. Select a species-specific willingness-to-pay or restoration-cost estimate per quality-adjusted hectare:
+\[
+P_s=u_s\quad [\$/\mathrm{quality\mbox{-}adjusted\ ha}].
+\]
+Estimate the fraction of suitable habitat attributable to forest by comparing the modeled forest condition with its nonforest counterfactual:
+\[
+\lambda_{is}=\frac{\max(0,H_{is}^{\mathrm{forest}}-H_{is}^{\mathrm{counterfactual}})}{H_{is}^{\mathrm{forest}}},\quad H_{is}^{\mathrm{forest}}>0.
+\]
+Then value habitat as
+\[
+V_{\mathrm{habitat}}=\sum_{i,s} Q_{is}P_s\lambda_{is}.
+\]
+Keep the valuation basis consistent across species and avoid summing overlapping values for the same habitat. If using restoration costs, report them as a cost-based proxy rather than as willingness to pay.
 
 \paragraph{Estimated Value}
 
 
+% -----------------------------------------------------
+% 		Recreation: Hunting
+% -----------------------------------------------------
+\subsubsection{Ecosystem 5: Recreation---Hunting}
+
+\paragraph{Data.}
+Use the Minnesota FIA forest raster as the spatial base and summarize forest cover, composition, and structure around hunting destinations or within game-species ranges. Required additional data include hunter-days or trips by location and game species, license and participation survey data, and relevant game abundance or harvest estimates. Obtain consumer-surplus estimates per hunter-day or trip from Minnesota-specific or comparable travel-cost or stated-preference studies. Estimate $\lambda_j$, the share of hunting value attributable to forest habitat and setting rather than game abundance, access, regulations, equipment, or other trip features.
+
+\paragraph{Valuation Approach.}
+Estimate annual hunter-days or trips for destination/game area $j$ from weighted participation surveys and administrative counts:
+\[
+Q_j=\sum_{r\in j} w_r d_r,
+\]
+where $d_r$ is reported hunter-days or trips and $w_r$ is the survey expansion weight. Estimate consumer surplus per matching unit with a travel-cost demand model or stated-preference study:
+\[
+P_j=CS_j\quad [\$/\mathrm{hunter\mbox{-}day}]\ \mathrm{or}\ [\$/\mathrm{trip}].
+\]
+Estimate the share of consumer surplus attributable to forest habitat from a forest-versus-counterfactual model, controlling for game abundance, access, regulations, equipment, and other trip features:
+\[
+\lambda_j=\frac{\max(0,CS_j^{\mathrm{forest}}-CS_j^{\mathrm{counterfactual}})}{CS_j^{\mathrm{forest}}},\quad CS_j^{\mathrm{forest}}>0.
+\]
+Then value hunting as
+\[
+V_{\mathrm{hunting}}=\sum_j Q_jP_j\lambda_j,
+\]
+using a consistent time period and avoiding addition of license revenue or trip expenditures to consumer surplus.
+
+\paragraph{Estimated Value}
+
+
+% -----------------------------------------------------
+% 		Recreation: Fishing
+% -----------------------------------------------------
+\subsubsection{Ecosystem 6: Recreation---Fishing}
+
+\paragraph{Data.}
+Use the Minnesota FIA forest raster to measure forest cover and composition within lake and river watersheds and near fishing access points. Combine it with angler-days or trips by waterbody, creel or participation surveys, fishery characteristics, and water-quality data. Obtain consumer surplus per angler-day or trip from a travel-cost demand model or a suitable Minnesota study. Estimate $\lambda_j$, the portion of fishing value attributable to forest-related watershed conditions (such as shade, runoff, and water quality), rather than stocking, access, regulations, or other factors.
+
+\paragraph{Valuation Approach.}
+Estimate annual angler-days or trips at waterbody/destination $j$ from weighted creel/participation surveys and administrative counts:
+\[
+Q_j=\sum_{r\in j} w_r d_r,
+\]
+where $d_r$ is reported angler-days or trips and $w_r$ is the survey expansion weight. Estimate consumer surplus per matching unit with a travel-cost demand model:
+\[
+P_j=CS_j\quad [\$/\mathrm{angler\mbox{-}day}]\ \mathrm{or}\ [\$/\mathrm{trip}].
+\]
+Estimate the forest-watershed-attributable share of surplus by comparing modeled forest conditions with the watershed counterfactual, controlling for stocking, access, regulations, and other factors:
+\[
+\lambda_j=\frac{\max(0,CS_j^{\mathrm{forest\ watershed}}-CS_j^{\mathrm{counterfactual}})}{CS_j^{\mathrm{forest\ watershed}}},\quad CS_j^{\mathrm{forest\ watershed}}>0.
+\]
+Then value fishing as
+\[
+V_{\mathrm{fishing}}=\sum_j Q_jP_j\lambda_j,
+\]
+avoiding addition of trip expenditures to consumer surplus.
+
+\paragraph{Estimated Value}
+
+
+% -----------------------------------------------------
+% 		Recreation: Nature Recreation
+% -----------------------------------------------------
+\subsubsection{Ecosystem 7: Recreation---Nature Recreation}
+
+\paragraph{Data.}
+Use the Minnesota FIA forest raster to characterize forest cover and attributes at forested public lands, trails, and other day-use destinations. Required visitation data include annual visits or user-days by destination, from trail counters, permits, or visitor surveys. Obtain travel costs and visitation choices (including round-trip distance, vehicle cost, and travel time) to estimate consumer surplus per visit using a travel-cost demand model. Estimate $\lambda_j$, the share of recreation value attributable to forest attributes, distinct from trail facilities and other amenities.
+
+\paragraph{Valuation Approach.}
+Estimate annual visits to day-use destination $j$ from counters, permits, or weighted visitor surveys, correcting for uncounted visits:
+\[
+Q_j=\frac{N_j^{\mathrm{observed}}}{c_j},
+\]
+where $c_j$ is estimated visitor-count coverage (use $c_j=1$ for a complete count). Estimate consumer surplus per visit using a travel-cost demand model with trip distance, vehicle cost, and travel time:
+\[
+P_j=CS_j\quad [\$/\mathrm{visit}].
+\]
+Estimate the share of consumer surplus attributable to forest attributes by comparing forested-site surplus with a counterfactual that retains trails and other nonforest amenities:
+\[
+\lambda_j=\frac{\max(0,CS_j^{\mathrm{forest\ site}}-CS_j^{\mathrm{counterfactual}})}{CS_j^{\mathrm{forest\ site}}},\quad CS_j^{\mathrm{forest\ site}}>0.
+\]
+Then value nature recreation as
+\[
+V_{\mathrm{nature\ recreation}}=\sum_j Q_jP_j\lambda_j,
+\]
+using the travel-cost model to estimate welfare rather than treating visitor spending as welfare, and avoiding double counting visits across sites.
+
+\paragraph{Estimated Value}
+
+
+% -----------------------------------------------------
+% 		Recreation: Nature Tourism
+% -----------------------------------------------------
+\subsubsection{Ecosystem 8: Recreation---Nature Tourism}
+
+\paragraph{Data.}
+Use the Minnesota FIA forest raster to characterize forest cover and attributes at overnight and long-distance destinations. Assemble annual visitor-trips or visitor-days by destination from tourism surveys, campground reservations, lodging data, and visitor counts. Collect trip origins, transport and lodging costs, and trip purpose to estimate consumer surplus per trip from a travel-cost demand model. Estimate $\lambda_j$, the forest-attributable share of trip value, using trip-purpose or stated-preference evidence.
+
+\paragraph{Valuation Approach.}
+Estimate annual overnight or long-distance trips to destination $j$ from weighted tourism surveys, lodging/campground records, and visitor counts, using a consistent trip definition:
+\[
+Q_j=\frac{T_j^{\mathrm{observed}}}{c_j},
+\]
+where $c_j$ is estimated trip-count coverage. Estimate consumer surplus per trip from a travel-cost demand model that includes transport and lodging costs:
+\[
+P_j=CS_j\quad [\$/\mathrm{trip}].
+\]
+Estimate the forest-purpose share of trip surplus from trip-purpose surveys or a stated-preference/travel-cost counterfactual:
+\[
+\lambda_j=\frac{\max(0,CS_j^{\mathrm{forest\ purpose}}-CS_j^{\mathrm{other\ purpose}})}{CS_j^{\mathrm{forest\ purpose}}},\quad CS_j^{\mathrm{forest\ purpose}}>0.
+\]
+Then value nature tourism as
+\[
+V_{\mathrm{nature\ tourism}}=\sum_j Q_jP_j\lambda_j,
+\]
+keeping the trip unit consistent with the model and not adding lodging or visitor expenditures to consumer surplus.
+
+\paragraph{Estimated Value}
+
+
+% -----------------------------------------------------
+% 		Air Quality Regulation
+% -----------------------------------------------------
+\subsubsection{Ecosystem 9: Air Quality Purification (Regulation)}
+
+\paragraph{Data.}
+Use the Minnesota FIA forest raster as the spatial base, with FIA species and stand attributes that inform leaf area and pollutant removal. Couple it with canopy or i-Tree pollutant-removal estimates for PM$_{2.5}$, ozone, NO$_2$, and SO$_2$, ambient pollution and meteorology, exposed-population data, and pollutant-specific marginal health-damage estimates (for example, from EPA BenMAP). Estimate $\lambda_{ip}$, the share of avoided damages attributable to forest removal, accounting for where and when removal changes human exposure.
+
+\paragraph{Valuation Approach.}
+Calculate annual pollutant removal for pixel $i$ and pollutant $p$ from canopy/i-Tree rates:
+\[
+Q_{ip}=A_i r_{ip},
+\]
+where $r_{ip}$ is tons removed per hectare per year; use atmospheric transport/exposure modeling to refine the quantity where available. Estimate marginal health damages avoided per ton using pollutant-specific concentration-response functions, exposed-population data, and health-damage values (for example, BenMAP):
+\[
+P_{ip}=MD_{ip}\quad [\$/\mathrm{ton\ pollutant}].
+\]
+Estimate the share of modeled damage reduction attributable to eligible family-forest canopy using the ownership overlay and a no-canopy counterfactual:
+\[
+\lambda_{ip}=\frac{\Delta D_{ip}^{\mathrm{eligible\ forest}}}{\Delta D_{ip}^{\mathrm{all\ canopy}}},
+\]
+where $\Delta D$ is avoided health damage and the denominator is positive. If $Q_{ip}$ already measures only the eligible-forest counterfactual difference, set $\lambda_{ip}=1$ to avoid applying attribution twice. Then value annual air-quality benefits as
+\[
+V_{\mathrm{air}}=\sum_{i,p} Q_{ip}P_{ip}\lambda_{ip},
+\]
+using consistent units and avoiding counting the same exposure benefit under multiple services.
+
+\paragraph{Estimated Value}
+
+% -----------------------------------------------------
+% 		Water Quality Regulation
+% -----------------------------------------------------
+\subsubsection{Ecosystem 10: Water Quality Regulation from Riparian Buffers}
+
+\paragraph{Data.}
+Use the Minnesota FIA forest raster to identify forest cover, species composition, and stand attributes, and combine it with a complete land-use/land-cover raster so InVEST Nutrient Delivery Ratio (NDR) can represent both forest and nonforest sources. Required inputs include a stream network and watershed boundaries, a hydrologically conditioned DEM, a runoff proxy, and an NDR biophysical table with nitrogen and phosphorus loads and retention efficiencies by land-cover class. Delineate riparian buffers using a stated stream-distance/width rule and identify family-forest ownership within them. Run NDR for the observed land cover and a counterfactual in which the targeted riparian forest buffers are replaced by the specified nonforest cover; keep all other inputs and model parameters fixed.
+
+\paragraph{Valuation Approach.}
+For nutrient $n$ and watershed $w$, calculate the annual nutrient load reduction attributable to riparian buffers from the two NDR scenarios:
+\[
+Q_{nw}=\max\left(0,E_{nw}^{\mathrm{no\ buffer}}-E_{nw}^{\mathrm{with\ buffer}}\right),
+\]
+where $E_{nw}$ is NDR-modeled nutrient export in kg/year. Select a pollutant-specific marginal avoided treatment/damage cost or nutrient-credit price:
+\[
+P_{nw}=p_{nw}^{\mathrm{avoided}}\quad [\$/\mathrm{kg\ nutrient}],
+\]
+using local treatment costs, water-quality damage estimates, or applicable nutrient-credit markets; state the price year and do not add overlapping cost measures. Attribute the modeled buffer benefit to family forests using an NDR scenario that removes only eligible family-forest buffers:
+\[
+\lambda_{nw}=
+\frac{\Delta E_{nw}^{\mathrm{eligible\ family\ forest}}}
+{\Delta E_{nw}^{\mathrm{all\ riparian\ buffers}}},
+\quad
+0\leq\lambda_{nw}\leq1,
+\]
+where each $\Delta E$ is the reduction in exported nutrient relative to its matching no-buffer scenario. If $Q_{nw}$ is already calculated using only eligible family-forest buffers, set $\lambda_{nw}=1$ to avoid applying attribution twice. Value the annual water-quality regulation service as
+\[
+V_{\mathrm{water}}=\sum_{n,w}Q_{nw}P_{nw}\lambda_{nw}.
+\]
+Use non-nested watershed outlets or otherwise prevent double counting loads, and report nitrogen and phosphorus separately where their prices or damage pathways differ.
+
+\paragraph{Estimated Value}
 
 
 \section{What is the Value of Minnesota Family Forests?}
@@ -172,6 +481,13 @@ Summarize the principal findings and identify the most important next steps for 
 \section{Supplementary Appendix}
 Place detailed methods, assumptions, supporting tables, and additional figures here.
 
+\section{Glossary of Terminology}
+
+- stumpage
+- stand
+- site
+- forest
+
 \section{Unassessed Ecosystem Services}
 List and describe ecosystem services that were not assessed in this study, explaining why they were excluded and any potential implications for the overall valuation of Minnesota family forests.
 Does this lead to underestimation of the total value of Minnesota family forests?
@@ -180,6 +496,7 @@ Does this lead to underestimation of the total value of Minnesota family forests
 
 \section{Methodological and Data Limitations}
 Here I want to document the limitations related to the methodology, data sources, assumptions, and any uncertainties that may affect the valuation of Minnesota family forests.
+Limitations in scope that can be assessed: exrapolation cannot be accurate a very fine scale. 
 
 
 \section{Acknowledgments}
