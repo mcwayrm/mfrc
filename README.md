@@ -38,6 +38,28 @@ To use this project, follow these steps:
 6.  Record any issues or questions in the `logs/` directory that arise
     during the execution of the scripts.
 
+# Downloading Minnesota FIA data
+
+Install the R packages once with `install.packages(c("rFIA", "data.table"))`,
+then run `Rscript scripts/task-pull-fia-data.R` from the repository root.
+The script downloads the complete Minnesota FIADB CSV database using
+`rFIA::getFIA()` and saves it in `data/FIA/`.
+
+The requested 2000-2025 range refers to annual estimation years
+(`POP_EVAL.END_INVYR`), not plot measurement years. Historical supporting
+records are retained rather than filtered by `INVYR`. Evaluation IDs, types,
+year availability, and download metadata are saved under `data/FIA/metadata/`.
+The script warns if any requested years have no published evaluations.
+Rerunning the script refreshes the downloaded tables and metadata.
+
+For analysis, load the database using
+`db <- rFIA::readFIA("data/FIA", states = "MN", inMemory = FALSE)`.
+Read `data/FIA/metadata/MN_evaluations_2000_2025.csv` and pass its unique
+`EVALID` values to
+`rFIA::clipFIA(db, mostRecent = FALSE, evalid = evaluation_ids)`.
+Availability of specific estimates depends on the evaluation types published
+for each year; an available year does not imply every estimate type is available.
+
 # Blame
 
 If you encounter any issues or have questions regarding the project,
