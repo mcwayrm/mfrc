@@ -105,6 +105,47 @@ including extrapolation beyond sampled locations. Variograms and spatial
 cross-validation require review before inference; band 2 does not include
 land-cover, temporal, or coordinate uncertainty.
 
+# Valuing live aboveground carbon storage
+
+The forest-layer script now also produces `forest-carbon-stock-[year].tif`
+and JSON sidecars in `data/forest-layer/`, while retaining the basal-area
+outputs. The carbon layers use the same sampling windows, ESA masks, grid,
+and kriging method, with independently fitted carbon variograms. Live forest
+trees (`STATUSCD=1` and forest conditions) supply
+`sum(TREE.CARBON_AG * TREE.TPA_UNADJ)` in pounds C per plot acre. Divide by
+the summed forest-condition proportion once, then multiply by
+`0.00045359237 / 0.40468564224` for metric tonnes C per forest hectare.
+Forest plots without live-tree records contribute zero; invalid live-tree
+carbon or expansion values exclude the plot. Only live aboveground tree
+carbon is represented, not soil, deadwood, litter, roots, or understory.
+
+After review, install `terra` and `jsonlite` in R and run
+`Rscript scripts/task-value-carbon.R`. This step is not added to the pipeline
+and was not run during implementation. It requires the carbon rasters and
+their metadata; basal-area rasters are not accepted as carbon quantities.
+
+Outputs are `data/GEP/gep-carbon-stock-[year].tif` for 2005, 2010, 2015,
+2020, and 2025, in **2007 USD per hectare**, computed as
+`carbon tonnes C/ha * (44/12) * SCC USD/metric tonne CO2`.
+The grid and NoData forest mask are preserved; no pixel-area multiplier
+is used for per-hectare values.
+
+The [EPA archived table](https://19january2017snapshot.epa.gov/climatechange/social-cost-carbon_.html)
+supplies the 3% average SCC prices: $36 (2015), $42 (2020), and $46 (2025).
+The user specified $21.40 for both 2005 and 2010, referencing the
+[2010 TSD](https://www.epa.gov/sites/default/files/2016-12/documents/scc_tsd_2010.pdf).
+Applying that value to 2005 is an explicit assumption, not a published 2005
+entry from the linked snapshot table. Prices remain in 2007 dollars, with
+no inflation adjustment. A price CSV and per-year JSON sidecars record the
+formula, sources, assumptions, and upstream interpolation metadata.
+Existing GEP outputs are not overwritten.
+
+This is an SCC-valued **storage stock proxy**, not annual sequestration GEP.
+SCC describes marginal damages from emissions; valuing the entire stock
+implicitly assumes avoided release and does not establish that counterfactual.
+Do not sum repeated stock maps as annual benefits. The public FIA coordinate,
+interpolation, and five-year-composite limitations still apply.
+
 # Blame
 
 If you encounter any issues or have questions regarding the project,

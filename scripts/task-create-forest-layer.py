@@ -65,6 +65,35 @@ def read_fia(fia_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
         conditions[column] = pd.to_numeric(conditions[column], errors="raise")
     if not plots["STATECD"].eq("27").all():
         raise ValueError("The plot database must contain Minnesota (STATECD=27) only.")
+    live_sums: list[pd.Series] = []
+    invalid_plots: set[str] = set()
+    for chunk in pd.read_csv(
+        fia_dir / "MN_TREE.csv",
+        usecols=["PLT_CN", "CONDID", "STATUSCD", "CARBON_AG", "TPA_UNADJ"],
+        dtype=str, chunksize=100_000,
+    ):
+        live = chunk.loc[chunk["STATUSCD"].eq("1")].copy()
+        live = live.merge(
+            conditions.loc[conditions["COND_STATUS_CD"].eq(1), ["PLT_CN", "CONDID"]],
+            on=["PLT_CN", "CONDID"], validate="many_to_one",
+        )
+        for column in ("CARBON_AG", "TPA_UNADJ"):
+            live[column] = pd.to_numeric(live[column], errors="raise")
+        invalid = (
+            ~np.isfinite(live["CARBON_AG"]) | live["CARBON_AG"].lt(0)
+            | ~np.isfinite(live["TPA_UNADJ"]) | live["TPA_UNADJ"].le(0)
+        )
+        invalid_plots.update(live.loc[invalid, "PLT_CN"])
+        live = live.loc[~invalid].copy()
+        # CARBON_AG is pounds C/tree; TPA_UNADJ expands to the whole plot acre.
+        live["carbon_mass"] = live["CARBON_AG"] * live["TPA_UNADJ"]
+        live_sums.append(live.groupby("PLT_CN")["carbon_mass"].sum())
+    if not live_sums:
+        raise ValueError("TREE input contains no records.")
+    carbon = pd.concat(live_sums).groupby(level=0).sum()
+    plots["carbon_lb_per_plot_acre"] = plots["CN"].map(carbon).fillna(0)
+    plots.loc[plots["CN"].isin(invalid_plots), "carbon_lb_per_plot_acre"] = np.nan
+    LOG.warning("Excluding %s plots with invalid live-tree carbon/expansion", len(invalid_plots))
     return plots, conditions
 
 
@@ -73,6 +102,7 @@ def samples_for_year(
     conditions: pd.DataFrame,
     year: int,
     boundary: BaseGeometry,
+    attribute: str = "basal_area",
 ) -> tuple[NDArray[np.float64], NDArray[np.float64], dict[str, int]]:
     selected = plots.loc[plots["MEASYEAR"].between(year - 4, year)].copy()
     site_columns = ["STATECD", "UNITCD", "COUNTYCD", "PLOT"]
@@ -103,14 +133,14 @@ def samples_for_year(
         & conditions["COND_STATUS_CD"].eq(1)
     ].copy()
     invalid = (
-        ~np.isfinite(forest["BALIVE"])
-        | forest["BALIVE"].lt(0)
-        | ~np.isfinite(forest["CONDPROP_UNADJ"])
+        ~np.isfinite(forest["CONDPROP_UNADJ"])
         | ~forest["CONDPROP_UNADJ"].between(0, 1, inclusive="right")
     )
+    if attribute == "basal_area":
+        invalid |= ~np.isfinite(forest["BALIVE"]) | forest["BALIVE"].lt(0)
     bad_plots = forest.loc[invalid, "PLT_CN"].unique()
     LOG.warning(
-        "%s: excluding %s plots with missing/invalid forest basal area or proportions",
+        "%s: excluding %s plots with invalid condition attributes/proportions",
         year, len(bad_plots),
     )
     forest = forest.loc[~forest["PLT_CN"].isin(bad_plots)].copy()
@@ -123,8 +153,18 @@ def samples_for_year(
         raise ValueError(f"{year}: forest condition proportions exceed one.")
     aggregated["basal_area"] = aggregated["weighted_ba"] / aggregated["forest_share"]
     selected = selected.merge(
-        aggregated[["basal_area"]], left_on="CN", right_index=True, validate="one_to_one"
+        aggregated[["basal_area", "forest_share"]],
+        left_on="CN", right_index=True, validate="one_to_one"
     )
+    if attribute == "carbon":
+        invalid_carbon = ~np.isfinite(selected["carbon_lb_per_plot_acre"])
+        LOG.warning("%s: excluding %s invalid-carbon visits", year, int(invalid_carbon.sum()))
+        selected = selected.loc[~invalid_carbon].copy()
+        # Normalize once to forest acres, then convert lb/acre to metric tonnes/ha.
+        selected["basal_area"] = (
+            selected["carbon_lb_per_plot_acre"] / selected["forest_share"]
+            * 0.00045359237 / 0.40468564224
+        )
     valid_coordinates = (
         np.isfinite(selected["LAT"]) & np.isfinite(selected["LON"])
         & selected["LAT"].between(-90, 90)
@@ -253,8 +293,17 @@ def predict(
 def create_layer(
     year: int, mask_path: Path, output_dir: Path,
     plots: pd.DataFrame, conditions: pd.DataFrame, boundary: BaseGeometry,
+    attribute: str = "basal_area",
 ) -> None:
-    coordinates, values, sample_stats = samples_for_year(plots, conditions, year, boundary)
+    coordinates, values, sample_stats = samples_for_year(
+        plots, conditions, year, boundary, attribute
+    )
+    prefix = "forest-layer" if attribute == "basal_area" else "forest-carbon-stock"
+    units = "ft2 per forest acre" if attribute == "basal_area" else "metric tonnes C per hectare"
+    quantity = (
+        "Forest-condition-weighted COND.BALIVE" if attribute == "basal_area"
+        else "Live aboveground tree carbon"
+    )
     model = fit_variogram(coordinates, values)
     LOG.info("%s: exponential variogram %s", year, model)
     tree = cKDTree(coordinates)
@@ -264,7 +313,7 @@ def create_layer(
     width = math.ceil((right - left) / RESOLUTION)
     height = math.ceil((top - bottom) / RESOLUTION)
     transform = from_origin(left, top, RESOLUTION, RESOLUTION)
-    output = output_dir / f"forest-layer-{year}.tif"
+    output = output_dir / f"{prefix}-{year}.tif"
     partial = output.with_suffix(".partial.tif")
     if partial.exists():
         raise FileExistsError(f"Remove or review previous incomplete output: {partial}")
@@ -285,8 +334,8 @@ def create_layer(
                 src_nodata=source.nodata if source.nodata is not None else 0,
                 nodata=0,
             ) as land_cover, rasterio.open(partial, "w", **profile) as destination:
-                destination.set_band_description(1, "Forest basal area (ft2/forest acre)")
-                destination.set_band_description(2, "Latent kriging variance ((ft2/forest acre)^2)")
+                destination.set_band_description(1, f"{quantity} ({units})")
+                destination.set_band_description(2, f"Latent kriging variance ({units})^2")
                 destination.update_tags(
                     target_year=year, measurement_years=f"{year - 4}-{year}",
                     mask_year=MASK_YEARS[year], mask_source=str(mask_path),
@@ -294,6 +343,7 @@ def create_layer(
                     method="Local ordinary kriging; exponential covariance; 32 neighbors",
                     coordinate_caution="Public FIA coordinates are fuzzed/swapped",
                     negative_prediction_policy="Clipped to zero; count in JSON sidecar",
+                    attribute=quantity, units=units,
                 )
                 for _, window in destination.block_windows(1):
                     classes = land_cover.read(1, window=window, masked=True)
@@ -331,8 +381,12 @@ def create_layer(
             "measurement_end_year": year, "mask_year": MASK_YEARS[year],
             "mask_source": str(mask_path), "forest_classes": FOREST_CLASSES,
             "crs": CRS, "resolution_m": RESOLUTION,
-            "attribute": "Forest-condition-weighted COND.BALIVE",
-            "units": "ft2 per forest acre",
+            "attribute": quantity,
+            "units": units,
+            "carbon_formula": (
+                "sum(CARBON_AG * TPA_UNADJ for live forest trees) / forest_share "
+                "* 0.00045359237 / 0.40468564224"
+            ) if attribute == "carbon" else None,
             "condition_weight": "CONDPROP_UNADJ normalized over forest conditions",
             "sample_statistics": sample_stats, "variogram": model,
             "method": "Local ordinary kriging", "neighbors": NEIGHBORS,
@@ -377,16 +431,17 @@ def main() -> None:
         for year, mask_year in MASK_YEARS.items()
     }
     for path in [
-        args.fia_dir / "MN_PLOT.csv", args.fia_dir / "MN_COND.csv",
+        args.fia_dir / "MN_PLOT.csv", args.fia_dir / "MN_COND.csv", args.fia_dir / "MN_TREE.csv",
         args.boundary, *masks.values(),
     ]:
         if not path.is_file():
             raise FileNotFoundError(f"Required input does not exist: {path}")
     for year in YEARS:
-        for suffix in (".tif", ".json", ".partial.tif"):
-            path = args.output_dir / f"forest-layer-{year}{suffix}"
-            if path.exists():
-                raise FileExistsError(f"Refusing to overwrite existing output: {path}")
+        for prefix in ("forest-layer", "forest-carbon-stock"):
+            for suffix in (".tif", ".json", ".partial.tif"):
+                path = args.output_dir / f"{prefix}-{year}{suffix}"
+                if path.exists():
+                    raise FileExistsError(f"Refusing to overwrite existing output: {path}")
     with fiona.open(args.boundary) as source:
         if not source.crs:
             raise ValueError("Minnesota boundary has no CRS.")
@@ -405,6 +460,9 @@ def main() -> None:
     LOG.warning("2025 uses the explicitly agreed 2022 ESA forest mask.")
     for year in YEARS:
         create_layer(year, masks[year], args.output_dir, plots, conditions, boundary)
+        create_layer(
+            year, masks[year], args.output_dir, plots, conditions, boundary, "carbon"
+        )
 
 
 if __name__ == "__main__":
