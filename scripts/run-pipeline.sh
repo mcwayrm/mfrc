@@ -68,11 +68,18 @@ run_step() {
     fi
 }
 
-# Quarto is currently the only external program used by this pipeline.
+require_command Rscript
+require_command python
 require_command quarto
 
 # Add data preparation, analysis, and reporting scripts here in dependency order.
 # A trailing backslash continues one command across multiple lines for readability.
+
+run_step "$SCRIPT_DIR/task-pull-fia-data.R" \
+    Rscript "$SCRIPT_DIR/task-pull-fia-data.R"
+
+run_step "$SCRIPT_DIR/task-create-forest-layer.py" \
+    python "$SCRIPT_DIR/task-create-forest-layer.py"
 
 # TODO: Replace the log files with the task scripts once they are created. log-questions.qmd and log-issues.qmd are placeholders.
 run_step "$LOG_DIR/log-questions.qmd" \
