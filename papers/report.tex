@@ -60,9 +60,96 @@ Trends:
 Define the study area, forest-owner population, ecosystem services, and time period included in the assessment.
 
 
-- Here I want to add about constructing the supply of forest ecosystem services deriving from information provided by FIA. 
-- Then showing the methodology for turning this into a time series (5 year intervals) of forest layers which are used as the underpinning for each ecosystem service assessment.
-- Show the four maps constructed in task-visualize-forest-layer.R
+\subsubsection{From FIA observations to spatial forest layers}
+
+The spatial foundation of the assessment combines the U.S.\ Forest Service Forest Inventory and Analysis (FIA) database for Minnesota with European Space Agency (ESA) land-cover masks. The complete Minnesota FIADB CSV database is retained, including historical plot, condition, tree, and population records. Annual evaluation coverage for 2000--2025 is documented using \texttt{POP\_EVAL.END\_INVYR}; spatial composites instead use the actual measurement year, \texttt{MEASYEAR}. These are distinct temporal definitions. The layers represent forests across Minnesota, not exclusively family-owned forests; attribution to family forests requires a subsequent ownership overlay. Basal area provides a structural density proxy for service-specific models, rather than a direct measure of ecosystem-service supply.
+
+Figure~\ref{fig:forest-layer-construction} illustrates the transformation. Panel A summarizes distinct measurement years during 2000--2025 for each physical plot, identified by the combination of \texttt{STATECD}, \texttt{UNITCD}, \texttt{COUNTYCD}, and \texttt{PLOT}, rather than by the visit-specific identifier \texttt{CN}. Each site is displayed once at its latest public location, without jitter, and all plot statuses are included in this sampling overview. Seventy records lacking a measurement year are excluded from the temporal summary. Among 18,286 physical sites with measurements in the requested period, 80.62\% were observed in five distinct years and 17.63\% in six (Table~\ref{tab:fia-frequency}). Measurement frequency describes the available records, not an assumed fixed remeasurement interval.
+
+\begin{table}[htbp]
+\centering
+\caption{Frequency of FIA measurement years per physical Minnesota plot, 2000--2025.}
+\label{tab:fia-frequency}
+\begin{tabular}{@{}rrrr@{}}
+\toprule
+Distinct years & Physical sites & Share (\%) & Mapped sites \\
+\midrule
+1 & 167 & 0.91 & 167 \\
+2 & 39 & 0.21 & 39 \\
+3 & 41 & 0.22 & 41 \\
+4 & 72 & 0.39 & 72 \\
+5 & 14,743 & 80.62 & 14,743 \\
+6 & 3,224 & 17.63 & 3,224 \\
+\midrule
+Total & 18,286 & 100.00 & 18,286 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.95\linewidth}
+\footnotesize Source: \path{outputs/tables/fia-measurement-frequency.csv}. Distinct years are counted once per physical plot, irrespective of repeated records within a year. All 18,286 latest public locations have valid coordinates within the Minnesota boundary. The mean is 5.12 distinct years per site; displayed percentages may not sum to 100 because of rounding.
+\end{minipage}
+\end{table}
+
+For each target year $t\in\{2005,2010,2015,2020,2025\}$, observations are restricted to the trailing five measurement years $[t-4,t]$. Only the newest visit per physical plot is retained, ordered by measurement year, month, day, inventory year, and visit identifier; unknown month or day values precede known values. Selection precedes forest-status filtering, so an earlier forest observation is not substituted for a newer nonforest or nonsampled visit. Sampled plots (\texttt{PLOT\_STATUS\_CD}=1) with forest conditions (\texttt{COND\_STATUS\_CD}=1) contribute basal area. For plot $p$, the forest-area-normalized response is
+\begin{equation}
+B_{p,t} =
+\frac{\sum_{c\in F_p}\mathrm{BALIVE}_{pc,t}\,w_{pc,t}}
+     {\sum_{c\in F_p}w_{pc,t}},
+\qquad
+w_{pc,t}=\mathrm{CONDPROP\_UNADJ}_{pc,t},
+\label{eq:plot-basal-area}
+\end{equation}
+where $F_p$ denotes forest conditions. The resulting quantity is square feet of live-tree basal area per forest acre, not per total plot acre. Plots with invalid basal area or forest-condition proportions, invalid coordinates, or locations outside Minnesota are excluded. Public coordinates are transformed from geographic coordinates to NAD83 / UTM zone 15N (EPSG:26915); coincident locations, if present, are averaged to avoid duplicate spatial weighting and singular kriging systems. Table~\ref{tab:forest-layer-samples} records the sampling windows and retained forest sites. No coincident sites were collapsed in the current five composites.
+
+\begin{table}[htbp]
+\centering
+\caption{FIA sampling support and ESA mask years for the five-year forest composites.}
+\label{tab:forest-layer-samples}
+\begin{tabular}{@{}rrrrr@{}}
+\toprule
+Target year & Measurement years & Latest-visit sites & Forest sites used & ESA year \\
+\midrule
+2005 & 2001--2005 & 18,070 & 5,726 & 2005 \\
+2010 & 2006--2010 & 17,753 & 5,948 & 2010 \\
+2015 & 2011--2015 & 17,948 & 6,099 & 2015 \\
+2020 & 2016--2020 & 17,761 & 6,022 & 2020 \\
+2025 & 2021--2025 & 17,714 & 5,839 & 2022 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.95\linewidth}
+\footnotesize Sources: annual \texttt{forest-layer-[year].json} sidecars and \path{outputs/tables/forest-layer-annual-summary.csv}. Latest-visit sites are counted before filtering plot status, forest conditions, and spatial eligibility. Forest sites used are the unique locations supplied to kriging, not population-expanded estimates of forest area.
+\end{minipage}
+\end{table}
+
+Each composite is interpolated separately using local ordinary kriging. An exponential semivariogram,
+\begin{equation}
+\gamma_t(h)=\tau_t^2+\sigma_t^2\{1-\exp(-h/a_t)\},\qquad h>0,
+\label{eq:forest-variogram}
+\end{equation}
+is fitted to a reproducible random sample of up to 1,000 eligible sites (seed 42). Here $\tau_t^2$ is the nugget, $\sigma_t^2$ the partial sill, and $a_t$ the exponential scale. Pairwise semivariances are grouped into 20 equal-width distance bins; bins with fewer than 30 pairs are omitted, and bounded nonlinear least squares weights the residuals by the square root of each bin's share of pairs. Predictions use the nearest 32 of all eligible sites, not just the variogram-fitting subset. Ordinary-kriging weights sum to one; the nugget is included in observation covariance but not added to the covariance of the predicted latent surface. Negative predictions are clipped to zero, and the second raster band stores latent kriging variance.
+
+Predictions are evaluated on a common 300-metre EPSG:26915 grid clipped to the Minnesota county boundary. ESA classes 50, 60, 61, 62, 70, 71, 72, 80, 81, 82, 90, and 100 define forest; mosaics and flooded-forest classes are excluded. Categorical land cover is aligned by nearest-neighbor resampling. All eligible forest pixels are predicted, including locations beyond the sampled spatial support; other pixels are NoData rather than zero. The 2025 composite explicitly uses the 2022 ESA mask because a 2025 mask is not supplied. Panel B displays the masked 2025 basal-area surface; Panel C displays its exact ESA forest footprint, recovered from valid prediction cells so that an additional reprojection cannot change the mask. Gray areas include both land outside the forest mask and unavailable land cover.
+
+Panel D compares basal-area density using
+\begin{equation}
+\Delta B_i(\%) =
+100\,\frac{\widehat B_{i,2025}-\widehat B_{i,2005}}
+               {\widehat B_{i,2005}},
+\label{eq:forest-density-change}
+\end{equation}
+only where cell $i$ is forested in both saved masks and $\widehat B_{i,2005}>0$. Nonoverlapping forest pixels and zero baselines are excluded rather than assigned zero change. This comparison measures structural density change between five-year composites, not forest-cover change, annual sequestration, or growth in ecosystem-service value. Small baselines can amplify percentage changes.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{../outputs/maps/forest-layer-four-panel.pdf}
+\caption{Construction and comparison of exploratory Minnesota forest layers. (A) Distinct FIA measurement years per physical plot during 2000--2025, shown at the latest public location. (B) Local ordinary-kriging estimates of basal-area density for the 2021--2025 measurement window, masked to ESA forest. (C) The exact ESA 2022 forest footprint used for the 2025 composite. (D) Percentage basal-area density change from the 2001--2005 to the 2021--2025 composites on shared forest pixels with positive baseline density. These statewide surfaces are not restricted to family ownership and are not design-based FIA estimates.}
+\label{fig:forest-layer-construction}
+\end{figure}
+
+The resulting layers are exploratory spatial inputs, not FIA design-based population estimates: no population expansion weights are used in the interpolation. Public FIA coordinates are fuzzed or swapped, and 300-metre cell size does not establish 300-metre positional accuracy. The fitted variograms have not been spatially cross-validated; latent kriging variance omits land-cover, temporal, and coordinate uncertainty. Consequently, apparent local change should be interpreted cautiously, and service-specific quantity models, ownership attribution, and validation are required before these layers support estimates of family-forest ecosystem-service values.
 
 \subsection{Forest Ecosystems Assessed}
 

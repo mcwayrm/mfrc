@@ -1,5 +1,7 @@
 # Ignore data folder
 /data/ 
+# Ignore outputs folder
+/outputs/
 # Ignore intermediate build files
 /logs/log-issues_files/
 /logs/log-questions_files/

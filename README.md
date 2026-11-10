@@ -118,6 +118,49 @@ including extrapolation beyond sampled locations. Variograms and spatial
 cross-validation require review before inference; band 2 does not include
 land-cover, temporal, or coordinate uncertainty.
 
+# Visualizing FIA and the forest layer
+
+Install R packages `terra`, `sf`, `tmap` (version 4 or newer), `data.table`,
+and `jsonlite`, then run `Rscript scripts/task-visualize-forest-layer.R`.
+The script also supports `source()` with its absolute file path, regardless
+of the working directory. It reads all five basal-area rasters and their JSON
+sidecars, the FIA plot table, and the Minnesota county boundary.
+
+Four individual maps and `forest-layer-four-panel` are saved as PNG (300 dpi)
+and PDF in `outputs/maps/`:
+
+- **A:** Distinct measurement years per physical FIA plot during 2000-2025,
+  keyed by `STATECD`, `UNITCD`, `COUNTYCD`, and `PLOT`. All plot statuses are
+  included. The latest public coordinates are shown without jitter; invalid
+  or out-of-state locations are excluded with warnings.
+- **B:** 2025 kriged basal-area density in square feet per forest acre,
+  using 2021-2025 measurements and the 2022 ESA mask.
+- **C:** The exact 2022 ESA forest footprint preserved by the 2025 model.
+  The producer predicts every eligible forest pixel, so band 1's valid cells
+  preserve the mask without introducing differences from a second reprojection.
+  Gray means outside the forest mask, including unavailable land cover; it
+  is not a separate estimate of nonforest area. Forest classes are
+  50, 60, 61, 62, 70, 71, 72, 80, 81, 82, 90, and 100.
+- **D:** `100 * (2025 basal area - 2005 basal area) / 2005 basal area`.
+  Only pixels forested in both saved masks with positive 2005 basal area
+  are compared. Zero baselines and nonoverlapping forest pixels are excluded,
+  not assigned zero change. This is density change, not forest-cover change.
+
+Three CSVs in `outputs/tables/` summarize measurement frequency, annual mapped
+forest area and basal-area distributions, and shared-pixel change/exclusions.
+Areas use the projected 300-metre grid (9 hectares per cell); density summaries
+are equal-cell statistics over each year's forest mask, not design-based FIA
+estimates. Mean pixel percentage change is not percentage change in mean
+density, and annual means use different forest footprints. These maps are
+exploratory five-year composites, not exact annual ecosystem-service flows.
+Small baselines amplify percentage changes. Rerunning replaces only the named
+visualization outputs, leaving input data unchanged.
+
+Useful report companions would be an absolute basal-area change map (less
+sensitive to small baselines), a shared-forest change histogram, and a kriging
+uncertainty or nearest-sample-distance map. Kriging variance alone does not
+capture coordinate, land-cover, or temporal uncertainty.
+
 # Valuing live aboveground carbon storage
 
 The forest-layer script now also produces `forest-carbon-stock-[year].tif`
