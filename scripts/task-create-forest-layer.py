@@ -1,4 +1,4 @@
-"""Create exploratory Minnesota basal-area surfaces; run only after review."""
+"""Use Kriging to create forest layer underpinning analysis."""
 
 from __future__ import annotations
 

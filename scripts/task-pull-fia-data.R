@@ -10,11 +10,27 @@ if (length(missing_packages)) {
   )
 }
 
-script_argument <- grep("^--file=", commandArgs(), value = TRUE)
-if (length(script_argument) != 1L) {
-  stop("Run this script with Rscript scripts/task-pull-fia-data.R.")
+source_paths <- vapply(sys.frames(), function(frame) {
+  if (is.character(frame$ofile) && length(frame$ofile) == 1L) {
+    frame$ofile
+  } else {
+    NA_character_
+  }
+}, character(1))
+source_paths <- source_paths[!is.na(source_paths)]
+if (length(source_paths)) {
+  script_path <- tail(source_paths, 1L)
+} else {
+  script_argument <- grep("^--file=", commandArgs(), value = TRUE)
+  if (length(script_argument) != 1L) {
+    stop(
+      "Run this script with Rscript or source() using its file path: ",
+      "scripts/task-pull-fia-data.R."
+    )
+  }
+  script_path <- sub("^--file=", "", script_argument)
 }
-script_path <- normalizePath(sub("^--file=", "", script_argument), mustWork = TRUE)
+script_path <- normalizePath(script_path, mustWork = TRUE)
 root_dir <- dirname(dirname(script_path))
 data_dir <- file.path(root_dir, "data", "FIA")
 metadata_dir <- file.path(data_dir, "metadata")

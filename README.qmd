@@ -35,6 +35,10 @@ To use this project, follow these steps:
 
 Install the R packages once with `install.packages(c("rFIA", "data.table"))`,
 then run `Rscript scripts/task-pull-fia-data.R` from the repository root.
+Alternatively, in an R console, run
+`source("f:\\mfrc\\scripts\\task-pull-fia-data.R", encoding = "UTF-8")`
+(adjust the absolute path for your checkout). Both methods locate the output
+directory relative to the script, regardless of the working directory.
 The script downloads the complete Minnesota FIADB CSV database using
 `rFIA::getFIA()` and saves it in `data/FIA/`.
 
@@ -63,6 +67,15 @@ data and requires `python` on `PATH`. Install its dependencies with
 `python scripts/task-create-forest-layer.py`. No raster generation was run
 during implementation. Existing forest-layer outputs must be reviewed and
 moved or removed before rerunning this pipeline step.
+
+If Conda stalls while solving dependencies, activate the intended environment
+and run `python -m pip install --only-binary=:all: -r scripts/requirements-forest-layer.txt`
+from the repository root. This uses prebuilt wheels and leaves already-satisfied
+dependencies unchanged. If pip reports an `ssl.SSLError` while loading the
+Windows certificate store, add `--use-deprecated=legacy-certs` to use pip's
+CA bundle instead; HTTPS certificate verification remains enabled.
+Check imports without generating outputs with
+`python scripts/task-create-forest-layer.py --help`.
 
 It creates `data/forest-layer/forest-layer-[year].tif` for 2005, 2010, 2015,
 2020, and 2025. Each uses the newest physical-plot observation in the trailing
