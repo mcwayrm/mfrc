@@ -175,9 +175,9 @@ Forest plots without live-tree records contribute zero; invalid live-tree
 carbon or expansion values exclude the plot. Only live aboveground tree
 carbon is represented, not soil, deadwood, litter, roots, or understory.
 
-After review, install `terra` and `jsonlite` in R and run
+After review, install `terra`, `sf`, `tmap` (>= 4.0), and `jsonlite` in R and run
 `Rscript scripts/task-value-carbon.R`. This step is not added to the pipeline
-and was not run during implementation. It requires the carbon rasters and
+and also supports `source()` with its absolute file path. It requires the carbon rasters and
 their metadata; basal-area rasters are not accepted as carbon quantities.
 
 Outputs are `data/GEP/gep-carbon-stock-[year].tif` for 2005, 2010, 2015,
@@ -195,6 +195,29 @@ entry from the linked snapshot table. Prices remain in 2007 dollars, with
 no inflation adjustment. A price CSV and per-year JSON sidecars record the
 formula, sources, assumptions, and upstream interpolation metadata.
 Existing GEP outputs are not overwritten.
+
+The script finishes by creating two maps in `outputs/maps/`: a 2025 heat map
+of stock value per hectare (`carbon-stock-value-hotspots-2025`) and a
+2005-2025 percentage value-change map
+(`carbon-stock-value-percent-change-2005-2025`). The heat map shows high-value
+locations, not statistically tested hotspots. Change is computed only on
+shared forest pixels with positive 2005 value; zero baselines and nonoverlapping
+forest are excluded. Value change includes SCC price changes as well as carbon
+changes; it is not a map of sequestration or carbon-stock change alone.
+
+`outputs/figures/carbon-stock-value-time-series` shows aligned quantity and
+total-value panels, plus a fixed-$21.40 SCC comparison that isolates quantity
+and area changes from price changes. All three visualizations are saved as PNG
+(300 pixels per inch at the intended print size) and PDF.
+`outputs/tables/carbon-stock-value-time-series.csv` contains the five annual
+totals, areas, prices, and fixed-price comparison;
+`carbon-stock-value-change-summary.csv` records shared-pixel change and exclusions.
+Totals multiply per-hectare quantities and values by 9 hectares per projected
+300-metre cell. Each year uses its own forest footprint, so temporal differences
+include mapped-area changes. The 2025 layer uses ESA 2022. These are statewide
+mapped-forest totals, not yet family-ownership estimates or design-based FIA
+estimates. Existing valuation rasters are protected; visualization files are
+replaced when the visualization function is run.
 
 This is an SCC-valued **storage stock proxy**, not annual sequestration GEP.
 SCC describes marginal damages from emissions; valuing the entire stock

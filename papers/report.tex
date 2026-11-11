@@ -325,6 +325,69 @@ where $Q_i$ is tCO$_2$e and $P_i$ is dollars per tCO$_2$e. This is a one-time st
 
 \paragraph{Estimated Value}
 
+The first-pass implementation values live aboveground tree carbon in the five kriged forest composites, rather than the combined carbon pools proposed above. The per-hectare stock-value proxy for cell $i$ and composite year $t$ is
+\begin{equation}
+v_{i,t}=\widehat C^{\mathrm{AG}}_{i,t}\left(\frac{44}{12}\right)P_t
+\quad [\mathrm{2007\ USD/ha}],
+\label{eq:implemented-carbon-storage}
+\end{equation}
+where $\widehat C^{\mathrm{AG}}_{i,t}$ is live aboveground carbon in metric tonnes C per forest hectare. Pixel area is not multiplied into this value-density raster. Statewide totals subsequently multiply each valid cell by its projected area of 9 hectares. The mean value per hectare is the total stock-value proxy divided by that year's mapped forest area, excluding NoData cells rather than treating them as zero.
+
+Table~\ref{tab:carbon-storage-results} reports these area-weighted results. For 2025, mean live aboveground carbon is 46.07 tonnes C/ha and its mean SCC-valued storage proxy is \textbf{\$7,769.83 per forest hectare in 2007 dollars}. Across 5.995 million mapped hectares, the corresponding total is 276.18 million tonnes C and \$46.58 billion. In 2005, mean value is \$2,915.92/ha and total value is \$17.19 billion. These are statewide mapped-forest results, not estimates restricted to family-owned forests.
+
+\begin{table}[htbp]
+\centering
+\caption{Live aboveground carbon storage and SCC-valued stock proxies by forest composite.}
+\label{tab:carbon-storage-results}
+\small
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+Year & Forest area & Carbon density & SCC & Mean value & Total value \\
+ & (million ha) & (tC/ha) & (\$/tCO$_2$) & (\$/ha) & (billion \$) \\
+\midrule
+2005 & 5.895 & 37.16 & 21.40 & 2,915.92 & 17.19 \\
+2010 & 6.023 & 39.26 & 21.40 & 3,080.95 & 18.56 \\
+2015 & 6.002 & 41.32 & 36.00 & 5,454.45 & 32.74 \\
+2020 & 5.997 & 43.91 & 42.00 & 6,762.02 & 40.55 \\
+2025 & 5.995 & 46.07 & 46.00 & 7,769.83 & 46.58 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.95\linewidth}
+\footnotesize Source: \path{outputs/tables/carbon-stock-value-time-series.csv}. All monetary quantities are in 2007 USD. Carbon includes live aboveground trees only. Each row uses a trailing five-year FIA measurement window and its own ESA forest mask; the 2025 composite uses ESA 2022. Area and density are raster-based, not design-based FIA population estimates.
+\end{minipage}
+\end{table}
+
+Figure~\ref{fig:carbon-storage-maps} shows the spatial distribution of 2025 value density and the percentage change in value from 2005 to 2025. The heat map highlights high modeled value density, not statistically tested hotspots. Percentage change is evaluated only on the 640,833 cells forested in both masks with positive 2005 value; 14,191 cells forested only in 2005 and 25,318 cells forested only in 2025 are excluded. No shared cells have a zero baseline in this run. Median shared-cell value change is +166.01\%, but this combines changes in modeled carbon density with the increase in SCC from \$21.40 to \$46 per tonne CO$_2$. It must not be interpreted as a 166.01\% increase in carbon storage or sequestration.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.49\textwidth]{../outputs/maps/carbon-stock-value-hotspots-2025.pdf}
+\hfill
+\includegraphics[width=0.49\textwidth]{../outputs/maps/carbon-stock-value-percent-change-2005-2025.pdf}
+\caption{Exploratory carbon-storage valuation maps. (A) Live aboveground carbon stock-value density in 2025, valued at \$46/tCO$_2$ in 2007 USD and restricted to the ESA 2022 forest footprint. (B) Percentage stock-value change from 2005 to 2025 on shared forest pixels with positive baseline value. Change includes both modeled carbon and SCC price changes. Gray cells are outside the eligible mapped support, not zero-valued forest.}
+\label{fig:carbon-storage-maps}
+\end{figure}
+
+Figure~\ref{fig:carbon-storage-series} separates the quantity and valuation trajectories. Statewide mapped live aboveground carbon increases by 26.07\% between the endpoint composites, whereas total stock-value proxy increases by 170.99\%. At a fixed SCC of \$21.40/tCO$_2$, the 2025 total would be \$21.67 billion rather than \$46.58 billion. This fixed-price comparison removes SCC price changes but retains changes in mapped forest area, modeled density, and sampling support. The trajectories therefore do not establish annual net sequestration.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{../outputs/figures/carbon-stock-value-time-series.pdf}
+\caption{Statewide mapped live aboveground carbon and its SCC-valued stock proxy for the five-year composites. The lower panel compares year-specific SCC values with a constant \$21.40/tCO$_2$ valuation, all in 2007 USD. Each point uses its own forest mask; 2025 uses ESA 2022. Connecting lines aid comparison and do not represent annual observations. Stocks and their values must not be summed across years as annual benefits.}
+\label{fig:carbon-storage-series}
+\end{figure}
+
+\paragraph{Differences between the proposed and implemented valuation.}
+The implemented assessment departs from the proposal in four important respects:
+\begin{enumerate}
+\item \textbf{Carbon-pool coverage and quantity construction.} Only live aboveground tree carbon is included, excluding roots, deadwood, litter, soil, and understory. FIA live forest-tree records contribute \texttt{CARBON\_AG} multiplied by \texttt{TPA\_UNADJ}; plot totals are normalized once by the summed forest-condition proportion and converted from pounds C per forest acre to tonnes C/ha. Carbon is kriged independently of basal area; basal area is not itself converted into carbon. These outputs cannot be described as total ecosystem carbon.
+\item \textbf{Spatial and ownership scope.} The calculation covers all eligible mapped Minnesota forest, without a family-ownership overlay or an estimated forest-attributable counterfactual. It applies the full SCC multiplier to included carbon rather than estimating an ownership-specific $\lambda_i$. Public FIA coordinates, five-year compositing, unvalidated kriging, and changing land-cover masks limit spatial and temporal inference.
+\item \textbf{Price selection.} The implementation uses the 3\% discount-rate, average SCC scenario. Prices of \$36, \$42, and \$46 for 2015, 2020, and 2025 come from the \href{https://19january2017snapshot.epa.gov/climatechange/social-cost-carbon_.html}{archived EPA SCC table}. The user-specified \$21.40 from the \href{https://www.epa.gov/sites/default/files/2016-12/documents/scc_tsd_2010.pdf}{2010 technical support document} is applied to both 2005 and 2010; its use for 2005 is an explicit assumption, not a published 2005 table entry. Values remain in 2007 dollars, without inflation adjustment.
+\item \textbf{Stock proxy versus GEP service flow.} Multiplying existing carbon by SCC prices the damages associated with a hypothetical release of that stock. The analysis does not establish that release would occur without the forest or its management, nor does it estimate annual avoided emissions. Consequently, this is an \emph{SCC-valued live aboveground carbon stock proxy}, not an annual GEP contribution or a demonstrated exchange-value estimate for ecosystem accounting. Annual carbon sequestration will be estimated separately next, with attention to net carbon accumulation, comparable spatial support, and the distinction between genuine change and sampling or interpolation artifacts. The full storage stock value will not be added to annual sequestration value.
+\end{enumerate}
+
 
 
 % -----------------------------------------------------
