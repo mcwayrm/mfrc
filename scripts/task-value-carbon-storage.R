@@ -304,7 +304,7 @@ visualize_carbon <- function() {
     graphics::plot(
       years, values, type = "o", pch = 16, col = "#2166ac", lwd = 2, xaxt = "n",
       ylim = range(c(values, fixed)), xlab = "Composite target year",
-      ylab = "Billion 2007 USD", main = "Total SCC-valued stock proxy (not annual GEP)"
+      ylab = "Billion 2007 USD", main = "Gross-ecosystem Product (GEP)"
     )
     graphics::axis(1, at = years)
     graphics::lines(years, fixed, type = "o", pch = 1, col = "#666666", lty = 2, lwd = 2)

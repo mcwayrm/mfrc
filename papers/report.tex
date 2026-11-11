@@ -33,6 +33,11 @@ This report assesses the monetary and non-monetary value of Minnesota family for
 
 \noindent\textbf{Keywords:} Family Forests; Ecosystem Services; Forest Valuation; Minnesota
 
+% Table of contents.
+\clearpage 
+\tableofcontents
+\newpage
+
 \section{Introduction}
 - Land of 10 thousand lakes... and 15 million trees. This is about identity of MN. 
 Describe the importance of Minnesota family forests, the decision context for this assessment, and the research questions addressed by the report.
@@ -291,6 +296,78 @@ V_{\mathrm{sequestration}}=\sum_i Q_iP_i\lambda_i,
 where $Q_i$ is annual net tCO$_2$e and $P_i$ is dollars per tCO$_2$e. The result is an annual flow value; do not add the full carbon-stock value to it without defining a non-overlapping valuation period.
 
 \paragraph{Estimated Value}
+
+The first-pass implementation estimates signed annualized changes in live aboveground tree carbon from linked FIA plot visits, rather than differencing the independently kriged storage maps. For a matched physical plot $p$, the observed rate is
+\begin{equation}
+r_p=\frac{C^{\mathrm{AG}}_{p,\mathrm{current}}-
+                C^{\mathrm{AG}}_{p,\mathrm{previous}}}
+               {\mathrm{REMPER}_p}
+\quad [\mathrm{tC/ha/year}],
+\label{eq:matched-carbon-rate}
+\end{equation}
+where \texttt{PLOT.REMPER} is the FIA remeasurement interval in years. Each visit's live aboveground stock is calculated from live forest-tree \texttt{CARBON\_AG} multiplied by \texttt{TPA\_UNADJ}, normalized by the forest-condition proportion and converted to tonnes C/ha. Negative rates are retained as live-pool losses. Local ordinary kriging produces $\widehat r_{i,t}$ on the existing forest grid, and the valued rate is
+\begin{equation}
+v^{\mathrm{annual}}_{i,t}
+=\widehat r_{i,t}\left(\frac{44}{12}\right)P_t
+\quad [\mathrm{2007\ USD/ha/year}].
+\label{eq:implemented-carbon-sequestration}
+\end{equation}
+Raster values are per hectare per year; statewide annualized totals multiply each eligible 300-metre cell by 9 hectares. NoData cells are excluded, not assigned zero.
+
+Table~\ref{tab:carbon-sequestration-results} summarizes the supported composites. For 2025, the modeled mean annualized live aboveground carbon change is \textbf{0.532 tonnes C/ha/year}, equivalent to approximately 1.952 tonnes CO$_2$/ha/year. At \$46/tCO$_2$, its mean annualized value is \textbf{\$89.78/ha/year in 2007 USD}. Across 5.995 million mapped forest hectares, the signed total is 3.191 million tonnes C/year (11.701 million tonnes CO$_2$ equivalent/year), valued at \$538.23 million/year. This net live-pool change comprises 3.444 million tonnes C/year of positive modeled accumulation and $-0.252$ million tonnes C/year of modeled losses. These quantities are exploratory statewide interpolations, not family-forest-only or design-based FIA estimates.
+
+\begin{table}[htbp]
+\centering
+\caption{Matched-FIA annualized live aboveground carbon change and SCC-valued rates.}
+\label{tab:carbon-sequestration-results}
+\small
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+Target & Matched & Mean change & SCC & Mean value & Total value \\
+year & sites & (tC/ha/year) & (\$/tCO$_2$) & (\$/ha/year) & (million \$/year) \\
+\midrule
+2005 & --- & --- & --- & --- & --- \\
+2010 & 1,710 & 0.322 & 21.40 & 25.24 & 152.01 \\
+2015 & 3,953 & 0.397 & 36.00 & 52.39 & 314.45 \\
+2020 & 3,912 & 0.567 & 42.00 & 87.29 & 523.52 \\
+2025 & 3,835 & 0.532 & 46.00 & 89.78 & 538.23 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.95\linewidth}
+\footnotesize Source: \path{outputs/tables/carbon-sequestration-time-series.csv}. Monetary values are in 2007 USD. Endpoint windows are 2006--2010, 2011--2015, 2016--2020, and 2021--2025; actual matched-visit intervals range from 3.6--6.3, 4.0--6.4, 4.0--6.1, and 4.0--6.1 years, respectively. The 2025 forest mask is ESA 2022. The 2005 estimate is unavailable under the comparability rules, not zero.
+\end{minipage}
+\end{table}
+
+Figure~\ref{fig:carbon-sequestration-maps} displays signed 2025 value density and its absolute difference from 2010 on shared forest pixels. Negative values indicate declining live aboveground carbon, not necessarily immediate atmospheric emissions. Absolute rather than percentage change is shown because annualized rates can be zero or negative, making percentage comparisons unstable or misleading. The value difference includes changes in SCC prices, matched-plot support, and modeled rates; it does not isolate ecological change.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.49\textwidth]{../outputs/maps/carbon-sequestration-value-2025.pdf}
+\hfill
+\includegraphics[width=0.49\textwidth]{../outputs/maps/carbon-sequestration-value-change-2010-2025.pdf}
+\caption{Exploratory annualized live-carbon change valuation. (A) Signed 2025 annualized value density, using matched FIA visits and the ESA 2022 forest mask. (B) Absolute difference in annualized value density between the 2010 and 2025 endpoint composites on shared forest pixels. Blue indicates positive valued rates or increases; red indicates negative rates or decreases. Gray cells are outside the eligible mapped support. These are live-pool change proxies, not complete atmospheric sequestration estimates.}
+\label{fig:carbon-sequestration-maps}
+\end{figure}
+
+Figure~\ref{fig:carbon-sequestration-series} distinguishes the quantity trajectory from its valuation. Modeled net live-carbon accumulation increases from 1.937 million tonnes C/year in 2010 to 3.400 million in 2020, then decreases to 3.191 million in 2025. Despite that latter decrease, the valued total rises from \$523.52 million/year to \$538.23 million/year because SCC increases from \$42 to \$46/tCO$_2$. At a fixed SCC of \$21.40/tCO$_2$, the 2025 value would instead be \$250.40 million/year. Each point uses a different endpoint composite, matched sample, and forest footprint; connecting lines are descriptive rather than observations of annual dynamics.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{../outputs/figures/carbon-sequestration-time-series.pdf}
+\caption{Annualized live aboveground carbon change and its SCC-valued proxy for supported matched-FIA endpoint composites. The lower panel compares endpoint SCC prices with a fixed \$21.40/tCO$_2$ valuation, in 2007 USD/year. Quantity totals retain negative live-pool changes. The 2005 estimate is unavailable, and these interpolated rates should not be interpreted as a complete annual greenhouse-gas balance or family-forest GEP.}
+\label{fig:carbon-sequestration-series}
+\end{figure}
+
+\paragraph{Differences between the proposed and implemented valuation.}
+\begin{enumerate}
+\item \textbf{Matched visits and temporal support.} Visits are linked through \texttt{PREV\_PLT\_CN}, with identical physical plot keys and \texttt{DESIGNCD}, and sampled status at both visits. The newest endpoint per physical plot is selected in each trailing five-year window before exclusions. Rates use actual \texttt{REMPER}, not a uniform five-year divisor; predecessors can precede the endpoint window. The analysis estimates annualized interval rates rather than FIA design-based annual estimates. For 2005, early predecessors are unavailable or incompatible in sampling design, leaving insufficient matched support; no rate is fabricated.
+\item \textbf{Forest eligibility and spatial inference.} Both visits must contain only forest conditions with summed forest proportions within $10^{-6}$ of one. Mixed forest/nonforest plots, land-use transitions, changed sampling designs, and invalid stocks are excluded. This reduces confounding from changing forest area but conditions the sample on persistent, fully forested plots. Those rates are extrapolated to all eligible pixels of each year's saved ESA forest footprint, not just the fully forested plot population. No family-ownership overlay, FIA population expansion weights, or separately estimated $\lambda_i$ is applied.
+\item \textbf{Pool coverage and interpretation of losses.} Only live aboveground trees are measured consistently at both visits. Roots, deadwood, litter, soils, understory, and harvested-product pools are omitted. Net stock differences incorporate changes in the observed live pool rather than separately estimating growth, mortality, removals, and subsequent carbon fate from FIA growth-component tables. Mortality and harvesting can transfer carbon to deadwood or products, so a live-pool loss is not necessarily an immediate emission. Conversely, omitted pools may gain or lose carbon independently. The output is therefore an annualized net live-pool change proxy, not a complete net ecosystem or atmospheric sequestration balance.
+\item \textbf{Interpolation and uncertainty.} Signed rates are kriged independently of the storage surfaces, using 32 nearest matched sites. An exponential variogram is fitted by bounded, pair-count-weighted normalized least squares to up to 1,000 reproducibly selected sites (seed 42), using 20 distance bins with at least 30 pairs per bin. The R optimizer follows the storage-layer objective and bounds, while \texttt{gstat} supplies ordinary kriging and point prediction variance rather than the storage script's latent-surface variance. Neither observed losses nor negative predictions are clipped. Public-coordinate uncertainty, conditional sample selection, and lack of spatial cross-validation limit local inference; prediction variance is not a complete uncertainty measure.
+\item \textbf{Pricing and separation from storage.} The same 3\% average SCC schedule used for storage is applied to annualized rates, with each target year's price representing the interval rather than year-by-year emission pricing. All values remain in 2007 dollars. This is an SCC-based welfare valuation proxy, not a demonstrated exchange-value estimate for ecosystem accounting. It is distinct from valuing the full standing carbon stock: the storage proxy is not added to these annualized values. Definitive family-forest GEP requires appropriate ownership attribution, validation, and a defensible atmospheric sequestration quantity.
+\end{enumerate}
 
 
 

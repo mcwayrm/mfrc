@@ -176,7 +176,7 @@ carbon or expansion values exclude the plot. Only live aboveground tree
 carbon is represented, not soil, deadwood, litter, roots, or understory.
 
 After review, install `terra`, `sf`, `tmap` (>= 4.0), and `jsonlite` in R and run
-`Rscript scripts/task-value-carbon.R`. This step is not added to the pipeline
+`Rscript scripts/task-value-carbon-storage.R`. This step is not added to the pipeline
 and also supports `source()` with its absolute file path. It requires the carbon rasters and
 their metadata; basal-area rasters are not accepted as carbon quantities.
 
@@ -224,6 +224,73 @@ SCC describes marginal damages from emissions; valuing the entire stock
 implicitly assumes avoided release and does not establish that counterfactual.
 Do not sum repeated stock maps as annual benefits. The public FIA coordinate,
 interpolation, and five-year-composite limitations still apply.
+
+# Valuing annualized live-carbon change
+
+Run `Rscript scripts/task-value-carbon-sequestration.R`, or `source()` the
+absolute script path in R. Required packages are `terra`, `sf`, `tmap` (>= 4),
+`jsonlite`, `data.table`, and `gstat`. This is a separate matched-FIA analysis,
+not subtraction of the independently kriged carbon-stock maps.
+
+The script links visits using `PLOT.PREV_PLT_CN`, verifies physical plot keys,
+and requires sampled status and identical `DESIGNCD` at both visits. Both
+visits must have only forest conditions with forest shares within `1e-6` of
+one; mixed forest/nonforest plots and land-use transitions are excluded.
+Stocks use live forest-tree `CARBON_AG * TPA_UNADJ`, normalized by each visit's
+forest share and converted to metric tonnes C/ha. A fully forested sampled
+plot with no live trees has zero live-tree stock. Invalid stocks are excluded.
+The rate is `(current C - previous C) / PLOT.REMPER`, using the actual FIA
+remeasurement interval in years, not a fixed five-year divisor.
+
+For targets 2005, 2010, 2015, 2020, and 2025, the newest endpoint in the
+trailing five measurement years is selected per physical plot before
+eligibility checks. Its predecessor may fall outside that window and the
+interval may exceed five years. Early records do not support a comparable
+2005 estimate under these rules: missing predecessors and design changes
+prevent a valid comparison. No 2005 quantity or valuation is fabricated.
+`outputs/tables/carbon-sequestration-year-coverage.csv` records availability,
+and `carbon-sequestration-pair-exclusions.csv` records sequential exclusions.
+Currently, supported targets are 2010, 2015, 2020, and 2025.
+
+Each supported target fits an exponential variogram to up to 1,000
+reproducibly selected matched sites (seed 42), with 20 equal-distance bins
+and at least 30 pairs per bin. It uses bounded, pair-count-weighted normalized
+least squares, following the stock-layer fitter's objective and bounds, with
+an R optimizer. `gstat` supplies ordinary kriging and point prediction variance
+(rather than the stock script's latent-surface variance). Predictions use the nearest 32
+of all eligible sites. Coincident coordinates are averaged. Negative observed
+rates and negative predictions are retained, not clipped. Fully forested
+matched-plot rates are interpolated to all valid forest pixels of the saved
+carbon-stock grid, including pixels with no nearby matched observations.
+This conditional sampling and extrapolation require validation.
+
+Two-band quantity rasters (`forest-carbon-sequestration-[year].tif`, rate
+and prediction variance), matched-pair CSVs, and metadata are saved in
+`data/forest-sequestration/`. Single-band valued rates
+(`gep-carbon-sequestration-[year].tif`) and metadata are saved in `data/GEP/`.
+Values are `rate_tonnes_C_per_ha_per_year * (44/12) * SCC`, in
+**2007 USD/ha/year**, using the storage task's 3% average SCC schedule.
+An endpoint SCC is applied to the annualized interval rate; this is not
+year-by-year pricing of emissions. Per-hectare rates are multiplied by
+9 hectares per cell only when forming statewide totals.
+
+The script creates a signed annual-value map and an **absolute** value-change
+map between the earliest and latest supported targets (currently 2010-2025),
+plus aligned quantity/value time-series panels with a fixed-SCC comparison.
+Percentage change is avoided because baseline sequestration can be zero or
+negative. PNG/PDF outputs are in `outputs/maps/` and `outputs/figures/`;
+`outputs/tables/carbon-sequestration-time-series.csv` includes signed totals,
+positive accumulation, negative losses, areas, prices, and interval ranges.
+Input stock layers and storage valuations remain unchanged. Existing quantity,
+valuation, sample, and summary outputs are protected against overwriting.
+
+These are **annualized net live-aboveground pool-change proxies**, not a
+complete atmospheric sequestration balance: mortality and removals reduce
+the live pool but may transfer carbon to deadwood or harvested products
+rather than immediately to the atmosphere. Other pools, land-use transitions,
+population expansion, family-ownership attribution, and spatial
+cross-validation are not included. Do not report these as definitive
+family-forest GEP or add the full stored-carbon value to annual flow values.
 
 # Blame
 
