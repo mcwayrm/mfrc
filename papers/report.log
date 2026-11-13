@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.4.5)  10 NOV 2026 19:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.4.5)  11 NOV 2026 11:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -88,6 +88,31 @@ Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
 \c@LT@tables=\count293
 \c@LT@chunks=\count294
 \LT@p@ftn=\toks21
+) (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen171
+\ar@mcellbox=\box58
+\extrarowheight=\dimen172
+\NC@list=\toks22
+\extratabsurround=\skip55
+\backup@length=\skip56
+\ar@cellbox=\box59
+) (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+Package: ragged2e 2023/06/22 v3.6 ragged2e Package
+\CenteringLeftskip=\skip57
+\RaggedLeftLeftskip=\skip58
+\RaggedRightLeftskip=\skip59
+\CenteringRightskip=\skip60
+\RaggedLeftRightskip=\skip61
+\RaggedRightRightskip=\skip62
+\CenteringParfillskip=\skip63
+\RaggedLeftParfillskip=\skip64
+\RaggedRightParfillskip=\skip65
+\JustifyingParfillskip=\skip66
+\CenteringParindent=\skip67
+\RaggedLeftParindent=\skip68
+\RaggedRightParindent=\skip69
+\JustifyingParindent=\skip70
 ) (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
  (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
@@ -101,12 +126,12 @@ Package graphics Info: Driver file: pdftex.def on input line 106.
  (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen171
-\Gin@req@width=\dimen172
+\Gin@req@height=\dimen173
+\Gin@req@width=\dimen174
 ) (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip55
-\bibsep=\skip56
+\bibhang=\skip71
+\bibsep=\skip72
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count295
 ) (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -145,7 +170,7 @@ Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
 ) (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\@linkdim=\dimen173
+\@linkdim=\dimen175
 \Hy@linkcounter=\count298
 \Hy@pagecounter=\count299
  (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
@@ -174,15 +199,15 @@ Package hyperref Info: Bookmarks ON on input line 4468.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4807.
-\XeTeXLinkMargin=\dimen174
+\XeTeXLinkMargin=\dimen176
  (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
 \Fld@menulength=\count302
-\Field@Width=\dimen175
-\Fld@charsize=\dimen176
+\Field@Width=\dimen177
+\Fld@charsize=\dimen178
 Package hyperref Info: Hyper figures OFF on input line 6084.
 Package hyperref Info: Link nesting OFF on input line 6089.
 Package hyperref Info: Hyper index ON on input line 6092.
@@ -206,7 +231,7 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
 )
-\Hy@SectionHShift=\skip57
+\Hy@SectionHShift=\skip73
 ) (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2025-06-23 v0.14 Display of landscape pages in PDF
  (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
@@ -216,31 +241,31 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
-Package hyperref Info: Option `colorlinks' set `true' on input line 18.
+Package hyperref Info: Option `colorlinks' set `true' on input line 20.
  (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count308
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -288,28 +313,28 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
  (c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-Package hyperref Info: Link coloring ON on input line 26.
+Package hyperref Info: Link coloring ON on input line 31.
  (./report.out) (./report.out)
 \@outlinefile=\write3
 \openout3 = `report.out'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 29.
+(Font)              <17.28> on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 29.
+(Font)              <12> on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 29.
+(Font)              <8> on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 29.
+(Font)              <6> on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 29.
+(Font)              <9> on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 29.
+(Font)              <5> on input line 34.
  [1
 
 {c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./report.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 3.
+(Font)              <10.95> on input line 4.
 )
 \tf@toc=\write4
 \openout4 = `report.toc'.
@@ -320,2401 +345,125 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 <../outputs/maps/forest-layer-four-panel.pdf, id=187, 1011.78pt x 1011.78pt>
 File: ../outputs/maps/forest-layer-four-panel.pdf Graphic file (type pdf)
 <use ../outputs/maps/forest-layer-four-panel.pdf>
-Package pdftex.def Info: ../outputs/maps/forest-layer-four-panel.pdf  used on input line 152.
+Package pdftex.def Info: ../outputs/maps/forest-layer-four-panel.pdf  used on input line 173.
 (pdftex.def)             Requested size: 469.75502pt x 469.76266pt.
  [5] [6 <../outputs/maps/forest-layer-four-panel.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
-[]|\T1/cmr/m/n/10 Ecosystem
- []
-
-
-Overfull \hbox (17.16504pt too wide) in paragraph at lines 174--174
-[]|\T1/cmr/m/n/10 Feasibility| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
-[]|\T1/cmr/m/n/10 Feasibility:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
-[]|\T1/cmr/m/n/10 Feasibility:
- []
-
-
-Overfull \hbox (2.15959pt too wide) in paragraph at lines 174--174
-[]|\T1/cmr/m/n/10 Category| 
- []
-
-
-Overfull \hbox (26.54065pt too wide) in paragraph at lines 174--175
-[]|\T1/cmr/m/n/10 Direct/Indirect| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 178--178
-[]|\T1/cmr/m/n/10 Ecosystem
- []
-
-
-Overfull \hbox (17.16504pt too wide) in paragraph at lines 178--178
-[]|\T1/cmr/m/n/10 Feasibility| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 178--178
-[]|\T1/cmr/m/n/10 Feasibility:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 178--178
-[]|\T1/cmr/m/n/10 Feasibility:
- []
-
-
-Overfull \hbox (2.15959pt too wide) in paragraph at lines 178--178
-[]|\T1/cmr/m/n/10 Category| 
- []
-
-
-Overfull \hbox (26.54065pt too wide) in paragraph at lines 178--179
-[]|\T1/cmr/m/n/10 Direct/Indirect| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-[]|\T1/cmr/m/n/10 Timber
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-[]|\T1/cmr/m/n/10 Wood prod-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-[]|\T1/cmr/m/n/10 MN FIA
- []
-
-
-Underfull \hbox (badness 1997) in paragraph at lines 183--183
-\T1/cmr/m/n/10 for-est raster;
- []
-
-
-Underfull \hbox (badness 5711) in paragraph at lines 183--183
-\T1/cmr/m/n/10 FIA species,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-\T1/cmr/m/n/10 mer-chantable
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-\T1/cmr/m/n/10 vol-ume and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-\T1/cmr/m/n/10 growth;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-\T1/cmr/m/n/10 cell area;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-\T1/cmr/m/n/10 own-er-ship
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-\T1/cmr/m/n/10 and ac-cess
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-[]|\T1/cmr/m/n/10 MN
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-\T1/cmr/m/n/10 stumpage
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-\T1/cmr/m/n/10 prices by
- []
-
-
-Overfull \hbox (7.31026pt too wide) in paragraph at lines 183--183
-\T1/cmr/m/n/10 species/grade;
- []
-
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 183.
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
-[]|\T1/cmr/m/n/10 Net tim-ber rent:
- []
-
-
-Overfull \hbox (16.5172pt too wide) in paragraph at lines 183--183
-[]|\T1/cmr/m/n/10 Provisioning| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-[]|\T1/cmr/m/n/10 Carbon
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-\T1/cmr/m/n/10 Se-ques-tra-
- []
-
-
-Overfull \hbox (3.05432pt too wide) in paragraph at lines 184--184
-[]|\T1/cmr/m/n/10 photosynthetic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-\T1/cmr/m/n/10 in biomass
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-[]|\T1/cmr/m/n/10 MN FIA
- []
-
-
-Underfull \hbox (badness 1997) in paragraph at lines 184--184
-\T1/cmr/m/n/10 for-est raster;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-\T1/cmr/m/n/10 re-peated
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-\T1/cmr/m/n/10 FIA car-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-\T1/cmr/m/n/10 bon stocks,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-\T1/cmr/m/n/10 tal-ity and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-[]|\T1/cmr/m/n/10 Social cost
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-[]|\T1/cmr/m/n/10 Annual flow:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-[][] \OML/cmm/m/it/10 A[]\OT1/cmr/m/n/10 [(\OML/cmm/m/it/10 C[] \OMS/cmsy/m/n/10 ^^@
- []
-
-
-Overfull \hbox (9.34004pt too wide) in paragraph at lines 184--184
-\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 =\OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ](44\OML/cmm/m/it/10 =\OT1/cmr/m/n/10 12)\OML/cmm/m/it/10 P[]$| 
- []
-
-
-Overfull \hbox (9.76884pt too wide) in paragraph at lines 184--184
-[]|\T1/cmr/m/n/10 Regulating| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--185
-[]|\T1/cmr/m/n/10 Carbon
- []
-
-
-Underfull \hbox (badness 4156) in paragraph at lines 185--185
-\T1/cmr/m/n/10 live biomass,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--185
-\T1/cmr/m/n/10 dead-wood,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--185
-[]|\T1/cmr/m/n/10 MN FIA
- []
-
-
-Underfull \hbox (badness 1997) in paragraph at lines 185--185
-\T1/cmr/m/n/10 for-est raster;
- []
-
-
-Underfull \hbox (badness 1783) in paragraph at lines 185--185
-\T1/cmr/m/n/10 car-bon stock
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--185
-\T1/cmr/m/n/10 by pool
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--185
-[]|\T1/cmr/m/n/10 Social cost
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--185
-\T1/cmr/m/n/10 of car-bon
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--185
-[]|\T1/cmr/m/n/10 Stock value:
- []
-
-
-Overfull \hbox (6.73996pt too wide) in paragraph at lines 185--185
-[][] \OML/cmm/m/it/10 A[]C[]\OT1/cmr/m/n/10 (44\OML/cmm/m/it/10 =\OT1/cmr/m/n/10 12)\OML/cmm/m/it/10 P[]$\T1/cmr/m/n/10 ;
- []
-
-
-Overfull \hbox (9.76884pt too wide) in paragraph at lines 185--185
-[]|\T1/cmr/m/n/10 Regulating| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-[]|\T1/cmr/m/n/10 Habitat
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 Sup-port
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 for bio-di-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-[]|\T1/cmr/m/n/10 Forest com-
- []
-
-
-Underfull \hbox (badness 8132) in paragraph at lines 186--186
-\T1/cmr/m/n/10 po-si-tion and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 port species
- []
-
-
-Overfull \hbox (8.36163pt too wide) in paragraph at lines 186--186
-[]|\T1/cmr/m/n/10 Medium| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-[]|\T1/cmr/m/n/10 MN FIA
- []
-
-
-Underfull \hbox (badness 1997) in paragraph at lines 186--186
-\T1/cmr/m/n/10 for-est raster;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 FIA species
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 com-po-si-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 tion and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 stand struc-
- []
-
-
-Underfull \hbox (badness 1558) in paragraph at lines 186--186
-\T1/cmr/m/n/10 ture; species
- []
-
-
-Overfull \hbox (15.35849pt too wide) in paragraph at lines 186--186
-\T1/cmr/m/n/10 range/occurrence
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-[]|\T1/cmr/m/n/10 Species-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 specific
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 WTP or
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 restora-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 cost per
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 quality-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
-\T1/cmr/m/n/10 adjusted
- []
-
-
-Overfull \hbox (11.04631pt too wide) in paragraph at lines 186--186
-[]|\T1/cmr/m/n/10 Supporting| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--187
-[]|\T1/cmr/m/n/10 Indirect
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--187
-\T1/cmr/m/n/10 (in-ter-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-[]|\T1/cmr/m/n/10 Forests pro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 vide game
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 habi-tat and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 hunt-ing set-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-[]|\T1/cmr/m/n/10 MN FIA
- []
-
-
-Underfull \hbox (badness 1997) in paragraph at lines 188--188
-\T1/cmr/m/n/10 for-est raster;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 hunter-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 days/trips
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 by lo-ca-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 and game;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 li-censes and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 par-tic-i-pa-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-[]|\T1/cmr/m/n/10 Consumer
- []
-
-
-Underfull \hbox (badness 3471) in paragraph at lines 188--188
-\T1/cmr/m/n/10 sur-plus per
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 trip/day
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 cost or
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 stated-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 preference
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-\T1/cmr/m/n/10 forest-attributable
- []
-
-
-Underfull \hbox (badness 4531) in paragraph at lines 189--189
-[]|\T1/cmr/m/n/10 Forested wa-
- []
-
-
-Underfull \hbox (badness 1406) in paragraph at lines 189--189
-\T1/cmr/m/n/10 ter-sheds sup-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
-[]|\T1/cmr/m/n/10 MN FIA
- []
-
-
-Underfull \hbox (badness 1997) in paragraph at lines 189--189
-\T1/cmr/m/n/10 for-est raster;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
-\T1/cmr/m/n/10 lake/river
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
-\T1/cmr/m/n/10 wa-ter-sheds;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
-\T1/cmr/m/n/10 angler-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
-\T1/cmr/m/n/10 days/trips
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
-\T1/cmr/m/n/10 and fish-ery
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
-[]|\T1/cmr/m/n/10 Consumer
- []
-
-
-Underfull \hbox (badness 3471) in paragraph at lines 189--189
-\T1/cmr/m/n/10 sur-plus per
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
-\T1/cmr/m/n/10 trip/day
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
-\T1/cmr/m/n/10 cost es-ti-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
-\T1/cmr/m/n/10 forest-watershed-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-\T1/cmr/m/n/10 Na-ture
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-[]|\T1/cmr/m/n/10 Forest set-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-\T1/cmr/m/n/10 day-use hik-
- []
-
-
-Underfull \hbox (badness 1062) in paragraph at lines 190--190
-\T1/cmr/m/n/10 wildlife view-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-[]|\T1/cmr/m/n/10 MN FIA
- []
-
-
-Underfull \hbox (badness 1997) in paragraph at lines 190--190
-\T1/cmr/m/n/10 for-est raster;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-\T1/cmr/m/n/10 visits/user-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-\T1/cmr/m/n/10 days by
- []
-
-
-Underfull \hbox (badness 2073) in paragraph at lines 190--190
-\T1/cmr/m/n/10 forested site;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-[]|\T1/cmr/m/n/10 Consumer
- []
-
-
-Underfull \hbox (badness 3471) in paragraph at lines 190--190
-\T1/cmr/m/n/10 sur-plus per
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-\T1/cmr/m/n/10 visit from
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-\T1/cmr/m/n/10 travel-cost
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-\T1/cmr/m/n/10 de-mand
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-\T1/cmr/m/n/10 forest-attribute
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 Na-ture
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-[]|\T1/cmr/m/n/10 Forest land-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 scapes draw
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 long-distance
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-[]|\T1/cmr/m/n/10 MN FIA
- []
-
-
-Underfull \hbox (badness 1997) in paragraph at lines 191--191
-\T1/cmr/m/n/10 for-est raster;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 overnight
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 trips,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 visitor-days
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 and lodg-
- []
-
-
-Overfull \hbox (12.24814pt too wide) in paragraph at lines 191--191
-\T1/cmr/m/n/10 ing/campground
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-[]|\T1/cmr/m/n/10 Consumer
- []
-
-
-Underfull \hbox (badness 3471) in paragraph at lines 191--191
-\T1/cmr/m/n/10 sur-plus per
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 trip from
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 travel-cost
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 de-mand
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 model (in-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 clud-ing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
-\T1/cmr/m/n/10 trans-port
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--192
-[]|\T1/cmr/m/n/10 Trails for
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--192
-\T1/cmr/m/n/10 snow-mo-bil-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--192
-\T1/cmr/m/n/10 ing, ski-ing,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--192
-\T1/cmr/m/n/10 ATV, snow-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--192
-[]|\T1/cmr/m/n/10 Trail miles
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--192
-\T1/cmr/m/n/10 or user
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--192
-\T1/cmr/m/n/10 days (reg-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--192
-\T1/cmr/m/n/10 is-tra-tions,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--192
-\T1/cmr/m/n/10 trail pass
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--192
-\T1/cmr/m/n/10 and reg-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--192
-\T1/cmr/m/n/10 is-tra-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-[]|\T1/cmr/m/n/10 Habitat
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-\T1/cmr/m/n/10 Sup-port
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-\T1/cmr/m/n/10 for bio-di-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-[]|\T1/cmr/m/n/10 Structurally
- []
-
-
-Underfull \hbox (badness 1163) in paragraph at lines 193--193
-\T1/cmr/m/n/10 di-verse for-est
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-\T1/cmr/m/n/10 sup-port-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-\T1/cmr/m/n/10 ing species
- []
-
-
-Overfull \hbox (8.36163pt too wide) in paragraph at lines 193--193
-[]|\T1/cmr/m/n/10 Medium| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-\T1/cmr/m/n/10 and species
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-[]|\T1/cmr/m/n/10 Species-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-\T1/cmr/m/n/10 specific
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-\T1/cmr/m/n/10 WTP
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-\T1/cmr/m/n/10 or re-place-
- []
-
-
-Overfull \hbox (20.05714pt too wide) in paragraph at lines 193--193
-\T1/cmr/m/n/10 ment/restoration
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-[]|\T1/cmr/m/n/10 Share of habi-tat
- []
-
-
-Overfull \hbox (11.04631pt too wide) in paragraph at lines 193--193
-[]|\T1/cmr/m/n/10 Supporting| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--194
-[]|\T1/cmr/m/n/10 Indirect
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--194
-\T1/cmr/m/n/10 (in-ter-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-[]|\T1/cmr/m/n/10 Water
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 Qual-ity
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 Reg-u-la-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 (Ri-par-ian
- []
-
-
-Underfull \hbox (badness 2478) in paragraph at lines 194--194
-[]|\T1/cmr/m/n/10 Riparian for-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 est buffers
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 re-tain ni-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 tro-gen and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 phos-pho-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 rus be-fore
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 de-liv-ery to
- []
-
-
-Overfull \hbox (8.36163pt too wide) in paragraph at lines 194--194
-[]|\T1/cmr/m/n/10 Medium| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-[]|\T1/cmr/m/n/10 InVEST
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 NDR nu-tri-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 ent ex-port
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 with buffers
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 coun-ter-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 fac-tual; kg
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 N and P
- []
-
-
-Underfull \hbox (badness 2875) in paragraph at lines 194--194
-\T1/cmr/m/n/10 per year by
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-[]|\T1/cmr/m/n/10 Avoided
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 treat-
- []
-
-
-Overfull \hbox (6.06056pt too wide) in paragraph at lines 194--194
-\T1/cmr/m/n/10 ment/damage
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 cost or
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
-\T1/cmr/m/n/10 nutrient-
- []
-
-
-Underfull \hbox (badness 2261) in paragraph at lines 194--194
-\T1/cmr/m/n/10 credit price
- []
-
-
-Overfull \hbox (27.00783pt too wide) in paragraph at lines 194--194
-[]|$\OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 E[]=\OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 E[]$| 
- []
-
-
-Overfull \hbox (9.76884pt too wide) in paragraph at lines 194--194
-[]|\T1/cmr/m/n/10 Regulating| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-[]|\T1/cmr/m/n/10 Canopy re-
- []
-
-
-Underfull \hbox (badness 7308) in paragraph at lines 195--195
-\T1/cmr/m/n/10 u-late mat-ter
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-\T1/cmr/m/n/10 and gaseous
- []
-
-
-Overfull \hbox (8.36163pt too wide) in paragraph at lines 195--195
-[]|\T1/cmr/m/n/10 Medium| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-[]|\T1/cmr/m/n/10 MN FIA
- []
-
-
-Underfull \hbox (badness 1997) in paragraph at lines 195--195
-\T1/cmr/m/n/10 for-est raster;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-\T1/cmr/m/n/10 canopy/leaf
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-\T1/cmr/m/n/10 area and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-\T1/cmr/m/n/10 pol-lu-tant
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-\T1/cmr/m/n/10 re-moval
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-\T1/cmr/m/n/10 by species;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-\T1/cmr/m/n/10 ex-posed
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-[]|\T1/cmr/m/n/10 Marginal
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-\T1/cmr/m/n/10 health
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-\T1/cmr/m/n/10 dam-ages
- []
-
-
-Underfull \hbox (badness 1033) in paragraph at lines 195--195
-\T1/cmr/m/n/10 avoided per
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-[]|$\OML/cmm/m/it/10 V \OT1/cmr/m/n/10 =
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-[][] \OML/cmm/m/it/10 R[]MD[]^^U[]$\T1/cmr/m/n/10 ;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
-\T1/cmr/m/n/10 canopy-attributable
- []
-
-
-Overfull \hbox (9.76884pt too wide) in paragraph at lines 195--195
-[]|\T1/cmr/m/n/10 Regulating| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
-[]|\T1/cmr/m/n/10 Local
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
-\T1/cmr/m/n/10 cli-mate
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
-[]|\T1/cmr/m/n/10 Shade and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
-\T1/cmr/m/n/10 evap-o-tran-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
-\T1/cmr/m/n/10 spi-ra-tion
- []
-
-
-Overfull \hbox (8.36163pt too wide) in paragraph at lines 196--196
-[]|\T1/cmr/m/n/10 Medium| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
-[]|\T1/cmr/m/n/10 Canopy
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
-\T1/cmr/m/n/10 of cool-ing;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
-\T1/cmr/m/n/10 ing/cooling
- []
-
-
-Overfull \hbox (9.76884pt too wide) in paragraph at lines 196--196
-[]|\T1/cmr/m/n/10 Regulating| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
-[]|\T1/cmr/m/n/10 Erosion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
-\T1/cmr/m/n/10 con-trol
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
-\T1/cmr/m/n/10 and soil
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
-[]|\T1/cmr/m/n/10 Roots and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
-\T1/cmr/m/n/10 slopes and
- []
-
-
-Overfull \hbox (8.36163pt too wide) in paragraph at lines 197--197
-[]|\T1/cmr/m/n/10 Medium| 
- []
-
-
-Underfull \hbox (badness 2600) in paragraph at lines 197--197
-[]|\T1/cmr/m/n/10 Tons of soil
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
-\T1/cmr/m/n/10 re-tained
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
-\T1/cmr/m/n/10 (RUSLE,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
-\T1/cmr/m/n/10 for-est vs.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
-\T1/cmr/m/n/10 coun-ter-fac-
- []
-
-
-Overfull \hbox (1.75606pt too wide) in paragraph at lines 197--197
-[]|\T1/cmr/m/n/10 Replacement
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
-\T1/cmr/m/n/10 ing, lost
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
-\T1/cmr/m/n/10 pro-duc-tiv-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
-[]|\T1/cmr/m/n/10 Forest-attributable
- []
-
-
-Overfull \hbox (9.76884pt too wide) in paragraph at lines 197--197
-[]|\T1/cmr/m/n/10 Regulating| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 198--198
-[]|\T1/cmr/m/n/10 Woody
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 198--198
-\T1/cmr/m/n/10 biomass
- []
-
-
-Overfull \hbox (8.36163pt too wide) in paragraph at lines 198--198
-[]|\T1/cmr/m/n/10 Medium| 
- []
-
-
-Underfull \hbox (badness 2735) in paragraph at lines 198--198
-[]|\T1/cmr/m/n/10 Dry tons of
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 198--198
-[]|\T1/cmr/m/n/10 Delivered
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 198--198
-\T1/cmr/m/n/10 biomass or
- []
-
-
-Underfull \hbox (badness 7613) in paragraph at lines 198--198
-[]|\T1/cmr/m/n/10 Strip har-vest and
- []
-
-
-Overfull \hbox (16.5172pt too wide) in paragraph at lines 198--198
-[]|\T1/cmr/m/n/10 Provisioning| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--199
-[]|\T1/cmr/m/n/10 Property
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--199
-\T1/cmr/m/n/10 value
- []
-
-
-Underfull \hbox (badness 4036) in paragraph at lines 199--199
-[]|\T1/cmr/m/n/10 Proximity to
- []
-
-
-Underfull \hbox (badness 7613) in paragraph at lines 199--199
-\T1/cmr/m/n/10 or views of
- []
-
-
-Overfull \hbox (8.36163pt too wide) in paragraph at lines 199--199
-[]|\T1/cmr/m/n/10 Medium| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--199
-[]|\T1/cmr/m/n/10 Hedonic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--199
-\T1/cmr/m/n/10 price pre-
- []
-
-
-Underfull \hbox (badness 5504) in paragraph at lines 199--199
-[]|\T1/cmr/m/n/10 Ratio of pre-mium
- []
-
-
-Underfull \hbox (badness 4242) in paragraph at lines 199--199
-\T1/cmr/m/n/10 to for-est at-tribute
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
-[]|\T1/cmr/m/n/10 Direct
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
-\T1/cmr/m/n/10 (cap-i-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
-\T1/cmr/m/n/10 tal-ized
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-[]|\T1/cmr/m/n/10 Physical
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-[]|\T1/cmr/m/n/10 Reduced
- []
-
-
-Underfull \hbox (badness 5359) in paragraph at lines 200--200
-\T1/cmr/m/n/10 stress, phys-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-\T1/cmr/m/n/10 i-cal ac-tiv-ity,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-\T1/cmr/m/n/10 lower heat
- []
-
-
-Overfull \hbox (8.36163pt too wide) in paragraph at lines 200--200
-[]|\T1/cmr/m/n/10 Medium| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-[]|\T1/cmr/m/n/10 Visits or
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-\T1/cmr/m/n/10 green-space
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-[]|\T1/cmr/m/n/10 Avoided
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-\T1/cmr/m/n/10 health-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-\T1/cmr/m/n/10 care costs;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-\T1/cmr/m/n/10 QALY or
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-[]|\T1/cmr/m/n/10 Dose-response at-
- []
-
-
-Underfull \hbox (badness 4899) in paragraph at lines 200--200
-\T1/cmr/m/n/10 vs. other green
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-[]|\T1/cmr/m/n/10 Non-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/10 timber
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/10 for-est
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/10 prod-ucts
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/10 rooms, root
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/10 ex-tracts,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/10 cos-metic
- []
-
-
-Overfull \hbox (8.36163pt too wide) in paragraph at lines 201--201
-[]|\T1/cmr/m/n/10 Medium| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-[]|\T1/cmr/m/n/10 market
- []
-
-
-Underfull \hbox (badness 1062) in paragraph at lines 201--201
-[]|\T1/cmr/m/n/10 production func-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/10 resid-ual (re-source
- []
-
-
-Overfull \hbox (16.5172pt too wide) in paragraph at lines 201--201
-[]|\T1/cmr/m/n/10 Provisioning| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-[]|\T1/cmr/m/n/10 Nature
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 dis-as-ter
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-[]|\T1/cmr/m/n/10 Healthy
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 forests have
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 ero-sion pre-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 ven-tion to
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 mit-i-gate
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 flood-ing,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 drought,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 storm im-
- []
-
-
-Overfull \hbox (8.36163pt too wide) in paragraph at lines 202--202
-[]|\T1/cmr/m/n/10 Medium| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 flood-plain,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 flood/wildfire
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-[]|\T1/cmr/m/n/10 Avoided
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 dam-ages
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 (FEMA
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 claims,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-\T1/cmr/m/n/10 prop-erty
- []
-
-
-Overfull \hbox (9.76884pt too wide) in paragraph at lines 202--202
-[]|\T1/cmr/m/n/10 Regulating| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 203--203
-[]|\T1/cmr/m/n/10 Infiltration,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 203--203
-\T1/cmr/m/n/10 ground-wa-ter
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 203--203
-\T1/cmr/m/n/10 recharge,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 203--203
-\T1/cmr/m/n/10 base-flow
- []
-
-
-Underfull \hbox (badness 7832) in paragraph at lines 203--203
-\T1/cmr/m/n/10 forested wa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 203--203
-\T1/cmr/m/n/10 rates less
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 203--203
-\T1/cmr/m/n/10 treat-ment
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 203--203
-\T1/cmr/m/n/10 and dis-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 203--203
-\T1/cmr/m/n/10 tri-bu-tion
- []
-
-
-Underfull \hbox (badness 3746) in paragraph at lines 203--203
-\T1/cmr/m/n/10 ing treat-ment and
- []
-
-
-Overfull \hbox (16.5172pt too wide) in paragraph at lines 203--203
-[]|\T1/cmr/m/n/10 Provisioning| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 204--204
-[]|\T1/cmr/m/n/10 Subsistence
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 204--204
-\T1/cmr/m/n/10 en-ergy pro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 204--204
-\T1/cmr/m/n/10 duc-tion via
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 204--204
-\T1/cmr/m/n/10 dead-wood
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 204--204
-[]|\T1/cmr/m/n/10 Cords gath-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 204--204
-[]|\T1/cmr/m/n/10 stumpage
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 204--204
-\T1/cmr/m/n/10 cord-wood
- []
-
-
-Underfull \hbox (badness 6876) in paragraph at lines 204--204
-[]|\T1/cmr/m/n/10 Regress out la-bor
- []
-
-
-Overfull \hbox (16.5172pt too wide) in paragraph at lines 204--204
-[]|\T1/cmr/m/n/10 Provisioning| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
-[]|\T1/cmr/m/n/10 Soil cap-i-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
-[]|\T1/cmr/m/n/10 soil for-ma-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
-\T1/cmr/m/n/10 tion via
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
-\T1/cmr/m/n/10 agro-forestry
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
-[]|\T1/cmr/m/n/10 avoided
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
-\T1/cmr/m/n/10 ero-sion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
-\T1/cmr/m/n/10 dam-age,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
-\T1/cmr/m/n/10 fer-til-izer
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
-[]|\T1/cmr/m/n/10 forest at-tributable
- []
-
-
-Overfull \hbox (11.04631pt too wide) in paragraph at lines 205--205
-[]|\T1/cmr/m/n/10 Supporting| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-[]|\T1/cmr/m/n/10 Forested
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 sites serve
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 as out-door
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 en-vi-ron-men-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 tal learn-ing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 (school field
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 trips, scout-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 ing, na-ture
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-[]|\T1/cmr/m/n/10 Scouting
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 ac-tiv-i-ties
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 or pres-ence
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 of na-ture
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 ed-u-ca-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 pro-grams in
- []
-
-
-Underfull \hbox (badness 4096) in paragraph at lines 206--206
-[]|\T1/cmr/m/n/10 Infeasible. What
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 is at-tributable
- []
-
-
-Underfull \hbox (badness 7759) in paragraph at lines 206--206
-\T1/cmr/m/n/10 to the for-est vs.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 what is hu-man
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-\T1/cmr/m/n/10 cap-i-tal/knowledge
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 207--207
-[]|\T1/cmr/m/n/10 Cultural
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 207--207
-\T1/cmr/m/n/10 value of
- []
-
-
-Underfull \hbox (badness 2698) in paragraph at lines 207--207
-[]|\T1/cmr/m/n/10 Forests as a
- []
-
-
-Underfull \hbox (badness 2310) in paragraph at lines 207--207
-\T1/cmr/m/n/10 tity pro-vided
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 207--207
-\T1/cmr/m/n/10 at-tach-ment
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 207--207
-[]|\T1/cmr/m/n/10 Stated
- []
-
-
-Underfull \hbox (badness 5331) in paragraph at lines 207--207
-\T1/cmr/m/n/10 WTP pref-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 208--208
-[]|\T1/cmr/m/n/10 Native bee
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 208--208
-\T1/cmr/m/n/10 and in-sect
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 208--208
-\T1/cmr/m/n/10 habi-tat that
- []
-
-
-Underfull \hbox (badness 6157) in paragraph at lines 208--208
-\T1/cmr/m/n/10 sup-ports ad-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 208--208
-[]|\T1/cmr/m/n/10 Crop acres
- []
-
-
-Underfull \hbox (badness 1394) in paragraph at lines 208--208
-\T1/cmr/m/n/10 ing range of
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 208--208
-[]|\T1/cmr/m/n/10 Managed
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 208--208
-\T1/cmr/m/n/10 hive rental
- []
-
-
-Overfull \hbox (9.76884pt too wide) in paragraph at lines 208--208
-[]|\T1/cmr/m/n/10 Regulating| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
-[]|\T1/cmr/m/n/10 Indirect
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
-\T1/cmr/m/n/10 (in-ter-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--209
-[]|\T1/cmr/m/n/10 Pest and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--209
-\T1/cmr/m/n/10 dis-ease
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--209
-[]|\T1/cmr/m/n/10 Predator
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--209
-\T1/cmr/m/n/10 habi-tat
- []
-
-
-Underfull \hbox (badness 6842) in paragraph at lines 209--209
-\T1/cmr/m/n/10 (birds, bats,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--209
-\T1/cmr/m/n/10 out-break
- []
-
-
-Underfull \hbox (badness 4156) in paragraph at lines 209--209
-\T1/cmr/m/n/10 fre-quency or
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--209
-[]|\T1/cmr/m/n/10 Avoided
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--209
-\T1/cmr/m/n/10 pes-ti-cide
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--209
-\T1/cmr/m/n/10 and crop-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--209
-[]|\T1/cmr/m/n/10 Forest-attributable
- []
-
-
-Overfull \hbox (9.76884pt too wide) in paragraph at lines 209--209
-[]|\T1/cmr/m/n/10 Regulating| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
-[]|\T1/cmr/m/n/10 Indirect
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
-\T1/cmr/m/n/10 (in-ter-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
-[]|\T1/cmr/m/n/10 Nutrient
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
-\T1/cmr/m/n/10 pri-mary
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
-[]|\T1/cmr/m/n/10 Litterfall,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
-\T1/cmr/m/n/10 de-com-po-si-
- []
-
-
-Underfull \hbox (badness 4779) in paragraph at lines 210--210
-[]|\T1/cmr/m/n/10 Net pri-mary
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
-[]|\T1/cmr/m/n/10 Not sep-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
-\T1/cmr/m/n/10 a-rately
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
-\T1/cmr/m/n/10 priced (in-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
-\T1/cmr/m/n/10 ter-me-di-ate
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
-\T1/cmr/m/n/10 in-put to
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
-\T1/cmr/m/n/10 tim-ber,
- []
-
-
-Overfull \hbox (11.04631pt too wide) in paragraph at lines 210--210
-[]|\T1/cmr/m/n/10 Supporting| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--211
-[]|\T1/cmr/m/n/10 Indirect
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--211
-\T1/cmr/m/n/10 (in-ter-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--211
-[]|\T1/cmr/m/n/10 Genetic
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--211
-\T1/cmr/m/n/10 re-sources
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--211
-\T1/cmr/m/n/10 / bio-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--211
-\T1/cmr/m/n/10 prospect-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--211
-[]|\T1/cmr/m/n/10 Genetic di-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--211
-\T1/cmr/m/n/10 ver-sity of
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--211
-[]|\T1/cmr/m/n/10 Not well-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--211
-[]|\T1/cmr/m/n/10 Option
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--211
-\T1/cmr/m/n/10 value or
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--211
-\T1/cmr/m/n/10 pharma
- []
-
-
-Overfull \hbox (16.5172pt too wide) in paragraph at lines 211--211
-[]|\T1/cmr/m/n/10 Provisioning| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--212
-[]|\T1/cmr/m/n/10 Direct
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 211--212
-\T1/cmr/m/n/10 (op-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-[]|\T1/cmr/m/n/10 Existence
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-\T1/cmr/m/n/10 and be-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-[]|\T1/cmr/m/n/10 Satisfaction
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-[]|\T1/cmr/m/n/10 Households
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-[]|\T1/cmr/m/n/10 Contingent
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-\T1/cmr/m/n/10 val-u-a-tion
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-\T1/cmr/m/n/10 or choice
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-[]|\T1/cmr/m/n/10 Hard to sep-a-rate
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-\T1/cmr/m/n/10 from other val-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--213
-[]|\T1/cmr/m/n/10 Indirect
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--213
-\T1/cmr/m/n/10 (non-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/cmr/m/n/10 In-dige-nous
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/cmr/m/n/10 cul-tural
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-[]|\T1/cmr/m/n/10 Maple sug-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/cmr/m/n/10 ar-ing, cer-e-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/cmr/m/n/10 mo-nial and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/cmr/m/n/10 sub-sis-tence
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/cmr/m/n/10 har-vest,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-[]|\T1/cmr/m/n/10 Participation
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/cmr/m/n/10 and har-vest
- []
-
-
-Underfull \hbox (badness 3525) in paragraph at lines 213--213
-\T1/cmr/m/n/10 lev-els (tribal
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/cmr/m/n/10 data, with
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-[]|\T1/cmr/m/n/10 Mostly
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/cmr/m/n/10 non-market;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/cmr/m/n/10 avoid im-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/cmr/m/n/10 pos-ing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/cmr/m/n/10 mar-ket
- []
-
-
-Underfull \hbox (badness 7667) in paragraph at lines 213--213
-[]|\T1/cmr/m/n/10 Infeasible and ar-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--214
-[]|\T1/cmr/m/n/10 Direct
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--214
-\T1/cmr/m/n/10 and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 214--214
-[]|\T1/cmr/m/n/10 Scientific
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 214--214
-[]|\T1/cmr/m/n/10 Long-term
- []
-
-
-Underfull \hbox (badness 1112) in paragraph at lines 214--214
-\T1/cmr/m/n/10 re-search sites
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 214--214
-\T1/cmr/m/n/10 and ex-per-i-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 214--214
-[]|\T1/cmr/m/n/10 Research
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 214--214
-\T1/cmr/m/n/10 fund-ing or
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 214--214
-\T1/cmr/m/n/10 pub-li-ca-tions
- []
-
-
-Underfull \hbox (badness 7221) in paragraph at lines 214--214
-\T1/cmr/m/n/10 tied to the
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 214--214
-[]|\T1/cmr/m/n/10 Research
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 214--214
-\T1/cmr/m/n/10 ex-pen-di-ture
- []
-
-[7
-
-] [8] [9] [10] [11] [12] [13] [14
-
-]
-<../outputs/maps/carbon-sequestration-value-2025.pdf, id=255, 505.89pt x 505.89pt>
+(Font)              <7> on input line 217.
+ [7
+
+] [8] [9] [10] [11]
+<../outputs/maps/timber-value-2025.png, id=235, 2107.875pt x 2107.875pt>
+File: ../outputs/maps/timber-value-2025.png Graphic file (type png)
+<use ../outputs/maps/timber-value-2025.png>
+Package pdftex.def Info: ../outputs/maps/timber-value-2025.png  used on input line 310.
+(pdftex.def)             Requested size: 366.40834pt x 366.40706pt.
+<../outputs/maps/timber-cord-yield-2025.png, id=236, 2107.875pt x 2107.875pt>
+File: ../outputs/maps/timber-cord-yield-2025.png Graphic file (type png)
+<use ../outputs/maps/timber-cord-yield-2025.png>
+Package pdftex.def Info: ../outputs/maps/timber-cord-yield-2025.png  used on input line 319.
+(pdftex.def)             Requested size: 225.4804pt x 225.46642pt.
+<../outputs/maps/timber-sawtimber-yield-2025.png, id=237, 2107.875pt x 2107.875pt>
+File: ../outputs/maps/timber-sawtimber-yield-2025.png Graphic file (type png)
+<use ../outputs/maps/timber-sawtimber-yield-2025.png>
+Package pdftex.def Info: ../outputs/maps/timber-sawtimber-yield-2025.png  used on input line 323.
+(pdftex.def)             Requested size: 225.4804pt x 225.46642pt.
+<../outputs/maps/timber-value-percent-change-2005-2025.pdf, id=238, 505.89pt x 505.89pt>
+File: ../outputs/maps/timber-value-percent-change-2005-2025.pdf Graphic file (type pdf)
+<use ../outputs/maps/timber-value-percent-change-2005-2025.pdf>
+Package pdftex.def Info: ../outputs/maps/timber-value-percent-change-2005-2025.pdf  used on input line 338.
+(pdftex.def)             Requested size: 385.20255pt x 385.206pt.
+<../outputs/figures/timber-valuation-time-series-2005-2025.pdf, id=239, 505.89pt x 578.16pt>
+File: ../outputs/figures/timber-valuation-time-series-2005-2025.pdf Graphic file (type pdf)
+<use ../outputs/figures/timber-valuation-time-series-2005-2025.pdf>
+Package pdftex.def Info: ../outputs/figures/timber-valuation-time-series-2005-2025.pdf  used on input line 345.
+(pdftex.def)             Requested size: 366.40834pt x 418.76268pt.
+ [12
+
+] [13 <../outputs/maps/timber-value-2025.png>] [14 <../outputs/maps/timber-cord-yield-2025.png> <../outputs/maps/timber-sawtimber-yield-2025.png>] [15 <../outputs/maps/timber-value-percent-change-2005-2025.pdf>] [16 <../outputs/figures/timber-valuation-time-series-2005-2025.pdf>]
+<../outputs/maps/carbon-sequestration-value-2025.pdf, id=287, 505.89pt x 505.89pt>
 File: ../outputs/maps/carbon-sequestration-value-2025.pdf Graphic file (type pdf)
 <use ../outputs/maps/carbon-sequestration-value-2025.pdf>
-Package pdftex.def Info: ../outputs/maps/carbon-sequestration-value-2025.pdf  used on input line 347.
+Package pdftex.def Info: ../outputs/maps/carbon-sequestration-value-2025.pdf  used on input line 441.
 (pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
-<../outputs/maps/carbon-sequestration-value-change-2010-2025.pdf, id=256, 505.89pt x 505.89pt>
+<../outputs/maps/carbon-sequestration-value-change-2010-2025.pdf, id=288, 505.89pt x 505.89pt>
 File: ../outputs/maps/carbon-sequestration-value-change-2010-2025.pdf Graphic file (type pdf)
 <use ../outputs/maps/carbon-sequestration-value-change-2010-2025.pdf>
-Package pdftex.def Info: ../outputs/maps/carbon-sequestration-value-change-2010-2025.pdf  used on input line 349.
+Package pdftex.def Info: ../outputs/maps/carbon-sequestration-value-change-2010-2025.pdf  used on input line 443.
 (pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
-<../outputs/figures/carbon-sequestration-time-series.pdf, id=258, 578.16pt x 578.16pt>
+<../outputs/figures/carbon-sequestration-time-series.pdf, id=290, 578.16pt x 578.16pt>
 File: ../outputs/figures/carbon-sequestration-time-series.pdf Graphic file (type pdf)
 <use ../outputs/figures/carbon-sequestration-time-series.pdf>
-Package pdftex.def Info: ../outputs/figures/carbon-sequestration-time-series.pdf  used on input line 358.
+Package pdftex.def Info: ../outputs/figures/carbon-sequestration-time-series.pdf  used on input line 453.
 (pdftex.def)             Requested size: 399.29463pt x 399.29253pt.
- [15] [16 <../outputs/maps/carbon-sequestration-value-2025.pdf> <../outputs/maps/carbon-sequestration-value-change-2010-2025.pdf>] [17 <../outputs/figures/carbon-sequestration-time-series.pdf>] [18] [19]
-<../outputs/maps/carbon-stock-value-hotspots-2025.pdf, id=322, 505.89pt x 505.89pt>
+ [17] [18 <../outputs/maps/carbon-sequestration-value-2025.pdf> <../outputs/maps/carbon-sequestration-value-change-2010-2025.pdf>] [19 <../outputs/figures/carbon-sequestration-time-series.pdf>]
+<../outputs/maps/carbon-stock-value-hotspots-2025.pdf, id=337, 505.89pt x 505.89pt>
 File: ../outputs/maps/carbon-stock-value-hotspots-2025.pdf Graphic file (type pdf)
 <use ../outputs/maps/carbon-stock-value-hotspots-2025.pdf>
-Package pdftex.def Info: ../outputs/maps/carbon-stock-value-hotspots-2025.pdf  used on input line 443.
+Package pdftex.def Info: ../outputs/maps/carbon-stock-value-hotspots-2025.pdf  used on input line 538.
 (pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
-<../outputs/maps/carbon-stock-value-percent-change-2005-2025.pdf, id=323, 505.89pt x 505.89pt>
+<../outputs/maps/carbon-stock-value-percent-change-2005-2025.pdf, id=338, 505.89pt x 505.89pt>
 File: ../outputs/maps/carbon-stock-value-percent-change-2005-2025.pdf Graphic file (type pdf)
 <use ../outputs/maps/carbon-stock-value-percent-change-2005-2025.pdf>
-Package pdftex.def Info: ../outputs/maps/carbon-stock-value-percent-change-2005-2025.pdf  used on input line 445.
+Package pdftex.def Info: ../outputs/maps/carbon-stock-value-percent-change-2005-2025.pdf  used on input line 540.
 (pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
-<../outputs/figures/carbon-stock-value-time-series.pdf, id=325, 578.16pt x 578.16pt>
+<../outputs/figures/carbon-stock-value-time-series.pdf, id=340, 578.16pt x 578.16pt>
 File: ../outputs/figures/carbon-stock-value-time-series.pdf Graphic file (type pdf)
 <use ../outputs/figures/carbon-stock-value-time-series.pdf>
-Package pdftex.def Info: ../outputs/figures/carbon-stock-value-time-series.pdf  used on input line 454.
+Package pdftex.def Info: ../outputs/figures/carbon-stock-value-time-series.pdf  used on input line 549.
 (pdftex.def)             Requested size: 399.29463pt x 399.29253pt.
- [20 <../outputs/maps/carbon-stock-value-hotspots-2025.pdf> <../outputs/maps/carbon-stock-value-percent-change-2005-2025.pdf>] [21 <../outputs/figures/carbon-stock-value-time-series.pdf>] [22]
-Overfull \hbox (14.90483pt too wide) in paragraph at lines 517--519
+ [20] [21 <../outputs/maps/carbon-stock-value-hotspots-2025.pdf> <../outputs/maps/carbon-stock-value-percent-change-2005-2025.pdf>] [22 <../outputs/figures/carbon-stock-value-time-series.pdf>]
+<../outputs/maps/biodiversity-value-2025.pdf, id=387, 505.89pt x 505.89pt>
+File: ../outputs/maps/biodiversity-value-2025.pdf Graphic file (type pdf)
+<use ../outputs/maps/biodiversity-value-2025.pdf>
+Package pdftex.def Info: ../outputs/maps/biodiversity-value-2025.pdf  used on input line 648.
+(pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
+<../outputs/maps/biodiversity-value-change-2005-2025.pdf, id=388, 505.89pt x 505.89pt>
+File: ../outputs/maps/biodiversity-value-change-2005-2025.pdf Graphic file (type pdf)
+<use ../outputs/maps/biodiversity-value-change-2005-2025.pdf>
+Package pdftex.def Info: ../outputs/maps/biodiversity-value-change-2005-2025.pdf  used on input line 650.
+(pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
+ [23] [24 <../outputs/maps/biodiversity-value-2025.pdf> <../outputs/maps/biodiversity-value-change-2005-2025.pdf>]
+<../outputs/figures/biodiversity-time-series.pdf, id=425, 578.16pt x 578.16pt>
+File: ../outputs/figures/biodiversity-time-series.pdf Graphic file (type pdf)
+<use ../outputs/figures/biodiversity-time-series.pdf>
+Package pdftex.def Info: ../outputs/figures/biodiversity-time-series.pdf  used on input line 659.
+(pdftex.def)             Requested size: 399.29463pt x 399.29253pt.
+ [25 <../outputs/figures/biodiversity-time-series.pdf>]
+Overfull \hbox (14.90483pt too wide) in paragraph at lines 689--691
 \T1/cmr/m/n/10.95 Estimate the share of con-sumer sur-plus at-tributable to for-est habi-tat from a forest-versus-counterfactual
  []
 
-[23] [24]
-Overfull \hbox (16.78244pt too wide) in paragraph at lines 607--609
+[26] [27]
+Overfull \hbox (16.78244pt too wide) in paragraph at lines 779--781
 \T1/cmr/m/n/10.95 Estimate the forest-purpose share of trip sur-plus from trip-purpose sur-veys or a stated-preference/travel-
  []
 
-[25] [26] (./report.bbl
+[28] [29] (./report.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 8.
 
-) [27] [28] (./report.aux)
+) [30] [31] (./report.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: FC8823CEA0D52814F0D37D81C8F8C8A0;6272.
+(rerunfilecheck)             Checksum: C0214D88F13086AF281E82C784D35D10;6304.
  ) 
 Here is how much of TeX's memory you used:
- 9739 strings out of 469453
- 154304 string characters out of 5466066
- 639519 words of memory out of 5000000
- 38168 multiletter control sequences out of 15000+600000
- 644442 words of font info for 75 fonts, out of 8000000 for 9000
+ 9964 strings out of 469453
+ 160774 string characters out of 5466066
+ 638137 words of memory out of 5000000
+ 38383 multiletter control sequences out of 15000+600000
+ 645206 words of font info for 76 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 75i,9n,79p,874b,649s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0600.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on report.pdf (28 pages, 6321492 bytes).
+ 75i,10n,79p,1218b,656s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0600.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
+Output written on report.pdf (31 pages, 9670507 bytes).
 PDF statistics:
- 1017 PDF objects out of 1200 (max. 8388607)
- 455 compressed objects within 5 object streams
- 118 named destinations out of 1000 (max. 500000)
- 252 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1104 PDF objects out of 1200 (max. 8388607)
+ 509 compressed objects within 6 object streams
+ 121 named destinations out of 1000 (max. 500000)
+ 292 words of extra memory for PDF output out of 10000 (max. 10000000)
 

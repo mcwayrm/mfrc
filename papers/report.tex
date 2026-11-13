@@ -5,6 +5,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
 \usepackage{longtable}
+\usepackage{array}
+\usepackage{ragged2e}
 \usepackage{graphicx}
 \usepackage{natbib}
 \usepackage{hyperref}
@@ -17,6 +19,9 @@
 	urlcolor=blue
 }
 
+% -----------------------------------------------------
+% 		Title Page
+% -----------------------------------------------------
 \title{\bf{Valuing Minnesota Family Forests: \\ Economic and Ecological Contributions\thanks{
 	This project recieved considerable support from David Wilson and Amanda Hoffman.
 }}}
@@ -38,19 +43,23 @@ This report assesses the monetary and non-monetary value of Minnesota family for
 \tableofcontents
 \newpage
 
+% -----------------------------------------------------
+% 		Introduction
+% -----------------------------------------------------
 \section{Introduction}
 - Land of 10 thousand lakes... and 15 million trees. This is about identity of MN. 
 Describe the importance of Minnesota family forests, the decision context for this assessment, and the research questions addressed by the report.
 - Place within the strategic plan of MFRC. 
 - Is there a broader (national) context to place this within.
 
-\section{The State of North America's Forests}
+% -----------------------------------------------------
+% 		Background
+% -----------------------------------------------------
+\section{The State of Minnesota Family Forests}
 Review the relevant literature, regional context, and ecosystem-service concepts that guide the analysis.
 
 - Description of NA, national, and MN forests 
 - Narrowing to family forests
-
-\subsection{Minnesota Family Forests}
 
 
 Trends: 
@@ -65,11 +74,16 @@ Trends:
 Define the study area, forest-owner population, ecosystem services, and time period included in the assessment.
 
 
+% -----------------------------------------------------
+% 		Constructing Forest Layer
+% -----------------------------------------------------
 \subsubsection{From FIA observations to spatial forest layers}
 
-The spatial foundation of the assessment combines the U.S.\ Forest Service Forest Inventory and Analysis (FIA) database for Minnesota with European Space Agency (ESA) land-cover masks. The complete Minnesota FIADB CSV database is retained, including historical plot, condition, tree, and population records. Annual evaluation coverage for 2000--2025 is documented using \texttt{POP\_EVAL.END\_INVYR}; spatial composites instead use the actual measurement year, \texttt{MEASYEAR}. These are distinct temporal definitions. The layers represent forests across Minnesota, not exclusively family-owned forests; attribution to family forests requires a subsequent ownership overlay. Basal area provides a structural density proxy for service-specific models, rather than a direct measure of ecosystem-service supply.
+The spatial foundation of the assessment combines the U.S.\ Forest Service Forest Inventory and Analysis (FIA) database for Minnesota with European Space Agency (ESA) land-cover masks. This provides information on historical research plots, forest conditions, tree characteristics, and population records. Annual evaluation coverage for 2000--2025 is documented using \texttt{POP\_EVAL.END\_INVYR}; spatial composites instead use the actual measurement year, \texttt{MEASYEAR}. These are distinct temporal definitions. The layers represent forests across Minnesota, not exclusively family-owned forests. Attribution to family forests is derived from propritoary ownership information accessed through MFRC. Basal area provides a structural density proxy for service-specific models.
 
-Figure~\ref{fig:forest-layer-construction} illustrates the transformation. Panel A summarizes distinct measurement years during 2000--2025 for each physical plot, identified by the combination of \texttt{STATECD}, \texttt{UNITCD}, \texttt{COUNTYCD}, and \texttt{PLOT}, rather than by the visit-specific identifier \texttt{CN}. Each site is displayed once at its latest public location, without jitter, and all plot statuses are included in this sampling overview. Seventy records lacking a measurement year are excluded from the temporal summary. Among 18,286 physical sites with measurements in the requested period, 80.62\% were observed in five distinct years and 17.63\% in six (Table~\ref{tab:fia-frequency}). Measurement frequency describes the available records, not an assumed fixed remeasurement interval.
+Figure~\ref{fig:forest-layer-construction} illustrates the transformation of FIA plots into a smoothed interpolation of forest cover. Panel A summarizes distinct measurement years during 2000--2025 for each physical plot.
+% , identified by the combination of \texttt{STATECD}, \texttt{UNITCD}, \texttt{COUNTYCD}, and \texttt{PLOT}, rather than by the visit-specific identifier \texttt{CN}. 
+Each site is displayed once at its latest public location, and all plot statuses are included in this sampling overview. Seventy records lacking a measurement year are excluded from the temporal summary. Among 18,286 physical sites with measurements, 80.62\%, were observed in five distinct years and 17.63\% in six (Table~\ref{tab:fia-frequency}). Measurement frequency describes the available records, not an assumed fixed remeasurement interval.
 
 \begin{table}[htbp]
 \centering
@@ -96,7 +110,7 @@ Total & 18,286 & 100.00 & 18,286 \\
 \end{minipage}
 \end{table}
 
-For each target year $t\in\{2005,2010,2015,2020,2025\}$, observations are restricted to the trailing five measurement years $[t-4,t]$. Only the newest visit per physical plot is retained, ordered by measurement year, month, day, inventory year, and visit identifier; unknown month or day values precede known values. Selection precedes forest-status filtering, so an earlier forest observation is not substituted for a newer nonforest or nonsampled visit. Sampled plots (\texttt{PLOT\_STATUS\_CD}=1) with forest conditions (\texttt{COND\_STATUS\_CD}=1) contribute basal area. For plot $p$, the forest-area-normalized response is
+I condense the this temporal variation into 5 year time steps $t\in\{2005,2010,2015,2020,2025\}$, observations are restricted to the trailing five measurement years $[t-4,t]$. Only the newest visit per physical plot is retained, ordered by measurement year, month, day, inventory year, and visit identifier; unknown month or day values precede known values. Selection precedes forest-status filtering, so an earlier forest observation is not substituted for a newer nonforest or nonsampled visit. Sampled plots (\texttt{PLOT\_STATUS\_CD}=1) with forest conditions (\texttt{COND\_STATUS\_CD}=1) contribute basal area. For plot $p$, the forest-area-normalized response is
 \begin{equation}
 B_{p,t} =
 \frac{\sum_{c\in F_p}\mathrm{BALIVE}_{pc,t}\,w_{pc,t}}
@@ -105,7 +119,8 @@ B_{p,t} =
 w_{pc,t}=\mathrm{CONDPROP\_UNADJ}_{pc,t},
 \label{eq:plot-basal-area}
 \end{equation}
-where $F_p$ denotes forest conditions. The resulting quantity is square feet of live-tree basal area per forest acre, not per total plot acre. Plots with invalid basal area or forest-condition proportions, invalid coordinates, or locations outside Minnesota are excluded. Public coordinates are transformed from geographic coordinates to NAD83 / UTM zone 15N (EPSG:26915); coincident locations, if present, are averaged to avoid duplicate spatial weighting and singular kriging systems. Table~\ref{tab:forest-layer-samples} records the sampling windows and retained forest sites. No coincident sites were collapsed in the current five composites.
+where $F_p$ denotes forest conditions. The resulting quantity is square feet of live-tree basal area per forest acre, not per total plot acre. Plots with invalid basal area or forest-condition proportions, invalid coordinates, or locations outside Minnesota are excluded. Public coordinates are transformed from geographic coordinates to NAD83 / UTM zone 15N (EPSG:26915); coincident locations, if present, are averaged to avoid duplicate spatial weighting and singular kriging systems. Table~\ref{tab:forest-layer-samples} records the sampling windows and retained forest sites. 
+% No coincident sites were collapsed in the current five composites.
 
 \begin{table}[htbp]
 \centering
@@ -134,9 +149,13 @@ Each composite is interpolated separately using local ordinary kriging. An expon
 \gamma_t(h)=\tau_t^2+\sigma_t^2\{1-\exp(-h/a_t)\},\qquad h>0,
 \label{eq:forest-variogram}
 \end{equation}
-is fitted to a reproducible random sample of up to 1,000 eligible sites (seed 42). Here $\tau_t^2$ is the nugget, $\sigma_t^2$ the partial sill, and $a_t$ the exponential scale. Pairwise semivariances are grouped into 20 equal-width distance bins; bins with fewer than 30 pairs are omitted, and bounded nonlinear least squares weights the residuals by the square root of each bin's share of pairs. Predictions use the nearest 32 of all eligible sites, not just the variogram-fitting subset. Ordinary-kriging weights sum to one; the nugget is included in observation covariance but not added to the covariance of the predicted latent surface. Negative predictions are clipped to zero, and the second raster band stores latent kriging variance.
+is fitted to a reproducible random sample of up to 1,000 eligible sites.
+% (seed 42). 
+Here $\tau_t^2$ is the nugget, $\sigma_t^2$ the partial sill, and $a_t$ the exponential scale. Pairwise semivariances are grouped into 20 equal-width distance bins; bins with fewer than 30 pairs are omitted, and bounded nonlinear least squares weights the residuals by the square root of each bin's share of pairs. Predictions use the nearest 32 of all eligible sites, not just the variogram-fitting subset. Ordinary-kriging weights sum to one; the nugget is included in observation covariance but not added to the covariance of the predicted latent surface. Negative predictions are clipped to zero, and the second raster band stores latent kriging variance.
 
-Predictions are evaluated on a common 300-metre EPSG:26915 grid clipped to the Minnesota county boundary. ESA classes 50, 60, 61, 62, 70, 71, 72, 80, 81, 82, 90, and 100 define forest; mosaics and flooded-forest classes are excluded. Categorical land cover is aligned by nearest-neighbor resampling. All eligible forest pixels are predicted, including locations beyond the sampled spatial support; other pixels are NoData rather than zero. The 2025 composite explicitly uses the 2022 ESA mask because a 2025 mask is not supplied. Panel B displays the masked 2025 basal-area surface; Panel C displays its exact ESA forest footprint, recovered from valid prediction cells so that an additional reprojection cannot change the mask. Gray areas include both land outside the forest mask and unavailable land cover.
+Predictions are evaluated on a common 300-metre EPSG:26915 grid clipped to the Minnesota county boundary. ESA classes 50, 60, 61, 62, 70, 71, 72, 80, 81, 82, 90, and 100 define forest; mosaics and flooded-forest classes are excluded. Categorical land cover is aligned by nearest-neighbor resampling. 
+% All eligible forest pixels are predicted, including locations beyond the sampled spatial support; other pixels are NoData rather than zero. 
+The 2025 composite explicitly uses the 2022 ESA mask because a 2025 mask is not avaliable. Panel B displays the masked 2025 basal-area surface; Panel C displays its exact ESA forest footprint, recovered from valid prediction cells so that an additional reprojection cannot change the mask. Gray areas include both land outside the forest mask and unavailable land cover.
 
 Panel D compares basal-area density using
 \begin{equation}
@@ -145,7 +164,9 @@ Panel D compares basal-area density using
                {\widehat B_{i,2005}},
 \label{eq:forest-density-change}
 \end{equation}
-only where cell $i$ is forested in both saved masks and $\widehat B_{i,2005}>0$. Nonoverlapping forest pixels and zero baselines are excluded rather than assigned zero change. This comparison measures structural density change between five-year composites, not forest-cover change, annual sequestration, or growth in ecosystem-service value. Small baselines can amplify percentage changes.
+only where cell $i$ is forested in both saved masks and $\widehat B_{i,2005}>0$. Nonoverlapping forest pixels and zero baselines are excluded rather than assigned zero change. This comparison measures structural density change between five-year composites.
+% , not forest-cover change, annual sequestration, or growth in ecosystem-service value. 
+Small baselines can amplify percentage changes.
 
 \begin{figure}[htbp]
 \centering
@@ -156,6 +177,9 @@ only where cell $i$ is forested in both saved masks and $\widehat B_{i,2005}>0$.
 
 The resulting layers are exploratory spatial inputs, not FIA design-based population estimates: no population expansion weights are used in the interpolation. Public FIA coordinates are fuzzed or swapped, and 300-metre cell size does not establish 300-metre positional accuracy. The fitted variograms have not been spatially cross-validated; latent kriging variance omits land-cover, temporal, and coordinate uncertainty. Consequently, apparent local change should be interpreted cautiously, and service-specific quantity models, ownership attribution, and validation are required before these layers support estimates of family-forest ecosystem-service values.
 
+% -----------------------------------------------------
+% 		Potential Ecosystem Services
+% -----------------------------------------------------
 \subsection{Forest Ecosystems Assessed}
 
 - Board overview of ecosystem services 
@@ -167,22 +191,32 @@ The resulting layers are exploratory spatial inputs, not FIA design-based popula
 \subsection{List of Potential Ecosystem Services attributable to Forests}
 
 \begin{landscape}
+\begingroup
 \small
 \setlength{\tabcolsep}{2pt}
-\begin{longtable}{@{}p{0.68in}p{0.85in}p{0.38in}p{0.83in}p{0.75in}p{1.25in}p{0.52in}p{0.55in}@{}}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{@{}
+>{\RaggedRight\arraybackslash}p{0.95in}
+>{\RaggedRight\arraybackslash}p{1.00in}
+>{\RaggedRight\arraybackslash}p{0.55in}
+>{\RaggedRight\arraybackslash}p{1.55in}
+>{\RaggedRight\arraybackslash}p{1.25in}
+>{\RaggedRight\arraybackslash}p{1.60in}
+>{\RaggedRight\arraybackslash}p{0.80in}
+>{\RaggedRight\arraybackslash}p{0.85in}@{}}
 \toprule
-Ecosystem Service & Forest Mechanism & Feasibility & Feasibility: Quantity & Feasibility: Price & Feasibility: Lambda & Category & Direct/Indirect \\
+Ecosystem service & Forest mechanism & Feasi-\newline bility & Quantity requirements & Price requirements & Valuation / attribution & Category & Direct / indirect \\
 \midrule
 \endfirsthead
 \toprule
-Ecosystem Service & Forest Mechanism & Feasibility & Feasibility: Quantity & Feasibility: Price & Feasibility: Lambda & Category & Direct/Indirect \\
+Ecosystem service & Forest mechanism & Feasi-\newline bility & Quantity requirements & Price requirements & Valuation / attribution & Category & Direct / indirect \\
 \midrule
 \endhead
 \bottomrule
 \endfoot
-Timber Provision & Wood products & High & MN FIA forest raster; FIA species, DBH, height, merchantable volume and growth; cell area; ownership and access overlays & MN stumpage prices by species/grade; harvest and haul costs & Net timber rent: $\sum_i A_i Q_i^{sust}(P_i-C_i)$ & Provisioning & Direct \\
-Carbon Sequestration & photosynthetic uptake stored in biomass and soils & High & MN FIA forest raster; repeated FIA carbon stocks, growth, mortality and removals; cell area & Social cost of carbon or carbon price per tCO2e & Annual flow: $\sum_i A_i[(C_{i,t2}-C_{i,t1})/\Delta t](44/12)P_{CO2}$ & Regulating & Indirect \\
-Carbon Storage & carbon held in live biomass, deadwood, litter, and soil & High & MN FIA forest raster; carbon stock by pool (tC/ha); cell area & Social cost of carbon per tCO2e & Stock value: $\sum_i A_i C_i(44/12)P_{SCC}$; $\lambda=1$ & Regulating & Indirect \\
+Timber Provision & Wood products & High & MN FIA forest raster; FIA species, DBH, height, merchantable volume and growth; cell area; ownership and access overlays & MN stumpage prices by species/grade; harvest and haul costs & Net timber rent:\newline $\sum_i A_i Q_i^{sust}(P_i-C_i)$ & Provisioning & Direct \\
+Carbon Sequestration & photosynthetic uptake stored in biomass and soils & High & MN FIA forest raster; repeated FIA carbon stocks, growth, mortality and removals; cell area & Social cost of carbon or carbon price per tCO2e & Annual flow:\newline $r_i=(C_{i,t2}-C_{i,t1})/\Delta t$;\newline $V=\sum_i A_i r_i(44/12)P_{CO2}$ & Regulating & Indirect \\
+Carbon Storage & carbon held in live biomass, deadwood, litter, and soil & High & MN FIA forest raster; carbon stock by pool (tC/ha); cell area & Social cost of carbon per tCO2e & Stock value:\newline $\sum_i A_i C_i(44/12)P_{SCC}$;\newline $\lambda=1$ & Regulating & Indirect \\
 Habitat Support for biodiversity & Forest composition and structure support species and habitat & Medium & MN FIA forest raster; FIA species composition and stand structure; species range/occurrence data; cell area & Species-specific WTP or restoration cost per quality-adjusted ha & $V=\sum_i A_i H_i u_i\lambda_i$ & Supporting & Indirect (intermediate) \\
 
 Recreation: Hunting & Forests provide game habitat and hunting settings & High & MN FIA forest raster; hunter-days/trips by location and game; licenses and participation survey & Consumer surplus per trip/day from travel-cost or stated-preference estimates & $V=\sum_j D_j CS_j\lambda_j$; forest-attributable share & Cultural & Direct \\
@@ -191,7 +225,7 @@ Recreation: Nature recreation & Forest settings support day-use hiking, camping,
 Recreation: Nature tourism & Forest landscapes draw overnight and long-distance visitors & High & MN FIA forest raster; overnight trips, visitor-days and lodging/campground nights by destination & Consumer surplus per trip from travel-cost demand model (including transport and lodging costs) & $V=\sum_j T_j CS_j\lambda_j$; forest-purpose share & Cultural & Direct \\
 Recreation: Winter and motorized & Trails for snowmobiling, skiing, ATV, snowshoeing & High & Trail miles or user days (registrations, permits) & Travel cost; trail pass and registration fees & Share of trip value due to forest setting vs. equipment and trail grooming & Cultural & Direct \\
 Habitat Support for biodiversity & Structurally diverse forest supporting species richness & Medium & habitat acres and species richness & Species-specific WTP or replacement/restoration cost & Share of habitat value attributable to forest type & Supporting & Indirect (intermediate) \\
-Water Quality Regulation (Riparian Buffers) & Riparian forest buffers retain nitrogen and phosphorus before delivery to streams & Medium & InVEST NDR nutrient export with buffers vs. no-buffer counterfactual; kg N and P per year by watershed & Avoided treatment/damage cost or nutrient-credit price per kg N/P & $\Delta E_{\mathrm{family\ forest}}/\Delta E_{\mathrm{all\ buffers}}$ & Regulating & Indirect \\
+Water Quality Regulation (Riparian Buffers) & Riparian forest buffers retain nitrogen and phosphorus before delivery to streams & Medium & InVEST NDR nutrient export with buffers vs. no-buffer counterfactual; kg N and P per year by watershed & Avoided treatment/damage cost or nutrient-credit price per kg N/P & $\lambda=\Delta E_{\mathrm{family}}/\Delta E_{\mathrm{all}}$;\newline family-forest share of avoided buffer export & Regulating & Indirect \\
 Air quality regulation & Canopy removes particulate matter and gaseous pollutants & Medium & MN FIA forest raster; canopy/leaf area and pollutant removal by species; exposed population & Marginal health damages avoided per ton removed & $V=\sum_{i,p} R_{ip}MD_{ip}\lambda_{ip}$; canopy-attributable share & Regulating & Indirect \\
 Local climate regulation & Shade and evapotranspiration cooling; windbreaks & Medium & Canopy cover; degrees of cooling; reduced heating/cooling kWh & Avoided energy cost & Share of energy savings attributable to trees vs. building characteristics & Regulating & Indirect \\
 Erosion control and soil retention & Roots and litter stabilize slopes and banks & Medium & Tons of soil retained (RUSLE, forest vs. counterfactual cover) & Replacement cost (dredging, lost productivity) & Forest-attributable share vs. other cover types & Regulating & Indirect \\
@@ -213,7 +247,7 @@ Existence and bequest value & Satisfaction from knowing forests persist & Low & 
 Tribal and Indigenous cultural uses & Maple sugaring, ceremonial and subsistence harvest, treaty rights & Low & Participation and harvest levels (tribal data, with consent) & Mostly non-market; avoid imposing market prices & Infeasible and arguably inappropriate to monetize & Cultural & Direct and indirect \\
 Scientific research & Long-term research sites and experimental forests & Low & Research funding or publications tied to the site & Research expenditure (cost-based) & Infeasible & Cultural & Indirect \\
 \end{longtable}
-
+\endgroup
 \end{landscape}
 \normalsize
 
@@ -224,40 +258,96 @@ Scientific research & Long-term research sites and experimental forests & Low & 
 \subsubsection{Ecosystem 1: Timber Provision}
 
 
-\paragraph{Data.}
-Use the Minnesota FIA forest raster as the spatial base, with each forest pixel $i$ having area $A_i$ in hectares. Attach FIA estimates of species, diameter, height, merchantable volume, annual growth, mortality, and removals to the forest pixels. Add forest-ownership data if the estimate is restricted to family forests, and road, mill, and species/grade-specific Minnesota stumpage-price data to estimate access and costs. The forest raster identifies the analysis footprint; FIA inventory attributes supply the forest measurements.
-
-\paragraph{Valuation Approach.}
-For pixel $i$, calculate annual sustainable merchantable harvest quantity from FIA growth, mortality, removals, and the selected harvest/retention rule:
+\paragraph{Data and valuation approach.}
+The first-pass spatial estimate uses the 2025 Minnesota forest raster (300-m cells, with the 2022 ESA forest mask) as its footprint. FIA's \texttt{rFIA::growMort} supplies species-level, plot-level annual growth, recruitment, natural mortality, and removals for growing-stock trees on forest land. The analysis retains the latest eligible visit per physical plot in the 2021--2025 measurement window; 5,655 plot visits at unique coordinates remain. For each plot and species, the maximum sustainable harvest ceiling is defined as nonnegative survivor growth plus recruitment into the measured class minus natural mortality:
 \[
-Q_i=A_i q_i^{\mathrm{sust}},
+q_{p,s}^{\mathrm{sust}}=
+\max\left(G_{p,s}+R_{p,s}-M_{p,s},0\right),
 \]
-where $A_i$ is pixel area and $q_i^{\mathrm{sust}}$ is sustainable merchantable volume per hectare per year. Calculate the net stumpage price:
+where $G$, $R$, and $M$ are the FIA annualized growth, recruitment, and mortality rates, respectively. Observed FIA removals are retained as a sustainability diagnostic and are not subtracted from the ceiling. Plot-level species values are aggregated to annual product quantities and value per hectare, then local ordinary kriging with 32 nearest sites interpolates those rates onto forest pixels.
+
+The FIA growing-stock net cubic-foot ceiling is converted to cord products using 80 solid cubic feet per cord, then the sawtimber equivalent is removed using the DNR report's conversion of two cords per Mbf. FIA sawtimber board-foot rates are divided by 1,000 to obtain Mbf. Negative residual cord quantities are set to zero. This partitions the merchantable quantity into a cord-product proxy and sawtimber; it is not a detailed log-grade classification. The species groups are crosswalked to Minnesota DNR's 2021 public-agency average stumpage prices:
 \[
-P_i=p_{i,\mathrm{stumpage}}-c_{i,\mathrm{harvest}}-c_{i,\mathrm{haul}},
+Q_i^{\mathrm{cord}}=A_iq_i^{\mathrm{cord,sust}},
+\qquad
+Q_i^{\mathrm{saw}}=A_iq_i^{\mathrm{saw,sust}},
+\qquad
+V_i^{\mathrm{stumpage}}=
+Q_i^{\mathrm{cord}}P_{s,\mathrm{cord}}+
+Q_i^{\mathrm{saw}}P_{s,\mathrm{saw}},
 \]
-using species- and grade-specific Minnesota prices and variable costs. 
-
-% Calculate the eligible family-forest share of the pixel from the ownership overlay: 
-Currently, set nature's contribution to be fully attributable to the eligible family forest:
-
+where $A_i$ is forest-pixel area and prices are in 2021 nominal dollars per cord or per Mbf, respectively. Total mapped value is
 \[
-\lambda_i= 1.
+\widehat V_{\mathrm{timber}}=\sum_i V_i^{\mathrm{stumpage}}.
 \]
+The price source is the Minnesota DNR \href{https://www.dnr.state.mn.us/forestry/timbersales/stumpage.html}{Public Stumpage Price Review}; the latest listed report is 2021. Prices are public-agency averages by species group and product. The DNR reports that the series covers approximately 80\% of commercial timber sales issued by Minnesota public agencies.
 
-% \[
-% \lambda_i=\frac{A_{i,\mathrm{eligible\ family\ forest}}}{A_i}.
-% \]
+\paragraph{Estimated value.}
+\begin{table}[htbp]
+\centering
+\small
+\caption{First-pass spatial timber yield and stumpage-value estimates for the 2025 forest layer.}
+\label{tab:timber-value-2025}
+\begin{tabular}{>{\RaggedRight\arraybackslash}p{0.58\textwidth}r}
+\toprule
+Indicator & Estimate \\
+\midrule
+Mapped forest area & 5,995,359 ha \\
+Annual sustainable cord-product quantity & 6,608,242 cords/year \\
+Annual sustainable sawtimber quantity & 1,696,206 Mbf/year \\
+Mean annual value per mapped forest hectare & \$61.25/ha/year \\
+Total annual stumpage-value proxy & \$367.19 million/year \\
+FIA plot visits used for spatial interpolation & 5,655 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-Then calculate
-\[
-V_{\mathrm{timber}}=\sum_i Q_iP_i\lambda_i,
-\]
-with $Q_i$ and $P_i$ in matching volume and currency units. Report the quantity and value period consistently; do not value the full standing inventory as an annual flow -- requires assumptions about rotation length and sustainable yield.
+The statewide mapped total is the sum of kriged per-hectare rates multiplied by the 9-ha pixel area. In the FIA plot sample, mean observed removals were 0.218 cords/ha/year and 0.0596 Mbf/ha/year; removals exceeded the growth-based ceiling at 0.73\% and 0.21\% of sampled plots, respectively. 
+% These are unweighted plot diagnostics, not design-based statewide removal estimates.
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../outputs/maps/timber-value-2025.png}
+\caption{Annual sustainable stumpage-value proxy per hectare, kriged to the 2025 forest grid. Values apply 2021 DNR prices to annualized FIA growth ceilings and include all mapped forest ownerships.}
+\label{fig:timber-value-2025}
+\end{figure}
 
-\paragraph{Estimated Value}
+\begin{figure}[htbp]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{../outputs/maps/timber-cord-yield-2025.png}
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{../outputs/maps/timber-sawtimber-yield-2025.png}
+\end{minipage}
+\caption{Annual sustainable cord-product (left) and sawtimber (right) yields per hectare. Cord products are a residual-volume approximation; sawtimber units are Mbf per hectare per year.}
+\label{fig:timber-yield-2025}
+\end{figure}
 
+% \paragraph{Differences from the proposed valuation and limitations.}
+% The proposal called for pixel-level species- and grade-specific prices, family-forest ownership shares, and variable harvest and haul costs. Those inputs were not available in the generated forest layer or the DNR price series. Instead, FIA plot-level species estimates are priced by the DNR's cord-product and sawtimber groups before the resulting value density is spatially interpolated; detailed log grades are not distinguished. A sawtimber price is used for species without a listed 2021 rate only through the DNR Mbf composite. FIA board-foot volumes are treated as compatible with the report's Scribner Mbf scale, a unit equivalence that should be verified before final inference.
+
+% No ownership overlay is applied, so the estimate covers all forest ownerships and is not a family-forest-only valuation. The proposed $\lambda_i=1$ convention therefore does not establish a family-forest share. Harvest and haul costs are also not subtracted: DNR reports stumpage sale prices, and this first pass reports a gross stumpage-value proxy rather than net timber rent. Historical comparisons use five-year FIA windows ending in 2005, 2010, 2015, 2020, and 2025, priced with the corresponding DNR schedule year where available; the 2021 schedule is used for the 2021--2025 FIA window because it is the latest listed report. Monetary values are nominal, so the percent-change map includes stumpage-price as well as quantity changes and is not inflation-adjusted. The time series extrapolates unweighted FIA plot-mean annual yields and value to each forest layer's mapped area; it is descriptive, not a design-based population estimate, and its totals are not directly interchangeable with the 2025 kriged total above. The spatial estimates use public FIA coordinates, have no spatial cross-validation, and predict all masked forest pixels, including areas distant from the sample.
+
+% For each timber layer, the fitted exponential variogram range is approximately 73 m, the fitting lower bound and well below the 300-m forest-grid resolution. The kriged maps therefore do not support pixel-scale hotspot interpretation; treat their spatial patterns as exploratory until alternative variogram specifications and spatial cross-validation are evaluated.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\textwidth]{../outputs/maps/timber-value-percent-change-2005-2025.pdf}
+\caption{Exploratory change in annual gross stumpage-value density from the 2001--2005 FIA window to the 2021--2025 window, on shared forest pixels with positive 2005 baseline value. DNR stumpage prices are year-specific nominal values (2005, 2010, 2015, 2020, and 2021 for the respective FIA windows); thus mapped change reflects both timber-yield and price changes and is not inflation-adjusted. Pixel patterns are not validated hotspots.}
+\label{fig:timber-value-change}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../outputs/figures/timber-valuation-time-series-2005-2025.pdf}
+\caption{Descriptive five-year series of annual sustainable cord-product quantity, sawtimber quantity, and gross stumpage-value proxy. Each point extrapolates the unweighted FIA plot-mean rate to the mapped forest area for that target year; the 2025 window uses 2021 DNR prices, the latest available. Values are nominal USD and are not design-based statewide estimates.}
+\label{fig:timber-value-series}
+\end{figure}
+
+% The applied year-specific stumpage-price crosswalks are archived in \path{data/forest-timber/timber-stumpage-prices-2005-2021.csv}; the source reports and table basis are recorded alongside each price.
 
 
 % -----------------------------------------------------
@@ -312,9 +402,11 @@ v^{\mathrm{annual}}_{i,t}
 \quad [\mathrm{2007\ USD/ha/year}].
 \label{eq:implemented-carbon-sequestration}
 \end{equation}
-Raster values are per hectare per year; statewide annualized totals multiply each eligible 300-metre cell by 9 hectares. NoData cells are excluded, not assigned zero.
+Raster values are per hectare per year; statewide annualized totals multiply each eligible 300-metre cell by 9 hectares. 
+% NoData cells are excluded, not assigned zero.
 
-Table~\ref{tab:carbon-sequestration-results} summarizes the supported composites. For 2025, the modeled mean annualized live aboveground carbon change is \textbf{0.532 tonnes C/ha/year}, equivalent to approximately 1.952 tonnes CO$_2$/ha/year. At \$46/tCO$_2$, its mean annualized value is \textbf{\$89.78/ha/year in 2007 USD}. Across 5.995 million mapped forest hectares, the signed total is 3.191 million tonnes C/year (11.701 million tonnes CO$_2$ equivalent/year), valued at \$538.23 million/year. This net live-pool change comprises 3.444 million tonnes C/year of positive modeled accumulation and $-0.252$ million tonnes C/year of modeled losses. These quantities are exploratory statewide interpolations, not family-forest-only or design-based FIA estimates.
+Table~\ref{tab:carbon-sequestration-results} summarizes the supported composites. For 2025, the modeled mean annualized live aboveground carbon change is \textbf{0.532 tonnes C/ha/year}, equivalent to approximately 1.952 tonnes CO$_2$/ha/year. At \$46/tCO$_2$, its mean annualized value is \textbf{\$89.78/ha/year in 2007 USD}. Across 5.995 million mapped forest hectares, the signed total is 3.191 million tonnes C/year (11.701 million tonnes CO$_2$ equivalent/year), valued at \$538.23 million/year. This net live-pool change comprises 3.444 million tonnes C/year of positive modeled accumulation and $-0.252$ million tonnes C/year of modeled losses. 
+% These quantities are exploratory statewide interpolations, not family-forest-only or design-based FIA estimates.
 
 \begin{table}[htbp]
 \centering
@@ -336,7 +428,9 @@ year & sites & (tC/ha/year) & (\$/tCO$_2$) & (\$/ha/year) & (million \$/year) \\
 
 \smallskip
 \begin{minipage}{0.95\linewidth}
-\footnotesize Source: \path{outputs/tables/carbon-sequestration-time-series.csv}. Monetary values are in 2007 USD. Endpoint windows are 2006--2010, 2011--2015, 2016--2020, and 2021--2025; actual matched-visit intervals range from 3.6--6.3, 4.0--6.4, 4.0--6.1, and 4.0--6.1 years, respectively. The 2025 forest mask is ESA 2022. The 2005 estimate is unavailable under the comparability rules, not zero.
+\footnotesize 
+% Source: \path{outputs/tables/carbon-sequestration-time-series.csv}. 
+Monetary values are in 2007 USD. Endpoint windows are 2006--2010, 2011--2015, 2016--2020, and 2021--2025; actual matched-visit intervals range from 3.6--6.3, 4.0--6.4, 4.0--6.1, and 4.0--6.1 years, respectively. The 2025 forest mask is ESA 2022. The 2005 estimate is unavailable under the comparability rules, not zero.
 \end{minipage}
 \end{table}
 
@@ -351,7 +445,8 @@ Figure~\ref{fig:carbon-sequestration-maps} displays signed 2025 value density an
 \label{fig:carbon-sequestration-maps}
 \end{figure}
 
-Figure~\ref{fig:carbon-sequestration-series} distinguishes the quantity trajectory from its valuation. Modeled net live-carbon accumulation increases from 1.937 million tonnes C/year in 2010 to 3.400 million in 2020, then decreases to 3.191 million in 2025. Despite that latter decrease, the valued total rises from \$523.52 million/year to \$538.23 million/year because SCC increases from \$42 to \$46/tCO$_2$. At a fixed SCC of \$21.40/tCO$_2$, the 2025 value would instead be \$250.40 million/year. Each point uses a different endpoint composite, matched sample, and forest footprint; connecting lines are descriptive rather than observations of annual dynamics.
+Figure~\ref{fig:carbon-sequestration-series} distinguishes the quantity trajectory from its valuation. Modeled net live-carbon accumulation increases from 1.937 million tonnes C/year in 2010 to 3.400 million in 2020, then decreases to 3.191 million in 2025. Despite that latter decrease, the valued total rises from \$523.52 million/year to \$538.23 million/year because SCC increases from \$42 to \$46/tCO$_2$. At a fixed SCC of \$21.40/tCO$_2$, the 2025 value would instead be \$250.40 million/year. 
+% Each point uses a different endpoint composite, matched sample, and forest footprint; connecting lines are descriptive rather than observations of annual dynamics.
 
 \begin{figure}[htbp]
 \centering
@@ -360,14 +455,14 @@ Figure~\ref{fig:carbon-sequestration-series} distinguishes the quantity trajecto
 \label{fig:carbon-sequestration-series}
 \end{figure}
 
-\paragraph{Differences between the proposed and implemented valuation.}
-\begin{enumerate}
-\item \textbf{Matched visits and temporal support.} Visits are linked through \texttt{PREV\_PLT\_CN}, with identical physical plot keys and \texttt{DESIGNCD}, and sampled status at both visits. The newest endpoint per physical plot is selected in each trailing five-year window before exclusions. Rates use actual \texttt{REMPER}, not a uniform five-year divisor; predecessors can precede the endpoint window. The analysis estimates annualized interval rates rather than FIA design-based annual estimates. For 2005, early predecessors are unavailable or incompatible in sampling design, leaving insufficient matched support; no rate is fabricated.
-\item \textbf{Forest eligibility and spatial inference.} Both visits must contain only forest conditions with summed forest proportions within $10^{-6}$ of one. Mixed forest/nonforest plots, land-use transitions, changed sampling designs, and invalid stocks are excluded. This reduces confounding from changing forest area but conditions the sample on persistent, fully forested plots. Those rates are extrapolated to all eligible pixels of each year's saved ESA forest footprint, not just the fully forested plot population. No family-ownership overlay, FIA population expansion weights, or separately estimated $\lambda_i$ is applied.
-\item \textbf{Pool coverage and interpretation of losses.} Only live aboveground trees are measured consistently at both visits. Roots, deadwood, litter, soils, understory, and harvested-product pools are omitted. Net stock differences incorporate changes in the observed live pool rather than separately estimating growth, mortality, removals, and subsequent carbon fate from FIA growth-component tables. Mortality and harvesting can transfer carbon to deadwood or products, so a live-pool loss is not necessarily an immediate emission. Conversely, omitted pools may gain or lose carbon independently. The output is therefore an annualized net live-pool change proxy, not a complete net ecosystem or atmospheric sequestration balance.
-\item \textbf{Interpolation and uncertainty.} Signed rates are kriged independently of the storage surfaces, using 32 nearest matched sites. An exponential variogram is fitted by bounded, pair-count-weighted normalized least squares to up to 1,000 reproducibly selected sites (seed 42), using 20 distance bins with at least 30 pairs per bin. The R optimizer follows the storage-layer objective and bounds, while \texttt{gstat} supplies ordinary kriging and point prediction variance rather than the storage script's latent-surface variance. Neither observed losses nor negative predictions are clipped. Public-coordinate uncertainty, conditional sample selection, and lack of spatial cross-validation limit local inference; prediction variance is not a complete uncertainty measure.
-\item \textbf{Pricing and separation from storage.} The same 3\% average SCC schedule used for storage is applied to annualized rates, with each target year's price representing the interval rather than year-by-year emission pricing. All values remain in 2007 dollars. This is an SCC-based welfare valuation proxy, not a demonstrated exchange-value estimate for ecosystem accounting. It is distinct from valuing the full standing carbon stock: the storage proxy is not added to these annualized values. Definitive family-forest GEP requires appropriate ownership attribution, validation, and a defensible atmospheric sequestration quantity.
-\end{enumerate}
+% \paragraph{Differences between the proposed and implemented valuation.}
+% \begin{enumerate}
+% \item \textbf{Matched visits and temporal support.} Visits are linked through \texttt{PREV\_PLT\_CN}, with identical physical plot keys and \texttt{DESIGNCD}, and sampled status at both visits. The newest endpoint per physical plot is selected in each trailing five-year window before exclusions. Rates use actual \texttt{REMPER}, not a uniform five-year divisor; predecessors can precede the endpoint window. The analysis estimates annualized interval rates rather than FIA design-based annual estimates. For 2005, early predecessors are unavailable or incompatible in sampling design, leaving insufficient matched support; no rate is fabricated.
+% \item \textbf{Forest eligibility and spatial inference.} Both visits must contain only forest conditions with summed forest proportions within $10^{-6}$ of one. Mixed forest/nonforest plots, land-use transitions, changed sampling designs, and invalid stocks are excluded. This reduces confounding from changing forest area but conditions the sample on persistent, fully forested plots. Those rates are extrapolated to all eligible pixels of each year's saved ESA forest footprint, not just the fully forested plot population. No family-ownership overlay, FIA population expansion weights, or separately estimated $\lambda_i$ is applied.
+% \item \textbf{Pool coverage and interpretation of losses.} Only live aboveground trees are measured consistently at both visits. Roots, deadwood, litter, soils, understory, and harvested-product pools are omitted. Net stock differences incorporate changes in the observed live pool rather than separately estimating growth, mortality, removals, and subsequent carbon fate from FIA growth-component tables. Mortality and harvesting can transfer carbon to deadwood or products, so a live-pool loss is not necessarily an immediate emission. Conversely, omitted pools may gain or lose carbon independently. The output is therefore an annualized net live-pool change proxy, not a complete net ecosystem or atmospheric sequestration balance.
+% \item \textbf{Interpolation and uncertainty.} Signed rates are kriged independently of the storage surfaces, using 32 nearest matched sites. An exponential variogram is fitted by bounded, pair-count-weighted normalized least squares to up to 1,000 reproducibly selected sites (seed 42), using 20 distance bins with at least 30 pairs per bin. The R optimizer follows the storage-layer objective and bounds, while \texttt{gstat} supplies ordinary kriging and point prediction variance rather than the storage script's latent-surface variance. Neither observed losses nor negative predictions are clipped. Public-coordinate uncertainty, conditional sample selection, and lack of spatial cross-validation limit local inference; prediction variance is not a complete uncertainty measure.
+% \item \textbf{Pricing and separation from storage.} The same 3\% average SCC schedule used for storage is applied to annualized rates, with each target year's price representing the interval rather than year-by-year emission pricing. All values remain in 2007 dollars. This is an SCC-based welfare valuation proxy, not a demonstrated exchange-value estimate for ecosystem accounting. It is distinct from valuing the full standing carbon stock: the storage proxy is not added to these annualized values. Definitive family-forest GEP requires appropriate ownership attribution, validation, and a defensible atmospheric sequestration quantity.
+% \end{enumerate}
 
 
 
@@ -456,14 +551,14 @@ Figure~\ref{fig:carbon-storage-series} separates the quantity and valuation traj
 \label{fig:carbon-storage-series}
 \end{figure}
 
-\paragraph{Differences between the proposed and implemented valuation.}
-The implemented assessment departs from the proposal in four important respects:
-\begin{enumerate}
-\item \textbf{Carbon-pool coverage and quantity construction.} Only live aboveground tree carbon is included, excluding roots, deadwood, litter, soil, and understory. FIA live forest-tree records contribute \texttt{CARBON\_AG} multiplied by \texttt{TPA\_UNADJ}; plot totals are normalized once by the summed forest-condition proportion and converted from pounds C per forest acre to tonnes C/ha. Carbon is kriged independently of basal area; basal area is not itself converted into carbon. These outputs cannot be described as total ecosystem carbon.
-\item \textbf{Spatial and ownership scope.} The calculation covers all eligible mapped Minnesota forest, without a family-ownership overlay or an estimated forest-attributable counterfactual. It applies the full SCC multiplier to included carbon rather than estimating an ownership-specific $\lambda_i$. Public FIA coordinates, five-year compositing, unvalidated kriging, and changing land-cover masks limit spatial and temporal inference.
-\item \textbf{Price selection.} The implementation uses the 3\% discount-rate, average SCC scenario. Prices of \$36, \$42, and \$46 for 2015, 2020, and 2025 come from the \href{https://19january2017snapshot.epa.gov/climatechange/social-cost-carbon_.html}{archived EPA SCC table}. The user-specified \$21.40 from the \href{https://www.epa.gov/sites/default/files/2016-12/documents/scc_tsd_2010.pdf}{2010 technical support document} is applied to both 2005 and 2010; its use for 2005 is an explicit assumption, not a published 2005 table entry. Values remain in 2007 dollars, without inflation adjustment.
-\item \textbf{Stock proxy versus GEP service flow.} Multiplying existing carbon by SCC prices the damages associated with a hypothetical release of that stock. The analysis does not establish that release would occur without the forest or its management, nor does it estimate annual avoided emissions. Consequently, this is an \emph{SCC-valued live aboveground carbon stock proxy}, not an annual GEP contribution or a demonstrated exchange-value estimate for ecosystem accounting. Annual carbon sequestration will be estimated separately next, with attention to net carbon accumulation, comparable spatial support, and the distinction between genuine change and sampling or interpolation artifacts. The full storage stock value will not be added to annual sequestration value.
-\end{enumerate}
+% \paragraph{Differences between the proposed and implemented valuation.}
+% The implemented assessment departs from the proposal in four important respects:
+% \begin{enumerate}
+% \item \textbf{Carbon-pool coverage and quantity construction.} Only live aboveground tree carbon is included, excluding roots, deadwood, litter, soil, and understory. FIA live forest-tree records contribute \texttt{CARBON\_AG} multiplied by \texttt{TPA\_UNADJ}; plot totals are normalized once by the summed forest-condition proportion and converted from pounds C per forest acre to tonnes C/ha. Carbon is kriged independently of basal area; basal area is not itself converted into carbon. These outputs cannot be described as total ecosystem carbon.
+% \item \textbf{Spatial and ownership scope.} The calculation covers all eligible mapped Minnesota forest, without a family-ownership overlay or an estimated forest-attributable counterfactual. It applies the full SCC multiplier to included carbon rather than estimating an ownership-specific $\lambda_i$. Public FIA coordinates, five-year compositing, unvalidated kriging, and changing land-cover masks limit spatial and temporal inference.
+% \item \textbf{Price selection.} The implementation uses the 3\% discount-rate, average SCC scenario. Prices of \$36, \$42, and \$46 for 2015, 2020, and 2025 come from the \href{https://19january2017snapshot.epa.gov/climatechange/social-cost-carbon_.html}{archived EPA SCC table}. The user-specified \$21.40 from the \href{https://www.epa.gov/sites/default/files/2016-12/documents/scc_tsd_2010.pdf}{2010 technical support document} is applied to both 2005 and 2010; its use for 2005 is an explicit assumption, not a published 2005 table entry. Values remain in 2007 dollars, without inflation adjustment.
+% \item \textbf{Stock proxy versus GEP service flow.} Multiplying existing carbon by SCC prices the damages associated with a hypothetical release of that stock. The analysis does not establish that release would occur without the forest or its management, nor does it estimate annual avoided emissions. Consequently, this is an \emph{SCC-valued live aboveground carbon stock proxy}, not an annual GEP contribution or a demonstrated exchange-value estimate for ecosystem accounting. Annual carbon sequestration will be estimated separately next, with attention to net carbon accumulation, comparable spatial support, and the distinction between genuine change and sampling or interpolation artifacts. The full storage stock value will not be added to annual sequestration value.
+% \end{enumerate}
 
 
 
@@ -496,6 +591,83 @@ V_{\mathrm{habitat}}=\sum_{i,s} Q_{is}P_s\lambda_{is}.
 Keep the valuation basis consistent across species and avoid summing overlapping values for the same habitat. If using restoration costs, report them as a cost-based proxy rather than as willingness to pay.
 
 \paragraph{Estimated Value}
+
+The first-pass implementation values statewide \emph{nongame habitat quality} using breeding-bird community diversity as an indicator, rather than species-specific habitat-suitability models. The quantity proxy comes from the USGS North American Breeding Bird Survey (BBS) 2026 data release (1966--2025). Quality-criteria route-years (\texttt{RunType} $=1$, standard protocol \texttt{RPID} $=101$, roadside routes) within 100 km of Minnesota are restricted to diurnal landbird orders, excluding waterbirds, shorebirds, raptors, nocturnal species, and unidentified or hybrid codes. For each route-year $r$, counts are summed across the route's 50 stops and converted to effective species (the Hill number of order one),
+\begin{equation}
+\mathrm{effN}_r=\exp\!\left(-\sum_s p_{rs}\ln p_{rs}\right),
+\label{eq:effective-species}
+\end{equation}
+where $p_{rs}$ is species $s$'s share of route-year $r$'s individuals. A spatiotemporal generalized additive model is fitted to 5,928 route-years from 184 routes,
+\begin{equation}
+\log \mathrm{effN}_r=\beta_0+\beta_1 F_r+f(x_r,y_r,\mathrm{year}_r)+b_{o(r)}+\varepsilon_r,
+\label{eq:diversity-gam}
+\end{equation}
+with a tensor-product smooth $f$ over space and time, a first-year-observer indicator $F_r$, and observer random effects $b_o$ absorbing systematic detection differences (82.2\% deviance explained). Population-level predictions, excluding observer terms, are evaluated on the 300-metre forest grid. Habitat-quality change for pixel $i$ in target year $t$ is the percentage change of predicted effective species relative to that pixel's 1966--1970 predicted baseline mean,
+\begin{equation}
+\Delta_{i,t}=100\left(\frac{\widehat{\mathrm{effN}}_{i,t}}{\overline{\mathrm{effN}}_{i,1966\mbox{\scriptsize --}1970}}-1\right)\quad [\%].
+\label{eq:habitat-quality-change}
+\end{equation}
+The price is the \href{https://mnforcast.org/ecosystem-valuation}{ForCAST choice-experiment} stated-preference estimate of \$1.15 per household per month for a 10\% increase in nongame species habitat quality (Table~1 of that study), scaled linearly to \$1.38 per household per year per percentage point. With $HH_t$ Minnesota households and total mapped forest area $A^F_t$ in hectares, the value-density raster is
+\begin{equation}
+v_{i,t}=\frac{HH_t\times 1.38\times \Delta_{i,t}}{A^F_t}
+\quad [\mathrm{USD/ha/year}],
+\label{eq:implemented-biodiversity}
+\end{equation}
+so that summing $v_{i,t}$ over forest pixels (9 hectares each) reproduces the statewide annual willingness to pay for the area-weighted mean change. Household counts are year-specific Census estimates (ACS 1-year table B11001 for 2005, 2010, 2015, and 2025; the 2020 Decennial Census for 2020).
+
+Table~\ref{tab:biodiversity-results} summarizes the five composites. Predicted forest landbird diversity lies below the 1966--1970 baseline in every target year, consistent with documented long-run North American avifauna declines, so the valuation is a statewide welfare \emph{loss}. For 2025, the mean habitat-quality change across mapped forest is \textbf{$-5.62\%$}, valued at \textbf{$-\$18.55$ million/year} across 2.39 million households, or $-\$3.09$/ha/year on average. The loss deepens over time through both continued diversity decline (from $-3.91\%$ in 2005 to $-5.62\%$ in 2025) and household growth; at fixed 2005 households the 2025 total would be $-\$15.67$ million/year.
+
+\begin{table}[htbp]
+\centering
+\caption{BBS landbird-diversity habitat-quality changes and WTP-valued annual losses.}
+\label{tab:biodiversity-results}
+\small
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+Target & Mean effective & Mean change & Households & Mean value & Total value \\
+year & species & vs.\ 1966--70 (\%) & (million) & (\$/ha/year) & (million \$/year) \\
+\midrule
+2005 & 27.76 & $-3.91$ & 2.020 & $-1.85$ & $-10.89$ \\
+2010 & 27.48 & $-4.87$ & 2.092 & $-2.33$ & $-14.05$ \\
+2015 & 27.28 & $-5.46$ & 2.147 & $-2.70$ & $-16.18$ \\
+2020 & 27.17 & $-5.59$ & 2.254 & $-2.90$ & $-17.38$ \\
+2025 & 27.10 & $-5.62$ & 2.392 & $-3.09$ & $-18.55$ \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.95\linewidth}
+\footnotesize Source: \path{outputs/tables/biodiversity-time-series.csv}. WTP of \$1.15/household/month per 10\% change (\$1.38/household/year per percentage point) in nominal survey-period USD; the source study does not state a price year. Each row uses its own ESA forest mask (2025 uses ESA 2022; approximately 6.0 million forest hectares throughout). Pixel-level changes range from roughly $-26\%$ to $+73\%$ in 2025; the statewide mean nets gains in the northwest and southeast against losses in the north-central forest.
+\end{minipage}
+\end{table}
+
+Figure~\ref{fig:biodiversity-maps} maps the signed 2025 value density and its absolute difference from 2005 on shared forest pixels. Losses concentrate in the north-central forested counties, while pixels in northwestern and southeastern Minnesota show predicted diversity gains relative to their 1966--1970 baselines. The value difference combines diversity change with household growth; it does not isolate ecological change.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.49\textwidth]{../outputs/maps/biodiversity-value-2025.pdf}
+\hfill
+\includegraphics[width=0.49\textwidth]{../outputs/maps/biodiversity-value-change-2005-2025.pdf}
+\caption{Exploratory nongame habitat-quality valuation. (A) Signed 2025 annual value density from BBS landbird diversity relative to the 1966--1970 baseline, on the ESA 2022 forest mask. (B) Absolute difference in annual value density between 2005 and 2025 on shared forest pixels. Blue indicates gains; red indicates losses. Gray cells are outside the eligible mapped support. Surfaces are smoothed model interpolations of roadside survey routes, not censuses of biodiversity.}
+\label{fig:biodiversity-maps}
+\end{figure}
+
+Figure~\ref{fig:biodiversity-series} separates the diversity trajectory from its valuation. Modeled statewide mean effective species declines gradually from about 29 in the baseline window to about 27 in 2025. The valued loss grows faster than the diversity decline because households increase by 18\% over the period. Route-year observations scatter widely around the smoothed mean, reflecting route-level habitat differences and observer variation absorbed by the model's random effects.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{../outputs/figures/biodiversity-time-series.pdf}
+\caption{BBS route-year landbird diversity near Minnesota and the statewide WTP-valued habitat-quality change. The upper panel shows route-year effective species, the model's statewide forest mean, and the 1966--1970 baseline window. The lower panel compares target-year households with a fixed 2005-household valuation. The 2020 BBS field season was largely cancelled, so 2020 is a model interpolation. Connecting lines are descriptive rather than annual observations.}
+\label{fig:biodiversity-series}
+\end{figure}
+
+% \paragraph{Differences between the proposed and implemented valuation.}
+% \begin{enumerate}
+% \item \textbf{Community indicator instead of species-specific habitat models.} The proposal specified species-specific habitat-suitability scores $H_{is}$ from FIA composition and structure with species-specific prices $u_s$. The implementation instead uses a single community-level indicator---breeding-season landbird diversity from roadside BBS routes---as a proxy for nongame habitat quality. Shannon-based effective species is dominated by common species, responds weakly to rare or threatened species, and does not track non-avian taxa; roadside sampling under-represents interior forest and urban cores. No FIA structural attributes enter the quantity.
+% \item \textbf{Single statewide WTP instead of species-specific prices, and no $\lambda_i$.} A single stated-preference WTP for ``nongame species habitat quality'' replaces species-specific willingness-to-pay or restoration costs. The ForCAST estimate comes from an 11-county survey and is transferred to all Minnesota households without benefit-transfer adjustment. WTP is scaled linearly per percentage point and symmetrically for losses, although the source study reports non-linear and loss-averse preferences (its stated WTP for a 10\% \emph{decrease} is $-\$13.33$/household/month, an order of magnitude larger than the $+\$1.15$ used here); the implemented loss values are therefore conservative in magnitude. The forest-attributable share is implicitly $\lambda_i=1$: no forest-versus-counterfactual habitat comparison or family-ownership overlay is applied, and bird communities on forest pixels also reflect surrounding nonforest land.
+% \item \textbf{Change valuation against a 1966--1970 baseline.} The proposal valued quality-adjusted habitat \emph{levels}; the implementation values \emph{changes} relative to each pixel's 1966--1970 predicted baseline, because the WTP instrument prices percentage changes rather than levels. Totals are statewide annual WTP for the net change, not the asset value of existing habitat, and should not be added to level-based habitat values. Negative totals represent foregone welfare relative to the baseline rather than an observed market loss.
+% \item \textbf{Interpolation and uncertainty.} The diversity surface is a smoothed GAM interpolation of 184 routes; pixels far from routes are weakly informed, and predictions inherit the roadside sampling frame. Statewide WTP is allocated to forest pixels in proportion to their predicted change, which spreads a population-level value over the forest footprint rather than estimating pixel-level demand. The saved standard-error layer covers only the target-year prediction on the log scale, ignoring baseline-prediction and price uncertainty; downstream regressions using these surfaces face a generated-regressor problem. The 2020 BBS season was largely cancelled, so the 2020 composite is a pure model interpolation. The 1966--1970 baseline predates taxonomic revisions and relies on the model's earliest, sparsest data.
+% \end{enumerate}
 
 
 % -----------------------------------------------------
@@ -695,6 +867,14 @@ Use non-nested watershed outlets or otherwise prevent double counting loads, and
 - Implications for ecosystem service provision and forest value
 - What do we expect for transfer across ownership type (family forest to public or deforestation)?
 - What is the implication with agricultural expansion, prarie encroachment, increased global competition driving down timber demand (i.e., Eucalyptus spp.)
+
+\section{A Market for Ecosystem Services}
+
+- Discussion of designing a market for ecosystem services. 
+- The multiobjective function tradeoff of several ecosystem services (do you weight them equally)
+- The problem of additionality (not just placing it hotspots with high value)
+- What are the risks if ecosystem service is undervalued? Issues with market solution. 
+
 
 \section{Policy Implications}
 
