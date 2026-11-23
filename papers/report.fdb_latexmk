@@ -1,17 +1,17 @@
 # Fdb version 4
-["bibtex report"] 1795410555.50613 "report.aux" "report.bbl" "report" 1795410559.06755 0
+["bibtex report"] 1795455525.91088 "report.aux" "report.bbl" "report" 1795455528.45284 0
   "./references.bib" 1789515211 0 d41d8cd98f00b204e9800998ecf8427e ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1775449944 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1795410560 21692 42c79c29ff2e54ad4db9d9baf41ac1e0 "pdflatex"
+  "report.aux" 1795455530 22912 538385423b5056b600f3e4ddd23b5c46 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1795410555.61979 "report.tex" "report.pdf" "report" 1795410559.06827 0
+["pdflatex"] 1795455525.99059 "f:/mfrc/papers/report.tex" "report.pdf" "report" 1795455528.45389 0
   "../outputs/figures/biodiversity-time-series.pdf" 1794413738 316797 ef042d9a998acecbca2a64ea2b22d08e ""
   "../outputs/figures/carbon-sequestration-time-series.pdf" 1794358396 5753 9e36cf53ca61f604003a02297a702afe ""
   "../outputs/figures/carbon-stock-value-time-series.pdf" 1794355984 6131 6694ea9ece18157fb30a3408cae27098 ""
-  "../outputs/figures/fema-implied-time-series.pdf" 1795410494 5653 17009351560002d0456d20cb08adde9a ""
+  "../outputs/figures/fema-implied-riparian-time-series.pdf" 1795455512 5942 3def9c707fb7b5dfd39ecf475a92f274 ""
   "../outputs/figures/timber-valuation-time-series-2005-2025.pdf" 1794413050 6016 955051d162b125e132fa0a5322d2ee92 ""
   "../outputs/maps/biodiversity-value-2025.pdf" 1794413730 683948 d9353bdfd8c7cb410fe99b3502d081c9 ""
   "../outputs/maps/biodiversity-value-change-2005-2025.pdf" 1794413738 696275 0e852925d970f60d90862bcbab9052dc ""
@@ -19,8 +19,9 @@
   "../outputs/maps/carbon-sequestration-value-change-2010-2025.pdf" 1794358396 749233 2e706f0da1c3721f4bcdc5d51dc2351d ""
   "../outputs/maps/carbon-stock-value-hotspots-2025.pdf" 1794355970 756045 6ae0b3f2bac6afe5de4be57f9e0c6c7e ""
   "../outputs/maps/carbon-stock-value-percent-change-2005-2025.pdf" 1794355982 651408 534faf34d039f8c819d2aacda1a73a6d ""
-  "../outputs/maps/fema-implied-value-2025.pdf" 1795410494 605468 855e3963ae6c32d28c586ed9ac59955e ""
+  "../outputs/maps/fema-implied-riparian-value-2025.pdf" 1795455512 1106870 db6c816367e3e8d9a50ad30b48b7608c ""
   "../outputs/maps/forest-layer-four-panel.pdf" 1794351144 3082470 1e083a0515fd9a502c2d863da6179f3d ""
+  "../outputs/maps/forest-ownership-2022.pdf" 1795449008 1447680 20c66fe5ea15fcf935d0a21ed1fe0a0a ""
   "../outputs/maps/timber-cord-yield-2025.png" 1794406666 473527 a21b2455a710285766d622ef841d9113 ""
   "../outputs/maps/timber-sawtimber-yield-2025.png" 1794406672 424821 55a7b60b8b5af8b43a2ce9eaa656a65c ""
   "../outputs/maps/timber-value-2025.png" 1794406660 458687 30e2f487063f1642f8b55b4678203ae2 ""
@@ -42,6 +43,7 @@
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/ectt0900.tfm" 1767260766 1536 ae7aab2f8a4bc9edfce2899f53ba88c3 ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/ectt1095.tfm" 1767260766 1536 a988bfe554c1f79514bd46d13c3c64ce ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/tcrm0600.tfm" 1767260766 1536 12e8c510d3e158fdd0e9a42e75118bd9 ""
+  "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1767260766 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1767260766 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm" 1767260730 1528 abec98dbc43e172678c11b3b9031252a ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1767260730 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -137,14 +139,16 @@
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk" 1794351998 17492 7407a74863712b951f5688b942f618e4 ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk" 1794351999 21952 70f7a113e06c896f2e29f6cd4ba3589c ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0600.600pk" 1792426980 7260 2e2d58c3eaa94a4c7c89554b77cd8a39 ""
+  "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk" 1792426240 12644 b98424ee9e66ca1e0a036a846e4c1b45 ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1792426980 14040 4b523015a4b6a2d46fbcc280301a380e ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1775450301 2292610 ca12910ece71a4b357544769d9c1002e ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf.cnf" 1767260738 903 164c5b127cd0d6dc91abad2f62421ea2 ""
-  "report.aux" 1795410560 21692 42c79c29ff2e54ad4db9d9baf41ac1e0 "pdflatex"
-  "report.bbl" 1795410556 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex report"
-  "report.out" 1795410560 5453 c7b98533d53f34d2b9c6aa6374345018 "pdflatex"
-  "report.tex" 1795410540 84108 9c1d99e3faa3bb08980d3064f4124d4b ""
-  "report.toc" 1795410560 3708 5c22974ed48ed8a9e39932a6577be623 "pdflatex"
+  "f:/mfrc/papers/report.tex" 1795455518 89341 a1b34bdab6824f7262150146963c799f ""
+  "report.aux" 1795455530 22912 538385423b5056b600f3e4ddd23b5c46 "pdflatex"
+  "report.bbl" 1795455526 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex report"
+  "report.out" 1795455530 5604 b8d5dbbd7c98a04a0a60b5da42c423ea "pdflatex"
+  "report.tex" 1795455518 89341 a1b34bdab6824f7262150146963c799f ""
+  "report.toc" 1795455530 3800 12638c705746fbaca46c3de33e131b44 "pdflatex"
   (generated)
   "report.aux"
   "report.log"

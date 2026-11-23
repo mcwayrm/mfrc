@@ -178,6 +178,58 @@ Small baselines can amplify percentage changes.
 The resulting layers are exploratory spatial inputs, not FIA design-based population estimates: no population expansion weights are used in the interpolation. Public FIA coordinates are fuzzed or swapped, and 300-metre cell size does not establish 300-metre positional accuracy. The fitted variograms have not been spatially cross-validated; latent kriging variance omits land-cover, temporal, and coordinate uncertainty. Consequently, apparent local change should be interpreted cautiously, and service-specific quantity models, ownership attribution, and validation are required before these layers support estimates of family-forest ecosystem-service values.
 
 % -----------------------------------------------------
+% 		Ownership Layer
+% -----------------------------------------------------
+\subsubsection{Forest Ownership}
+
+Forest ownership provides a basis for examining heterogeneity in forest conditions and ecosystem services. Figure~\ref{fig:forest-ownership} maps the \href{https://doi.org/10.2737/RDS-2025-0045}{Harris, Caputo, and Butler (2025)} forest ownership dataset for Minnesota. Ownership is classified circa 2022 using parcel and other ownership data, while the forest-cover classification is based on 2016 canopy data. The six mapped ownership classes are:
+\begin{itemize}
+\item \textbf{Family:} families, individuals, trusts, estates, family partnerships, and other unincorporated groups of individuals.
+\item \textbf{Corporate/other private:} corporations and other private organizations, including conservation and natural-resource organizations, partnerships, and associations. This class includes, but does not identify separately, forest industry.
+\item \textbf{Tribal:} forest classified using Tribal land boundaries. This boundary-based classification does not establish parcel-level ownership.
+\item \textbf{Federal, state, and local:} forests classified under the respective levels of public ownership.
+\end{itemize}
+Unknown forest ownership is retained as a separate category, rather than assigned to any group. Nonforest and water are also displayed for context.
+
+Table~\ref{tab:forest-ownership} reports approximate forest-area shares on a 100-metre equal-area grid, using nearest-neighbor sampling of the source raster and the Minnesota boundary. The denominator includes all mapped forest, including unknown ownership, but excludes nonforest, water, and cells without source data. Family forest accounts for 39.8\% of mapped forest; state and federal forest account for 16.1\% and 15.2\%, respectively.
+
+\begin{table}[htbp]
+\centering
+\caption{Minnesota forest area by ownership class, circa 2022.}
+\label{tab:forest-ownership}
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Ownership class & Forest area (million ha) & Share of forest (\%) \\
+\midrule
+Family & 2.931 & 39.8 \\
+Corporate/other private & 0.893 & 12.1 \\
+Tribal & 0.611 & 8.3 \\
+Federal & 1.120 & 15.2 \\
+State & 1.188 & 16.1 \\
+Local & 0.459 & 6.2 \\
+Unknown & 0.154 & 2.1 \\
+\midrule
+Total & 7.356 & 100.0 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.95\linewidth}
+\footnotesize Source: \path{outputs/tables/forest-ownership-summary.csv}, based on Harris, Caputo, and Butler (2025). Shares include unknown forest in the denominator; independently rounded shares need not sum to 100\%. The 100-metre grid samples the finer-resolution source and does not preserve all source detail. Approximately 1,448 hectares within the boundary lack source data and are excluded; their forest status is unknown.
+\end{minipage}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{../outputs/maps/forest-ownership-2022.pdf}
+\caption{Minnesota forest ownership classes from the Harris, Caputo, and Butler (2025) dataset. Ownership is circa 2022 and forest cover is based on 2016 canopy data. The map shows a 100-metre nearest-neighbor sample of the source classes; Tribal forest is a boundary-based classification, and unknown forest remains separate.}
+\label{fig:forest-ownership}
+\end{figure}
+
+These are exploratory map-based estimates, not design-based FIA area estimates or verified parcel ownership. Classification accuracy varies by location and ownership class, and the source reports that definitive accuracy assessments were still under development. The ownership dataset's forest footprint differs from the ESA forest masks used elsewhere in this report; ownership shares should not be applied directly to those estimates without spatial harmonization and an explicit treatment of mixed or missing pixels. In particular, the static ownership map should not be interpreted as historical ownership for the other target years.
+
+% -----------------------------------------------------
 % 		Potential Ecosystem Services
 % -----------------------------------------------------
 \subsection{Forest Ecosystems Assessed}
@@ -740,68 +792,71 @@ Use non-nested watershed outlets or otherwise prevent double counting loads, and
 \subsubsection{FEMA Implied Values}
 
 \paragraph{Data.}
-As a benchmark against the service-by-service estimates above, this section applies the per-acre ecosystem-service values that FEMA adopted in its 2022 benefit--cost analysis update (\href{https://www.fema.gov/sites/default/files/documents/fema_ecosystem-service-value-updates_2022.pdf}{FEMA 2022}, Table~5, page~20) to Minnesota's forest extent. FEMA reports national benefit-transfer values for the \emph{Forest} land-cover category across nine ecosystem services, in 2021 USD per acre per year; the components sum to \$12,590/acre/year (FEMA's published rounded total is \$12,589). The quantity is mapped forest acreage from the 300-metre FIA/ESA forest layers for 2005--2025 (each forest pixel covers 9 hectares, or 22.24 acres).
+As a benchmark against the service-by-service estimates above, this section applies per-acre ecosystem-service values from FEMA's 2022 benefit--cost analysis update (\href{https://www.fema.gov/sites/default/files/documents/fema_ecosystem-service-value-updates_2022.pdf}{FEMA 2022}, Table~5, page~20) to the 300-metre FIA/ESA forest layers for 2005--2025. FEMA's reported \emph{Forest} and \emph{Riparian} components sum to \$12,590 and \$37,200 per acre per year, respectively, in 2021 USD. These sums differ by \$1 from FEMA's published totals of \$12,589 and \$37,199 because the components are rounded.
 
 \paragraph{Valuation Approach.}
-The uniform FEMA bundle is multiplied by forest acreage,
+Riparian forest is approximated using a 50-metre buffer around selected Minnesota DNR hydrography: natural streams (perennial, intermittent, and unknown), river centerlines, lakes, ponds, reservoirs, river polygons, wetlands, inundation areas, and intermittent-water polygons. Ditches and artificial lake and wetland connectors are excluded. Water polygon interiors are excluded from the buffered area, and overlapping buffers are counted only once. The buffers are sampled on a 30-metre grid to estimate their fraction of each 300-metre forest cell. Since sub-cell forest cover is unavailable in the forest layer, forest is assumed uniformly distributed within each cell. The same DNR hydrography snapshot is used for every target year; this does not reconstruct historical water features.
+
+The Riparian bundle \emph{replaces} the Forest bundle within the buffer. With $A_t^R$ and $A_t^N$ the estimated riparian and remaining forest acres,
 \[
-V_t^{\mathrm{FEMA}} = A_t \times \$12{,}590 \quad [\$/\mathrm{year}],
+V_t^{\mathrm{FEMA}} = A_t^N \times \$12{,}590 + A_t^R \times \$37{,}200
+\quad [\$/\mathrm{year}].
 \]
-where $A_t$ is mapped forest acres in target year $t$, and is distributed to forest pixels as a uniform implied-GEP layer (\path{data/GEP/gep-fema-implied-<year>.tif}, \$31,111/ha/year). Because the per-acre price is constant, spatial and temporal variation comes only from forest extent. These values are national averages with no Minnesota-specific calibration, no marginal-change interpretation, and no ownership attribution; the bundle also overlaps services valued independently above (climate regulation, recreation, and water services), so the FEMA totals are a standalone benchmark and must \emph{not} be added to the other GEP estimates.
+The value raster (\path{data/GEP/gep-fema-implied-riparian-<year>.tif}) records the area-weighted average of the two bundles in each forest cell. Unreported FEMA service values are omitted from the respective bundle, not evidence that the services are absent; for example, no Riparian existence value is reported. The estimates are national benefit transfers without Minnesota-specific calibration, a marginal-change interpretation, or ownership attribution. They overlap services valued independently above, so the FEMA totals are a standalone benchmark and must \emph{not} be added to the other GEP estimates.
 
 \paragraph{Estimated Value}
-Table~\ref{tab:fema-implied} reproduces the forest column of FEMA's Table~5 and scales each service to Minnesota's 2025 forest extent of 14.81 million acres (666,151 pixels on the ESA 2022 mask). The implied total is \textbf{\$186.5 billion/year} (2021 USD), dominated by existence value (\$111.6 billion, 60\% of the bundle), erosion control (\$24.8 billion), and aesthetic value (\$21.9 billion). For comparison, the bottom-up first-pass estimates above---timber, carbon, and biodiversity---are each one to three orders of magnitude smaller, which illustrates how sensitive GEP totals are to transferred nonuse values such as FEMA's existence-value line.
+Table~\ref{tab:fema-implied} applies both FEMA columns to Minnesota's 2025 forest extent of 14.81 million acres (666,151 pixels on the ESA 2022 mask). An estimated 1.24 million acres (8.4\%) are riparian under the buffer and uniform-within-cell assumptions, leaving 13.57 million nonriparian acres. The combined implied value is \textbf{\$217.1 billion/year} (2021 USD): \$46.2 billion from the riparian bundle and \$170.9 billion from the remaining forest bundle. This is \$30.6 billion higher than applying the Forest bundle to all mapped forest acres, reflecting the difference between the two FEMA bundles, not an independently measured change in ecosystem services.
 
 \begin{table}[htbp]
 \centering
-\caption{FEMA 2022 forest ecosystem-service values applied to Minnesota forest acreage.}
+\caption{FEMA forest and riparian ecosystem-service values applied to Minnesota forest acreage.}
 \label{tab:fema-implied}
 \small
-\begin{tabular}{@{}lrr@{}}
+\begin{tabular}{@{}lrrr@{}}
 \toprule
-Ecosystem service & FEMA value & Statewide 2025 value \\
- & (2021 \$/acre/year) & (million \$/year) \\
+Ecosystem service & Forest & Riparian & Combined 2025 \\
+ & \multicolumn{2}{c}{(2021 \$/acre/year)} & (million \$/year) \\
 \midrule
-Aesthetic Value & 1,477 & 21,882 \\
-Air Quality & 711 & 10,533 \\
-Biological Control & -- & -- \\
-Climate Regulation & 199 & 2,948 \\
-Erosion Control & 1,672 & 24,770 \\
-Existence Value & 7,531 & 111,571 \\
-Flood and Storm Hazard Reduction & 368 & 5,452 \\
-Food Provisioning & -- & -- \\
-Habitat & -- & -- \\
-Pollination & -- & -- \\
-Recreation/Tourism & 94 & 1,393 \\
-Research and Education & -- & -- \\
-Water Filtration & 435 & 6,444 \\
-Water Supply & 103 & 1,526 \\
+Aesthetic Value & 1,477 & 767 & 21,000 \\
+Air Quality & 711 & 254 & 9,966 \\
+Biological Control & -- & 199 & 247 \\
+Climate Regulation & 199 & 96 & 2,820 \\
+Erosion Control & 1,672 & 13,823 & 39,856 \\
+Existence Value & 7,531 & -- & 102,221 \\
+Flood and Storm Hazard Reduction & 368 & 6,052 & 12,509 \\
+Food Provisioning & -- & 736 & 914 \\
+Habitat & -- & 2,547 & 3,162 \\
+Pollination & -- & -- & -- \\
+Recreation/Tourism & 94 & 6,215 & 8,992 \\
+Research and Education & -- & -- & -- \\
+Water Filtration & 435 & 6,239 & 13,650 \\
+Water Supply & 103 & 272 & 1,736 \\
 \midrule
-Total & 12,590 & 186,519 \\
+Total & 12,590 & 37,200 & 217,073 \\
 \bottomrule
 \end{tabular}
 
 \smallskip
 \begin{minipage}{0.95\linewidth}
-\footnotesize Source: \path{outputs/tables/fema-implied-service-values.csv}; per-acre values from FEMA (2022), Table~5, Forest column (dashes mark services with no FEMA forest value; FEMA's published rounded total is \$12,589). Statewide values multiply each per-acre value by the 14.81 million forest acres mapped for 2025. National benefit-transfer averages in 2021 USD; not additive with the service-specific GEP estimates above.
+\footnotesize Source: \path{outputs/tables/fema-implied-riparian-service-values.csv}; per-acre values from FEMA (2022), Table~5. Dashes denote unreported values, excluded from the sums; they do not imply the service is absent. Combined values use each rate only on its respective estimated forest acreage. Totals sum unrounded estimates, so rounding can affect the displayed sum. The estimates are not additive with the service-specific GEP estimates above.
 \end{minipage}
 \end{table}
 
-Figure~\ref{fig:fema-implied-map} maps the implied 2025 GEP layer. Because FEMA prices every forest acre identically, the map shows where the implied value sits---concentrated in the north-central and northeastern forested counties---rather than any within-forest quality gradient.
+Figure~\ref{fig:fema-implied-map} maps the implied 2025 GEP layer. Differences in forest-cell value density reflect the estimated fraction near selected water features, not measured variation in forest condition or service delivery.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../outputs/maps/fema-implied-value-2025.pdf}
-\caption{FEMA implied forest ecosystem-service value in 2025. Every mapped forest pixel carries the uniform FEMA 2022 forest bundle of \$12,590/acre/year (\$31,111/ha/year, 2021 USD) on the ESA 2022 forest mask. Gray cells are nonforest. The layer is a national benefit transfer and is not additive with the other GEP layers.}
+\includegraphics[width=0.78\textwidth]{../outputs/maps/fema-implied-riparian-value-2025.pdf}
+\caption{FEMA implied forest ecosystem-service value in 2025, using the ESA 2022 forest mask. Forest cells contain the area-weighted average of the Forest and Riparian bundles according to their estimated 50-metre buffer fractions. Gray denotes areas outside the mapped forest mask. The layer is a national benefit transfer and is not additive with the other GEP layers.}
 \label{fig:fema-implied-map}
 \end{figure}
 
-Figure~\ref{fig:fema-implied-series} traces the implied value over the five composites. The total rises from \$183.4 billion/year in 2005 to a peak of \$187.4 billion/year in 2010 ($+2.2\%$) and eases to \$186.5 billion/year by 2025 ($+1.7\%$ relative to 2005), tracking mapped forest extent one-for-one since the per-acre price is fixed.
+Figure~\ref{fig:fema-implied-series} traces the implied value over the five composites. The total rises from \$213.6 billion/year in 2005 to \$218.1 billion/year in 2010 ($+2.1\%$) and eases to \$217.1 billion/year by 2025 ($+1.6\%$ relative to 2005). With fixed rates and hydrography, the changes reflect the extent and location of forest on the masks, not historical changes in hydrography, prices, or forest quality. DNR notes that the accuracy and completeness of stream types and watercourse linework relative to current conditions are unknown; results also depend on mapped water features and the chosen buffer width.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{../outputs/figures/fema-implied-time-series.pdf}
-\caption{FEMA implied forest ecosystem-service value, 2005--2025. Panel A shows mapped Minnesota forest extent; Panel B multiplies that extent by the uniform FEMA bundle of \$12,590/acre/year (2021 USD), with percent changes relative to 2005. Movements reflect forest-extent changes (including mask differences across composites), not price or quality changes.}
+\includegraphics[width=0.85\textwidth]{../outputs/figures/fema-implied-riparian-time-series.pdf}
+\caption{FEMA implied forest ecosystem-service value, 2005--2025. Panel A shows total and estimated riparian forest area; Panel B applies the Forest and Riparian bundles to mutually exclusive areas, with percent changes relative to 2005. A single hydrography snapshot and fixed 2021-dollar rates are used throughout.}
 \label{fig:fema-implied-series}
 \end{figure}
 
