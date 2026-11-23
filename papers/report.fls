@@ -1,8 +1,8 @@
-PWD f:/mfrc/papers
+PWD F:/mfrc/papers
 INPUT c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf.cnf
 INPUT c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/web2c/texmf.cnf
 INPUT c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT f:/mfrc/papers/report.tex
+INPUT report.tex
 OUTPUT report.log
 INPUT c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 INPUT c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
@@ -241,6 +241,16 @@ INPUT ../outputs/figures/biodiversity-time-series.pdf
 INPUT ../outputs/figures/biodiversity-time-series.pdf
 INPUT ../outputs/figures/biodiversity-time-series.pdf
 INPUT ../outputs/figures/biodiversity-time-series.pdf
+INPUT ../outputs/maps/fema-implied-value-2025.pdf
+INPUT ../outputs/maps/fema-implied-value-2025.pdf
+INPUT ../outputs/maps/fema-implied-value-2025.pdf
+INPUT ../outputs/maps/fema-implied-value-2025.pdf
+INPUT ../outputs/maps/fema-implied-value-2025.pdf
+INPUT ../outputs/figures/fema-implied-time-series.pdf
+INPUT ../outputs/figures/fema-implied-time-series.pdf
+INPUT ../outputs/figures/fema-implied-time-series.pdf
+INPUT ../outputs/figures/fema-implied-time-series.pdf
+INPUT ../outputs/figures/fema-implied-time-series.pdf
 INPUT ./report.bbl
 INPUT ./report.bbl
 INPUT report.bbl

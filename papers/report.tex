@@ -670,125 +670,6 @@ Figure~\ref{fig:biodiversity-series} separates the diversity trajectory from its
 % \end{enumerate}
 
 
-% -----------------------------------------------------
-% 		Recreation: Hunting
-% -----------------------------------------------------
-\subsubsection{Ecosystem 5: Recreation---Hunting}
-
-\paragraph{Data.}
-Use the Minnesota FIA forest raster as the spatial base and summarize forest cover, composition, and structure around hunting destinations or within game-species ranges. Required additional data include hunter-days or trips by location and game species, license and participation survey data, and relevant game abundance or harvest estimates. Obtain consumer-surplus estimates per hunter-day or trip from Minnesota-specific or comparable travel-cost or stated-preference studies. Estimate $\lambda_j$, the share of hunting value attributable to forest habitat and setting rather than game abundance, access, regulations, equipment, or other trip features.
-
-\paragraph{Valuation Approach.}
-Estimate annual hunter-days or trips for destination/game area $j$ from weighted participation surveys and administrative counts:
-\[
-Q_j=\sum_{r\in j} w_r d_r,
-\]
-where $d_r$ is reported hunter-days or trips and $w_r$ is the survey expansion weight. Estimate consumer surplus per matching unit with a travel-cost demand model or stated-preference study:
-\[
-P_j=CS_j\quad [\$/\mathrm{hunter\mbox{-}day}]\ \mathrm{or}\ [\$/\mathrm{trip}].
-\]
-Estimate the share of consumer surplus attributable to forest habitat from a forest-versus-counterfactual model, controlling for game abundance, access, regulations, equipment, and other trip features:
-\[
-\lambda_j=\frac{\max(0,CS_j^{\mathrm{forest}}-CS_j^{\mathrm{counterfactual}})}{CS_j^{\mathrm{forest}}},\quad CS_j^{\mathrm{forest}}>0.
-\]
-Then value hunting as
-\[
-V_{\mathrm{hunting}}=\sum_j Q_jP_j\lambda_j,
-\]
-using a consistent time period and avoiding addition of license revenue or trip expenditures to consumer surplus.
-
-\paragraph{Estimated Value}
-
-
-% -----------------------------------------------------
-% 		Recreation: Fishing
-% -----------------------------------------------------
-\subsubsection{Ecosystem 6: Recreation---Fishing}
-
-\paragraph{Data.}
-Use the Minnesota FIA forest raster to measure forest cover and composition within lake and river watersheds and near fishing access points. Combine it with angler-days or trips by waterbody, creel or participation surveys, fishery characteristics, and water-quality data. Obtain consumer surplus per angler-day or trip from a travel-cost demand model or a suitable Minnesota study. Estimate $\lambda_j$, the portion of fishing value attributable to forest-related watershed conditions (such as shade, runoff, and water quality), rather than stocking, access, regulations, or other factors.
-
-\paragraph{Valuation Approach.}
-Estimate annual angler-days or trips at waterbody/destination $j$ from weighted creel/participation surveys and administrative counts:
-\[
-Q_j=\sum_{r\in j} w_r d_r,
-\]
-where $d_r$ is reported angler-days or trips and $w_r$ is the survey expansion weight. Estimate consumer surplus per matching unit with a travel-cost demand model:
-\[
-P_j=CS_j\quad [\$/\mathrm{angler\mbox{-}day}]\ \mathrm{or}\ [\$/\mathrm{trip}].
-\]
-Estimate the forest-watershed-attributable share of surplus by comparing modeled forest conditions with the watershed counterfactual, controlling for stocking, access, regulations, and other factors:
-\[
-\lambda_j=\frac{\max(0,CS_j^{\mathrm{forest\ watershed}}-CS_j^{\mathrm{counterfactual}})}{CS_j^{\mathrm{forest\ watershed}}},\quad CS_j^{\mathrm{forest\ watershed}}>0.
-\]
-Then value fishing as
-\[
-V_{\mathrm{fishing}}=\sum_j Q_jP_j\lambda_j,
-\]
-avoiding addition of trip expenditures to consumer surplus.
-
-\paragraph{Estimated Value}
-
-
-% -----------------------------------------------------
-% 		Recreation: Nature Recreation
-% -----------------------------------------------------
-\subsubsection{Ecosystem 7: Recreation---Nature Recreation}
-
-\paragraph{Data.}
-Use the Minnesota FIA forest raster to characterize forest cover and attributes at forested public lands, trails, and other day-use destinations. Required visitation data include annual visits or user-days by destination, from trail counters, permits, or visitor surveys. Obtain travel costs and visitation choices (including round-trip distance, vehicle cost, and travel time) to estimate consumer surplus per visit using a travel-cost demand model. Estimate $\lambda_j$, the share of recreation value attributable to forest attributes, distinct from trail facilities and other amenities.
-
-\paragraph{Valuation Approach.}
-Estimate annual visits to day-use destination $j$ from counters, permits, or weighted visitor surveys, correcting for uncounted visits:
-\[
-Q_j=\frac{N_j^{\mathrm{observed}}}{c_j},
-\]
-where $c_j$ is estimated visitor-count coverage (use $c_j=1$ for a complete count). Estimate consumer surplus per visit using a travel-cost demand model with trip distance, vehicle cost, and travel time:
-\[
-P_j=CS_j\quad [\$/\mathrm{visit}].
-\]
-Estimate the share of consumer surplus attributable to forest attributes by comparing forested-site surplus with a counterfactual that retains trails and other nonforest amenities:
-\[
-\lambda_j=\frac{\max(0,CS_j^{\mathrm{forest\ site}}-CS_j^{\mathrm{counterfactual}})}{CS_j^{\mathrm{forest\ site}}},\quad CS_j^{\mathrm{forest\ site}}>0.
-\]
-Then value nature recreation as
-\[
-V_{\mathrm{nature\ recreation}}=\sum_j Q_jP_j\lambda_j,
-\]
-using the travel-cost model to estimate welfare rather than treating visitor spending as welfare, and avoiding double counting visits across sites.
-
-\paragraph{Estimated Value}
-
-
-% -----------------------------------------------------
-% 		Recreation: Nature Tourism
-% -----------------------------------------------------
-\subsubsection{Ecosystem 8: Recreation---Nature Tourism}
-
-\paragraph{Data.}
-Use the Minnesota FIA forest raster to characterize forest cover and attributes at overnight and long-distance destinations. Assemble annual visitor-trips or visitor-days by destination from tourism surveys, campground reservations, lodging data, and visitor counts. Collect trip origins, transport and lodging costs, and trip purpose to estimate consumer surplus per trip from a travel-cost demand model. Estimate $\lambda_j$, the forest-attributable share of trip value, using trip-purpose or stated-preference evidence.
-
-\paragraph{Valuation Approach.}
-Estimate annual overnight or long-distance trips to destination $j$ from weighted tourism surveys, lodging/campground records, and visitor counts, using a consistent trip definition:
-\[
-Q_j=\frac{T_j^{\mathrm{observed}}}{c_j},
-\]
-where $c_j$ is estimated trip-count coverage. Estimate consumer surplus per trip from a travel-cost demand model that includes transport and lodging costs:
-\[
-P_j=CS_j\quad [\$/\mathrm{trip}].
-\]
-Estimate the forest-purpose share of trip surplus from trip-purpose surveys or a stated-preference/travel-cost counterfactual:
-\[
-\lambda_j=\frac{\max(0,CS_j^{\mathrm{forest\ purpose}}-CS_j^{\mathrm{other\ purpose}})}{CS_j^{\mathrm{forest\ purpose}}},\quad CS_j^{\mathrm{forest\ purpose}}>0.
-\]
-Then value nature tourism as
-\[
-V_{\mathrm{nature\ tourism}}=\sum_j Q_jP_j\lambda_j,
-\]
-keeping the trip unit consistent with the model and not adding lodging or visitor expenditures to consumer surplus.
-
-\paragraph{Estimated Value}
-
 
 % -----------------------------------------------------
 % 		Air Quality Regulation
@@ -851,6 +732,199 @@ V_{\mathrm{water}}=\sum_{n,w}Q_{nw}P_{nw}\lambda_{nw}.
 Use non-nested watershed outlets or otherwise prevent double counting loads, and report nitrogen and phosphorus separately where their prices or damage pathways differ.
 
 \paragraph{Estimated Value}
+
+
+% -----------------------------------------------------
+% 		FEMA Values
+% -----------------------------------------------------
+\subsubsection{FEMA Implied Values}
+
+\paragraph{Data.}
+As a benchmark against the service-by-service estimates above, this section applies the per-acre ecosystem-service values that FEMA adopted in its 2022 benefit--cost analysis update (\href{https://www.fema.gov/sites/default/files/documents/fema_ecosystem-service-value-updates_2022.pdf}{FEMA 2022}, Table~5, page~20) to Minnesota's forest extent. FEMA reports national benefit-transfer values for the \emph{Forest} land-cover category across nine ecosystem services, in 2021 USD per acre per year; the components sum to \$12,590/acre/year (FEMA's published rounded total is \$12,589). The quantity is mapped forest acreage from the 300-metre FIA/ESA forest layers for 2005--2025 (each forest pixel covers 9 hectares, or 22.24 acres).
+
+\paragraph{Valuation Approach.}
+The uniform FEMA bundle is multiplied by forest acreage,
+\[
+V_t^{\mathrm{FEMA}} = A_t \times \$12{,}590 \quad [\$/\mathrm{year}],
+\]
+where $A_t$ is mapped forest acres in target year $t$, and is distributed to forest pixels as a uniform implied-GEP layer (\path{data/GEP/gep-fema-implied-<year>.tif}, \$31,111/ha/year). Because the per-acre price is constant, spatial and temporal variation comes only from forest extent. These values are national averages with no Minnesota-specific calibration, no marginal-change interpretation, and no ownership attribution; the bundle also overlaps services valued independently above (climate regulation, recreation, and water services), so the FEMA totals are a standalone benchmark and must \emph{not} be added to the other GEP estimates.
+
+\paragraph{Estimated Value}
+Table~\ref{tab:fema-implied} reproduces the forest column of FEMA's Table~5 and scales each service to Minnesota's 2025 forest extent of 14.81 million acres (666,151 pixels on the ESA 2022 mask). The implied total is \textbf{\$186.5 billion/year} (2021 USD), dominated by existence value (\$111.6 billion, 60\% of the bundle), erosion control (\$24.8 billion), and aesthetic value (\$21.9 billion). For comparison, the bottom-up first-pass estimates above---timber, carbon, and biodiversity---are each one to three orders of magnitude smaller, which illustrates how sensitive GEP totals are to transferred nonuse values such as FEMA's existence-value line.
+
+\begin{table}[htbp]
+\centering
+\caption{FEMA 2022 forest ecosystem-service values applied to Minnesota forest acreage.}
+\label{tab:fema-implied}
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Ecosystem service & FEMA value & Statewide 2025 value \\
+ & (2021 \$/acre/year) & (million \$/year) \\
+\midrule
+Aesthetic Value & 1,477 & 21,882 \\
+Air Quality & 711 & 10,533 \\
+Biological Control & -- & -- \\
+Climate Regulation & 199 & 2,948 \\
+Erosion Control & 1,672 & 24,770 \\
+Existence Value & 7,531 & 111,571 \\
+Flood and Storm Hazard Reduction & 368 & 5,452 \\
+Food Provisioning & -- & -- \\
+Habitat & -- & -- \\
+Pollination & -- & -- \\
+Recreation/Tourism & 94 & 1,393 \\
+Research and Education & -- & -- \\
+Water Filtration & 435 & 6,444 \\
+Water Supply & 103 & 1,526 \\
+\midrule
+Total & 12,590 & 186,519 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.95\linewidth}
+\footnotesize Source: \path{outputs/tables/fema-implied-service-values.csv}; per-acre values from FEMA (2022), Table~5, Forest column (dashes mark services with no FEMA forest value; FEMA's published rounded total is \$12,589). Statewide values multiply each per-acre value by the 14.81 million forest acres mapped for 2025. National benefit-transfer averages in 2021 USD; not additive with the service-specific GEP estimates above.
+\end{minipage}
+\end{table}
+
+Figure~\ref{fig:fema-implied-map} maps the implied 2025 GEP layer. Because FEMA prices every forest acre identically, the map shows where the implied value sits---concentrated in the north-central and northeastern forested counties---rather than any within-forest quality gradient.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../outputs/maps/fema-implied-value-2025.pdf}
+\caption{FEMA implied forest ecosystem-service value in 2025. Every mapped forest pixel carries the uniform FEMA 2022 forest bundle of \$12,590/acre/year (\$31,111/ha/year, 2021 USD) on the ESA 2022 forest mask. Gray cells are nonforest. The layer is a national benefit transfer and is not additive with the other GEP layers.}
+\label{fig:fema-implied-map}
+\end{figure}
+
+Figure~\ref{fig:fema-implied-series} traces the implied value over the five composites. The total rises from \$183.4 billion/year in 2005 to a peak of \$187.4 billion/year in 2010 ($+2.2\%$) and eases to \$186.5 billion/year by 2025 ($+1.7\%$ relative to 2005), tracking mapped forest extent one-for-one since the per-acre price is fixed.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{../outputs/figures/fema-implied-time-series.pdf}
+\caption{FEMA implied forest ecosystem-service value, 2005--2025. Panel A shows mapped Minnesota forest extent; Panel B multiplies that extent by the uniform FEMA bundle of \$12,590/acre/year (2021 USD), with percent changes relative to 2005. Movements reflect forest-extent changes (including mask differences across composites), not price or quality changes.}
+\label{fig:fema-implied-series}
+\end{figure}
+
+% -----------------------------------------------------
+% 		Recreation: Hunting
+% -----------------------------------------------------
+% \subsubsection{Ecosystem 5: Recreation---Hunting}
+
+% \paragraph{Data.}
+% Use the Minnesota FIA forest raster as the spatial base and summarize forest cover, composition, and structure around hunting destinations or within game-species ranges. Required additional data include hunter-days or trips by location and game species, license and participation survey data, and relevant game abundance or harvest estimates. Obtain consumer-surplus estimates per hunter-day or trip from Minnesota-specific or comparable travel-cost or stated-preference studies. Estimate $\lambda_j$, the share of hunting value attributable to forest habitat and setting rather than game abundance, access, regulations, equipment, or other trip features.
+
+% \paragraph{Valuation Approach.}
+% Estimate annual hunter-days or trips for destination/game area $j$ from weighted participation surveys and administrative counts:
+% \[
+% Q_j=\sum_{r\in j} w_r d_r,
+% \]
+% where $d_r$ is reported hunter-days or trips and $w_r$ is the survey expansion weight. Estimate consumer surplus per matching unit with a travel-cost demand model or stated-preference study:
+% \[
+% P_j=CS_j\quad [\$/\mathrm{hunter\mbox{-}day}]\ \mathrm{or}\ [\$/\mathrm{trip}].
+% \]
+% Estimate the share of consumer surplus attributable to forest habitat from a forest-versus-counterfactual model, controlling for game abundance, access, regulations, equipment, and other trip features:
+% \[
+% \lambda_j=\frac{\max(0,CS_j^{\mathrm{forest}}-CS_j^{\mathrm{counterfactual}})}{CS_j^{\mathrm{forest}}},\quad CS_j^{\mathrm{forest}}>0.
+% \]
+% Then value hunting as
+% \[
+% V_{\mathrm{hunting}}=\sum_j Q_jP_j\lambda_j,
+% \]
+% using a consistent time period and avoiding addition of license revenue or trip expenditures to consumer surplus.
+
+% \paragraph{Estimated Value}
+
+
+% % -----------------------------------------------------
+% % 		Recreation: Fishing
+% % -----------------------------------------------------
+% \subsubsection{Ecosystem 6: Recreation---Fishing}
+
+% \paragraph{Data.}
+% Use the Minnesota FIA forest raster to measure forest cover and composition within lake and river watersheds and near fishing access points. Combine it with angler-days or trips by waterbody, creel or participation surveys, fishery characteristics, and water-quality data. Obtain consumer surplus per angler-day or trip from a travel-cost demand model or a suitable Minnesota study. Estimate $\lambda_j$, the portion of fishing value attributable to forest-related watershed conditions (such as shade, runoff, and water quality), rather than stocking, access, regulations, or other factors.
+
+% \paragraph{Valuation Approach.}
+% Estimate annual angler-days or trips at waterbody/destination $j$ from weighted creel/participation surveys and administrative counts:
+% \[
+% Q_j=\sum_{r\in j} w_r d_r,
+% \]
+% where $d_r$ is reported angler-days or trips and $w_r$ is the survey expansion weight. Estimate consumer surplus per matching unit with a travel-cost demand model:
+% \[
+% P_j=CS_j\quad [\$/\mathrm{angler\mbox{-}day}]\ \mathrm{or}\ [\$/\mathrm{trip}].
+% \]
+% Estimate the forest-watershed-attributable share of surplus by comparing modeled forest conditions with the watershed counterfactual, controlling for stocking, access, regulations, and other factors:
+% \[
+% \lambda_j=\frac{\max(0,CS_j^{\mathrm{forest\ watershed}}-CS_j^{\mathrm{counterfactual}})}{CS_j^{\mathrm{forest\ watershed}}},\quad CS_j^{\mathrm{forest\ watershed}}>0.
+% \]
+% Then value fishing as
+% \[
+% V_{\mathrm{fishing}}=\sum_j Q_jP_j\lambda_j,
+% \]
+% avoiding addition of trip expenditures to consumer surplus.
+
+% \paragraph{Estimated Value}
+
+
+% -----------------------------------------------------
+% 		Recreation: Nature Recreation
+% -----------------------------------------------------
+% \subsubsection{Ecosystem 7: Recreation---Nature Recreation}
+
+% \paragraph{Data.}
+% Use the Minnesota FIA forest raster to characterize forest cover and attributes at forested public lands, trails, and other day-use destinations. Required visitation data include annual visits or user-days by destination, from trail counters, permits, or visitor surveys. Obtain travel costs and visitation choices (including round-trip distance, vehicle cost, and travel time) to estimate consumer surplus per visit using a travel-cost demand model. Estimate $\lambda_j$, the share of recreation value attributable to forest attributes, distinct from trail facilities and other amenities.
+
+% \paragraph{Valuation Approach.}
+% Estimate annual visits to day-use destination $j$ from counters, permits, or weighted visitor surveys, correcting for uncounted visits:
+% \[
+% Q_j=\frac{N_j^{\mathrm{observed}}}{c_j},
+% \]
+% where $c_j$ is estimated visitor-count coverage (use $c_j=1$ for a complete count). Estimate consumer surplus per visit using a travel-cost demand model with trip distance, vehicle cost, and travel time:
+% \[
+% P_j=CS_j\quad [\$/\mathrm{visit}].
+% \]
+% Estimate the share of consumer surplus attributable to forest attributes by comparing forested-site surplus with a counterfactual that retains trails and other nonforest amenities:
+% \[
+% \lambda_j=\frac{\max(0,CS_j^{\mathrm{forest\ site}}-CS_j^{\mathrm{counterfactual}})}{CS_j^{\mathrm{forest\ site}}},\quad CS_j^{\mathrm{forest\ site}}>0.
+% \]
+% Then value nature recreation as
+% \[
+% V_{\mathrm{nature\ recreation}}=\sum_j Q_jP_j\lambda_j,
+% \]
+% using the travel-cost model to estimate welfare rather than treating visitor spending as welfare, and avoiding double counting visits across sites.
+
+% \paragraph{Estimated Value}
+
+
+% % -----------------------------------------------------
+% % 		Recreation: Nature Tourism
+% % -----------------------------------------------------
+% \subsubsection{Ecosystem 8: Recreation---Nature Tourism}
+
+% \paragraph{Data.}
+% Use the Minnesota FIA forest raster to characterize forest cover and attributes at overnight and long-distance destinations. Assemble annual visitor-trips or visitor-days by destination from tourism surveys, campground reservations, lodging data, and visitor counts. Collect trip origins, transport and lodging costs, and trip purpose to estimate consumer surplus per trip from a travel-cost demand model. Estimate $\lambda_j$, the forest-attributable share of trip value, using trip-purpose or stated-preference evidence.
+
+% \paragraph{Valuation Approach.}
+% Estimate annual overnight or long-distance trips to destination $j$ from weighted tourism surveys, lodging/campground records, and visitor counts, using a consistent trip definition:
+% \[
+% Q_j=\frac{T_j^{\mathrm{observed}}}{c_j},
+% \]
+% where $c_j$ is estimated trip-count coverage. Estimate consumer surplus per trip from a travel-cost demand model that includes transport and lodging costs:
+% \[
+% P_j=CS_j\quad [\$/\mathrm{trip}].
+% \]
+% Estimate the forest-purpose share of trip surplus from trip-purpose surveys or a stated-preference/travel-cost counterfactual:
+% \[
+% \lambda_j=\frac{\max(0,CS_j^{\mathrm{forest\ purpose}}-CS_j^{\mathrm{other\ purpose}})}{CS_j^{\mathrm{forest\ purpose}}},\quad CS_j^{\mathrm{forest\ purpose}}>0.
+% \]
+% Then value nature tourism as
+% \[
+% V_{\mathrm{nature\ tourism}}=\sum_j Q_jP_j\lambda_j,
+% \]
+% keeping the trip unit consistent with the model and not adding lodging or visitor expenditures to consumer surplus.
+
+% \paragraph{Estimated Value}
+
+
 
 
 \section{What is the Value of Minnesota Family Forests?}

@@ -1,16 +1,17 @@
 # Fdb version 4
-["bibtex report"] 1794417122.12565 "report.aux" "report.bbl" "report" 1794417124.41075 0
+["bibtex report"] 1795410555.50613 "report.aux" "report.bbl" "report" 1795410559.06755 0
   "./references.bib" 1789515211 0 d41d8cd98f00b204e9800998ecf8427e ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1775449944 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1794417126 21086 6fe96dee2213bd3c17c5f87da498ba7a "pdflatex"
+  "report.aux" 1795410560 21692 42c79c29ff2e54ad4db9d9baf41ac1e0 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1794417122.23708 "f:/mfrc/papers/report.tex" "report.pdf" "report" 1794417124.41118 0
+["pdflatex"] 1795410555.61979 "report.tex" "report.pdf" "report" 1795410559.06827 0
   "../outputs/figures/biodiversity-time-series.pdf" 1794413738 316797 ef042d9a998acecbca2a64ea2b22d08e ""
   "../outputs/figures/carbon-sequestration-time-series.pdf" 1794358396 5753 9e36cf53ca61f604003a02297a702afe ""
   "../outputs/figures/carbon-stock-value-time-series.pdf" 1794355984 6131 6694ea9ece18157fb30a3408cae27098 ""
+  "../outputs/figures/fema-implied-time-series.pdf" 1795410494 5653 17009351560002d0456d20cb08adde9a ""
   "../outputs/figures/timber-valuation-time-series-2005-2025.pdf" 1794413050 6016 955051d162b125e132fa0a5322d2ee92 ""
   "../outputs/maps/biodiversity-value-2025.pdf" 1794413730 683948 d9353bdfd8c7cb410fe99b3502d081c9 ""
   "../outputs/maps/biodiversity-value-change-2005-2025.pdf" 1794413738 696275 0e852925d970f60d90862bcbab9052dc ""
@@ -18,6 +19,7 @@
   "../outputs/maps/carbon-sequestration-value-change-2010-2025.pdf" 1794358396 749233 2e706f0da1c3721f4bcdc5d51dc2351d ""
   "../outputs/maps/carbon-stock-value-hotspots-2025.pdf" 1794355970 756045 6ae0b3f2bac6afe5de4be57f9e0c6c7e ""
   "../outputs/maps/carbon-stock-value-percent-change-2005-2025.pdf" 1794355982 651408 534faf34d039f8c819d2aacda1a73a6d ""
+  "../outputs/maps/fema-implied-value-2025.pdf" 1795410494 605468 855e3963ae6c32d28c586ed9ac59955e ""
   "../outputs/maps/forest-layer-four-panel.pdf" 1794351144 3082470 1e083a0515fd9a502c2d863da6179f3d ""
   "../outputs/maps/timber-cord-yield-2025.png" 1794406666 473527 a21b2455a710285766d622ef841d9113 ""
   "../outputs/maps/timber-sawtimber-yield-2025.png" 1794406672 424821 55a7b60b8b5af8b43a2ce9eaa656a65c ""
@@ -138,12 +140,11 @@
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1792426980 14040 4b523015a4b6a2d46fbcc280301a380e ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1775450301 2292610 ca12910ece71a4b357544769d9c1002e ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf.cnf" 1767260738 903 164c5b127cd0d6dc91abad2f62421ea2 ""
-  "f:/mfrc/papers/report.tex" 1794417118 78451 fc32e736a8949f5144b41f378817115f ""
-  "report.aux" 1794417126 21086 6fe96dee2213bd3c17c5f87da498ba7a "pdflatex"
-  "report.bbl" 1794417124 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex report"
-  "report.out" 1794417126 6304 c0214d88f13086af281e82c784d35d10 "pdflatex"
-  "report.tex" 1794417118 78451 fc32e736a8949f5144b41f378817115f ""
-  "report.toc" 1794417126 4602 627dd3838dfc88a9b89729a28017e804 "pdflatex"
+  "report.aux" 1795410560 21692 42c79c29ff2e54ad4db9d9baf41ac1e0 "pdflatex"
+  "report.bbl" 1795410556 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex report"
+  "report.out" 1795410560 5453 c7b98533d53f34d2b9c6aa6374345018 "pdflatex"
+  "report.tex" 1795410540 84108 9c1d99e3faa3bb08980d3064f4124d4b ""
+  "report.toc" 1795410560 3708 5c22974ed48ed8a9e39932a6577be623 "pdflatex"
   (generated)
   "report.aux"
   "report.log"
