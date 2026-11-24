@@ -72,14 +72,40 @@ require_command Rscript
 require_command python
 require_command quarto
 
-# Add data preparation, analysis, and reporting scripts here in dependency order.
 # A trailing backslash continues one command across multiple lines for readability.
 
+# Task: Pull FIA stand panel data
 run_step "$SCRIPT_DIR/task-pull-fia-data.R" \
     Rscript "$SCRIPT_DIR/task-pull-fia-data.R"
-
+# Task: Interpolate a forest layer from FIA data
 run_step "$SCRIPT_DIR/task-create-forest-layer.py" \
     python "$SCRIPT_DIR/task-create-forest-layer.py"
+# Task: Visualize the forest layer
+run_step "$SCRIPT_DIR/task-visualize-forest-layer.R" \
+    Rscript "$SCRIPT_DIR/task-visualize-forest-layer.R"
+# Task: Visualize forest ownership layer
+run_step "$SCRIPT_DIR/task-visualize-forest-ownership.R" \
+    Rscript "$SCRIPT_DIR/task-visualize-forest-ownership.R"
+# Task: Estimate GEP for Carbon storage
+run_step "$SCRIPT_DIR/task-value-carbon-storage.R" \
+    Rscript "$SCRIPT_DIR/task-value-carbon-storage.R"
+# Task: Estimate GEP for Carbon sequestration
+run_step "$SCRIPT_DIR/task-value-carbon-sequestration.R" \
+    Rscript "$SCRIPT_DIR/task-value-carbon-sequestration.R"
+# Task: Estimate GEP for Timber Provision
+run_step "$SCRIPT_DIR/task-value-timber.R" \
+    Rscript "$SCRIPT_DIR/task-value-timber.R"
+# Task: Visualize the Timber Value Time Series
+run_step "$SCRIPT_DIR/task-visualize-timber-history.R" \
+    Rscript "$SCRIPT_DIR/task-visualize-timber-history.R"
+# Task: Estimate GEP for Biodiversity (Non-game bird species)
+run_step "$SCRIPT_DIR/task-value-biodiversity.R" \
+    Rscript "$SCRIPT_DIR/task-value-biodiversity.R"
+# Task: Estimate GEP from FEMA Conservation Values
+run_step "$SCRIPT_DIR/task-value-fema-implied.R" \
+    Rscript "$SCRIPT_DIR/task-value-fema-implied.R"
+
+# Air- and water-quality task files are planning notes, not executable scripts.
 
 # TODO: Replace the log files with the task scripts once they are created. log-questions.qmd and log-issues.qmd are placeholders.
 run_step "$LOG_DIR/log-questions.qmd" \

@@ -31,6 +31,13 @@ To use this project, follow these steps:
 5. While in development, I am using `scripts/plan-analysis.qmd` to plan and document the analysis steps.
 6. Record any issues or questions in the `logs/` directory that arise during the execution of the scripts.
 
+The pipeline runs the implemented forest-layer, ownership, carbon, timber,
+biodiversity, and FEMA valuation and visualization tasks before rendering the
+logs. Air- and water-quality task files are planning notes and are not run.
+Install each task's required packages and provide its external input data first.
+Several tasks refuse to overwrite existing outputs, so a rerun stops unless those
+outputs are moved or removed deliberately; the pipeline does not delete them.
+
 # Downloading Minnesota FIA data
 
 Install the R packages once with `install.packages(c("rFIA", "data.table"))`,
@@ -169,8 +176,8 @@ carbon or expansion values exclude the plot. Only live aboveground tree
 carbon is represented, not soil, deadwood, litter, roots, or understory.
 
 After review, install `terra`, `sf`, `tmap` (>= 4.0), and `jsonlite` in R and run
-`Rscript scripts/task-value-carbon-storage.R`. This step is not added to the pipeline
-and also supports `source()` with its absolute file path. It requires the carbon rasters and
+`Rscript scripts/task-value-carbon-storage.R`, or run it as part of the pipeline.
+It also supports `source()` with its absolute file path. It requires the carbon rasters and
 their metadata; basal-area rasters are not accepted as carbon quantities.
 
 Outputs are `data/GEP/gep-carbon-stock-[year].tif` for 2005, 2010, 2015,
