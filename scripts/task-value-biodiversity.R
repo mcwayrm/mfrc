@@ -7,14 +7,14 @@
 # exp of Shannon H), and interpolated with a spatiotemporal GAM
 # (log effN ~ te(x, y, year) + observer random effect + first-year indicator)
 # onto the 300 m forest grid. The habitat-quality change for each pixel is the
-# percent change of predicted effective species relative to the pixel's
-# 1966-1970 baseline mean.
+# percent change relative to its 1966-1970 geometric mean prediction.
 #
 # Price: ForCAST stated-preference (choice experiment) WTP of $1.15 per
 # household per month for a 10% increase in nongame species habitat quality
-# (https://mnforcast.org/ecosystem-valuation, Table 1), scaled linearly,
-# applied to Census household counts, and allocated across forest pixels so
-# pixel values sum to the statewide annual WTP.
+# (https://mnforcast.org/ecosystem-valuation, Table 1). The price per effective
+# species uses the mean 1966-1970 prediction on 2005 forest pixels in the
+# 11 survey counties. Applying that price to the level of diversity assumes
+# linearity down to zero and produces an illustrative GEP proxy, not total WTP.
 
 required_packages <- c("terra", "sf", "tmap", "jsonlite", "data.table", "mgcv")
 missing_packages <- required_packages[
@@ -209,8 +209,6 @@ run_biodiversity <- function(root_dir) {
   years <- c(2005L, 2010L, 2015L, 2020L, 2025L)
   baseline_years <- 1966:1970
   wtp_per_household_per_month_per_10pct <- 1.15
-  # Annual USD per household for each one percent habitat-quality change.
-  annual_price_per_pct <- wtp_per_household_per_month_per_10pct * 12 / 10
   households <- c(2020144, 2091548, 2147262, 2253990, 2391870)
   household_sources <- c(
     "ACS 2005 1-year, table B11001 (summary file sequence 46)",
@@ -264,6 +262,11 @@ run_biodiversity <- function(root_dir) {
   if (is.na(sf::st_crs(boundary)) || any(!sf::st_is_valid(boundary))) {
     stop("Invalid Minnesota boundary.")
   }
+  survey_fips <- c(1, 17, 25, 31, 59, 61, 65, 75, 95, 115, 137)
+  if (!"CTY_FIPS" %in% names(boundary) || !all(survey_fips %in% boundary$CTY_FIPS)) {
+    stop("County boundary is missing ForCAST survey county FIPS codes.")
+  }
+  survey_boundary <- sf::st_transform(boundary[boundary$CTY_FIPS %in% survey_fips, ], 26915)
   boundary <- sf::st_sf(geometry = sf::st_union(sf::st_transform(boundary, 26915)))
   samples <- read_route_diversity(raw_dir, boundary)
   if (!all(baseline_years %in% samples$Year) || max(samples$Year) < max(years)) {
@@ -276,8 +279,8 @@ run_biodiversity <- function(root_dir) {
   }
   warning("Breeding-season landbird diversity from roadside BBS routes is a partial proxy for ",
           "nongame habitat quality. The $1.15/household/month WTP from an 11-county ForCAST ",
-          "survey is scaled linearly and transferred statewide without ownership attribution; ",
-          "validate before GEP inference.")
+          "survey is extrapolated linearly to zero and transferred statewide without ownership ",
+          "attribution. The level value is an illustrative proxy, not measured total WTP.")
   data.table::fwrite(samples[, .(route_id, year = Year, x, y, observer = ObsN,
                                  first_year_observer, effective_species, richness,
                                  individuals)], sample_path)
@@ -285,18 +288,6 @@ run_biodiversity <- function(root_dir) {
                           mean_effective_species = mean(effective_species)),
                       keyby = .(year = Year)]
   data.table::fwrite(coverage, coverage_path)
-  price_table <- data.frame(
-    target_year = years,
-    wtp_usd_per_household_per_month_per_10pct = wtp_per_household_per_month_per_10pct,
-    annual_usd_per_household_per_pct = annual_price_per_pct,
-    households = households,
-    household_source = household_sources,
-    price_source = "https://mnforcast.org/ecosystem-valuation (Table 1, nongame +10%)",
-    assumption = paste("Linear WTP scaling per percent; symmetric for losses;",
-                       "11-county survey transferred to all Minnesota households;",
-                       "nominal survey-period USD (price year not stated by source)")
-  )
-  utils::write.csv(price_table, price_path, row.names = FALSE)
   mask_cells <- lapply(templates, function(template) {
     which(!is.na(terra::values(template, mat = FALSE)))
   })
@@ -311,6 +302,33 @@ run_biodiversity <- function(root_dir) {
   baseline_log <- rowMeans(vapply(baseline_years, function(year) {
     predict_log_diversity(fit, xy, year)$fit
   }, numeric(length(union_cells))))
+  survey_mask <- terra::rasterize(terra::vect(survey_boundary), templates[[1]], field = 1)
+  survey_cells <- mask_cells[[1]][!is.na(
+    terra::values(survey_mask, mat = FALSE)[mask_cells[[1]]]
+  )]
+  if (!length(survey_cells)) stop("No 2005 forest pixel centers in the survey counties.")
+  survey_baseline <- mean(exp(baseline_log[match(survey_cells, union_cells)]))
+  if (!is.finite(survey_baseline) || survey_baseline <= 0) {
+    stop("Survey-area baseline effective species must be finite and positive.")
+  }
+  annual_price_per_species <- wtp_per_household_per_month_per_10pct * 12 /
+    (0.10 * survey_baseline)
+  price_table <- data.frame(
+    target_year = years,
+    wtp_usd_per_household_per_month_per_10pct = wtp_per_household_per_month_per_10pct,
+    survey_baseline_effective_species = survey_baseline,
+    survey_baseline_years = "1966-1970",
+    survey_forest_mask_year = 2005L,
+    survey_forest_pixels = length(survey_cells),
+    annual_usd_per_household_per_effective_species = annual_price_per_species,
+    households = households,
+    household_source = household_sources,
+    price_source = "https://mnforcast.org/ecosystem-valuation (Table 1, nongame +10%)",
+    assumption = paste("Constant marginal price extrapolated from +10% to zero diversity;",
+                       "11-county survey transferred to all Minnesota households;",
+                       "nominal survey-period USD (price year not stated by source)")
+  )
+  utils::write.csv(price_table, price_path, row.names = FALSE)
   cell_area_ha <- prod(terra::res(templates[[1]])) / 10000
   summaries <- vector("list", length(years))
   values_by_year <- vector("list", length(years))
@@ -324,9 +342,8 @@ run_biodiversity <- function(root_dir) {
     standard_error <- prediction$se[rows]
     cells <- mask_cells[[index]]
     forest_area_ha <- length(cells) * cell_area_ha
-    # Pixel values decompose statewide WTP: summing value density times pixel
-    # area reproduces households * annual price * (area-weighted mean pct / 1%).
-    value_per_ha <- households[index] * annual_price_per_pct * pct_change / forest_area_ha
+    # Allocate the statewide level proxy across the current forest footprint.
+    value_per_ha <- households[index] * annual_price_per_species * effective / forest_area_ha
     quantity <- terra::rast(templates[[index]], nlyrs = 3)
     terra::values(quantity) <- NA_real_
     quantity[[1]][cells] <- effective
@@ -359,9 +376,15 @@ run_biodiversity <- function(root_dir) {
       quantity = "Predicted effective landbird species (Hill q = 1) and percent change",
       quantity_units = "effective species; percent change from 1966-1970 pixel baseline",
       value_units = "nominal survey-period USD per hectare per year",
-      formula = paste("households * ($1.15 * 12 / 10%) * pixel_pct_change /",
-                      "forest_area_ha; pixels sum to statewide annual WTP"),
+      formula = paste("households * ($1.15 * 12 / (0.10 * survey_baseline_effective_species))",
+                      "* pixel_effective_species / forest_area_ha"),
       wtp_usd_per_household_per_month_per_10pct = wtp_per_household_per_month_per_10pct,
+      survey_baseline_effective_species = survey_baseline,
+      survey_baseline_years = range(baseline_years),
+      survey_baseline_forest_mask_year = 2005L,
+      survey_baseline_forest_pixels = length(survey_cells),
+      survey_county_fips = survey_fips,
+      annual_usd_per_household_per_effective_species = annual_price_per_species,
       households = households[index], household_source = household_sources[index],
       price_source = "https://mnforcast.org/ecosystem-valuation (Table 1)",
       bbs_release = paste("2026 Release - North American Breeding Bird Survey Dataset",
@@ -383,11 +406,14 @@ run_biodiversity <- function(root_dir) {
       interpretation = paste(
         "Breeding-season roadside landbird diversity proxies nongame habitat quality;",
         "it under-represents interior habitat, rare species, and other taxa.",
-        "WTP is scaled linearly per percent and symmetrically for losses, although the",
-        "source study reports non-linear and loss-averse preferences.",
+        "The +10% WTP is treated as a constant marginal price down to zero diversity;",
+        "this level value is an extrapolated proxy, not measured total WTP.",
+        "The source study reports non-linear and loss-averse preferences.",
+        "The 1966-1970 survey-county anchor uses the 2005 forest mask, not historical cover;",
+        "it is a chosen proxy, not a baseline reported by the survey.",
         "An 11-county survey WTP is transferred to all Minnesota households.",
-        "Statewide WTP is allocated only to forest pixels in proportion to their",
-        "predicted change; negative pixel changes yield negative values.",
+        "The statewide level proxy is allocated only to forest pixels in proportion to their",
+        "predicted diversity; forest attribution is not established.",
         "Predictions are smoothed; pixels far from routes are weakly informed.",
         "The 2020 BBS season was largely cancelled, so 2020 is interpolated.",
         "SE layer is the log-scale GAM prediction error for the target year only,",
@@ -405,10 +431,11 @@ run_biodiversity <- function(root_dir) {
       mean_pct_change_from_baseline = mean(pct_change),
       minimum_pct_change = min(pct_change), maximum_pct_change = max(pct_change),
       households = households[index],
-      annual_usd_per_household_per_pct = annual_price_per_pct,
+      survey_baseline_effective_species = survey_baseline,
+      annual_usd_per_household_per_effective_species = annual_price_per_species,
       total_annual_value_USD = sum(value_per_ha) * cell_area_ha,
       total_annual_value_fixed_2005_households_USD =
-        sum(households[1] * annual_price_per_pct * pct_change / forest_area_ha) * cell_area_ha,
+        sum(households[1] * annual_price_per_species * effective / forest_area_ha) * cell_area_ha,
       mean_annual_value_USD_per_ha = mean(value_per_ha),
       scope = "Statewide BBS landbird-diversity interpolation; forest pixels only"
     )
@@ -444,16 +471,16 @@ visualize_biodiversity <- function(values, summary, samples, annual_series, boun
   change <- last - values[[1]]
   maps <- list()
   maps[[paste0("biodiversity-value-", last_year)]] <- list(
-    raster = last, title = paste0("A. Nongame habitat-quality value: ", last_year),
-    legend = "Annual value\nUSD / ha / year",
-    note = paste0("BBS landbird diversity vs 1966-1970 baseline; ESA mask: ",
+    raster = last, title = paste0("A. Nongame habitat-quality GEP proxy: ", last_year),
+    legend = "Annual GEP proxy\nUSD / ha / year", diverging = FALSE,
+    note = paste0("BBS landbird diversity; ESA mask: ",
                   tail(summary$esa_mask_year, 1),
-                  ".\nWTP: $1.15/household/month per 10% change (ForCAST Table 1).")
+                  ".\nLinear extrapolation of ForCAST +10% WTP to zero diversity.")
   )
   maps[[paste0("biodiversity-value-change-", first_year, "-", last_year)]] <- list(
     raster = change,
     title = paste0("B. Annual value difference: ", first_year, "-", last_year),
-    legend = "Value difference\nUSD / ha / year",
+    legend = "Proxy difference\nUSD / ha / year", diverging = TRUE,
     note = paste0("Shared forest pixels only; absolute difference, not percentage.",
                   "\nIncludes household growth between ", first_year, " and ", last_year, ".")
   )
@@ -462,14 +489,21 @@ visualize_biodiversity <- function(values, summary, samples, annual_series, boun
     vals <- terra::values(item$raster, mat = FALSE)
     bound <- max(abs(vals), na.rm = TRUE)
     if (!is.finite(bound) || bound <= 0) stop("No nonzero values to visualize: ", name)
+    scale <- if (item$diverging) {
+      tmap::tm_scale_continuous(
+        limits = c(-bound, bound), midpoint = 0,
+        values = c("#b2182b", "#f7f7f7", "#2166ac"), value.na = NA
+      )
+    } else {
+      tmap::tm_scale_continuous(
+        limits = c(0, bound), values = c("#ffffcc", "#238443"), value.na = NA
+      )
+    }
     map <- tmap::tm_shape(boundary, crs = 26915, is.main = TRUE) +
       tmap::tm_polygons(fill = "#eeeeee", col = NA) +
       tmap::tm_shape(item$raster) +
       tmap::tm_raster(
-        col.scale = tmap::tm_scale_continuous(
-          limits = c(-bound, bound), midpoint = 0,
-          values = c("#b2182b", "#f7f7f7", "#2166ac"), value.na = NA
-        ),
+        col.scale = scale,
         col.legend = tmap::tm_legend(title = item$legend, na.show = FALSE)
       ) +
       tmap::tm_shape(boundary) + tmap::tm_borders(col = "#555555", lwd = 0.7) +
@@ -516,7 +550,7 @@ visualize_biodiversity <- function(values, summary, samples, annual_series, boun
       graphics::plot(summary$target_year, annual, type = "o", pch = 16, col = "#2166ac",
                      lwd = 2, xaxt = "n", ylim = range(c(annual, fixed, 0)),
                      xlab = "Target year", ylab = "Million USD / year",
-                     main = "Statewide annual WTP for nongame habitat-quality change")
+                     main = "Statewide annual nongame habitat-quality GEP proxy")
       graphics::axis(1, at = summary$target_year)
       graphics::abline(h = 0, col = "#aaaaaa", lty = 3)
       graphics::lines(summary$target_year, fixed, type = "o", pch = 1, lty = 2,
@@ -526,8 +560,8 @@ visualize_biodiversity <- function(values, summary, samples, annual_series, boun
       graphics::mtext("C. Exploratory statewide biodiversity valuation", side = 3,
                       outer = TRUE, font = 2)
       graphics::mtext(
-        paste("Roadside breeding-season landbird diversity vs the 1966-1970 baseline;",
-              "WTP $1.15/household/month per 10% change.\nSmoothed interpolation of BBS",
+        paste("Roadside landbird diversity; ForCAST +10% WTP extrapolated to zero.",
+              "\nSmoothed interpolation of BBS",
               "routes, not a census of biodiversity or family-forest-only GEP."),
         side = 1, outer = TRUE, line = 0.5, cex = 0.75
       )

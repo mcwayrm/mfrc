@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.4.5)  23 NOV 2026 11:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.4.5)  24 NOV 2026 14:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -427,22 +427,22 @@ File: ../outputs/maps/biodiversity-value-change-2005-2025.pdf Graphic file (type
 <use ../outputs/maps/biodiversity-value-change-2005-2025.pdf>
 Package pdftex.def Info: ../outputs/maps/biodiversity-value-change-2005-2025.pdf  used on input line 702.
 (pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
- [25] [26 <../outputs/maps/biodiversity-value-2025.pdf> <../outputs/maps/biodiversity-value-change-2005-2025.pdf>]
-<../outputs/figures/biodiversity-time-series.pdf, id=439, 578.16pt x 578.16pt>
+ [25]
+<../outputs/figures/biodiversity-time-series.pdf, id=416, 578.16pt x 578.16pt>
 File: ../outputs/figures/biodiversity-time-series.pdf Graphic file (type pdf)
 <use ../outputs/figures/biodiversity-time-series.pdf>
 Package pdftex.def Info: ../outputs/figures/biodiversity-time-series.pdf  used on input line 711.
 (pdftex.def)             Requested size: 399.29463pt x 399.29253pt.
- [27 <../outputs/figures/biodiversity-time-series.pdf>] [28] [29]
-<../outputs/maps/fema-implied-riparian-value-2025.pdf, id=476, 505.89pt x 505.89pt>
+ [26 <../outputs/maps/biodiversity-value-2025.pdf> <../outputs/maps/biodiversity-value-change-2005-2025.pdf>] [27 <../outputs/figures/biodiversity-time-series.pdf>] [28] [29]
+<../outputs/maps/fema-implied-riparian-value-2025.pdf, id=474, 505.89pt x 505.89pt>
 File: ../outputs/maps/fema-implied-riparian-value-2025.pdf Graphic file (type pdf)
 <use ../outputs/maps/fema-implied-riparian-value-2025.pdf>
-Package pdftex.def Info: ../outputs/maps/fema-implied-riparian-value-2025.pdf  used on input line 849.
+Package pdftex.def Info: ../outputs/maps/fema-implied-riparian-value-2025.pdf  used on input line 840.
 (pdftex.def)             Requested size: 366.40834pt x 366.41734pt.
-<../outputs/figures/fema-implied-riparian-time-series.pdf, id=478, 578.16pt x 578.16pt>
+<../outputs/figures/fema-implied-riparian-time-series.pdf, id=476, 578.16pt x 578.16pt>
 File: ../outputs/figures/fema-implied-riparian-time-series.pdf Graphic file (type pdf)
 <use ../outputs/figures/fema-implied-riparian-time-series.pdf>
-Package pdftex.def Info: ../outputs/figures/fema-implied-riparian-time-series.pdf  used on input line 858.
+Package pdftex.def Info: ../outputs/figures/fema-implied-riparian-time-series.pdf  used on input line 849.
 (pdftex.def)             Requested size: 399.29463pt x 399.29253pt.
  [30] [31 <../outputs/maps/fema-implied-riparian-value-2025.pdf>] [32 <../outputs/figures/fema-implied-riparian-time-series.pdf>] (./report.bbl
 
@@ -459,16 +459,16 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 Here is how much of TeX's memory you used:
  9990 strings out of 469453
  162119 string characters out of 5466066
- 639372 words of memory out of 5000000
+ 639312 words of memory out of 5000000
  38411 multiletter control sequences out of 15000+600000
  645547 words of font info for 77 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  75i,10n,79p,1218b,656s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0600.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-Output written on report.pdf (34 pages, 12236991 bytes).
+ <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0600.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> <c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on report.pdf (34 pages, 12191069 bytes).
 PDF statistics:
- 1155 PDF objects out of 1200 (max. 8388607)
- 529 compressed objects within 6 object streams
+ 1145 PDF objects out of 1200 (max. 8388607)
+ 523 compressed objects within 6 object streams
  118 named destinations out of 1000 (max. 500000)
  291 words of extra memory for PDF output out of 10000 (max. 10000000)
 

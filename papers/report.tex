@@ -654,24 +654,24 @@ where $p_{rs}$ is species $s$'s share of route-year $r$'s individuals. A spatiot
 \log \mathrm{effN}_r=\beta_0+\beta_1 F_r+f(x_r,y_r,\mathrm{year}_r)+b_{o(r)}+\varepsilon_r,
 \label{eq:diversity-gam}
 \end{equation}
-with a tensor-product smooth $f$ over space and time, a first-year-observer indicator $F_r$, and observer random effects $b_o$ absorbing systematic detection differences (82.2\% deviance explained). Population-level predictions, excluding observer terms, are evaluated on the 300-metre forest grid. Habitat-quality change for pixel $i$ in target year $t$ is the percentage change of predicted effective species relative to that pixel's 1966--1970 predicted baseline mean,
+with a tensor-product smooth $f$ over space and time, a first-year-observer indicator $F_r$, and observer random effects $b_o$ absorbing systematic detection differences (82.2\% deviance explained). Population-level predictions, excluding observer terms, are evaluated on the 300-metre forest grid. Habitat-quality change for pixel $i$ in target year $t$ is the percentage change of predicted effective species relative to that pixel's 1966--1970 geometric mean prediction,
 \begin{equation}
 \Delta_{i,t}=100\left(\frac{\widehat{\mathrm{effN}}_{i,t}}{\overline{\mathrm{effN}}_{i,1966\mbox{\scriptsize --}1970}}-1\right)\quad [\%].
 \label{eq:habitat-quality-change}
 \end{equation}
-The price is the \href{https://mnforcast.org/ecosystem-valuation}{ForCAST choice-experiment} stated-preference estimate of \$1.15 per household per month for a 10\% increase in nongame species habitat quality (Table~1 of that study), scaled linearly to \$1.38 per household per year per percentage point. With $HH_t$ Minnesota households and total mapped forest area $A^F_t$ in hectares, the value-density raster is
+The \href{https://mnforcast.org/ecosystem-valuation}{ForCAST choice experiment} estimates willingness to pay (WTP) of \$1.15 per household per month for a 10\% increase in nongame species habitat quality (Table~1). To construct an illustrative level-based GEP proxy, define $B$ as the area-weighted mean of the 1966--1970 geometric mean predictions on 2005 forest pixels whose centers fall in the 11 survey counties. The 2005 mask is the earliest available, not historical forest cover. This chosen baseline is not reported by the survey. A 10\% increase corresponds to $0.1B$ effective species, yielding an annual price of $p=1.15\times 12/(0.1B)$ per household per effective species. With $HH_t$ Minnesota households and total mapped forest area $A^F_t$ in hectares, the value-density raster is
 \begin{equation}
-v_{i,t}=\frac{HH_t\times 1.38\times \Delta_{i,t}}{A^F_t}
+v_{i,t}=\frac{HH_t\times p\times \widehat{\mathrm{effN}}_{i,t}}{A^F_t}
 \quad [\mathrm{USD/ha/year}],
 \label{eq:implemented-biodiversity}
 \end{equation}
-so that summing $v_{i,t}$ over forest pixels (9 hectares each) reproduces the statewide annual willingness to pay for the area-weighted mean change. Household counts are year-specific Census estimates (ACS 1-year table B11001 for 2005, 2010, 2015, and 2025; the 2020 Decennial Census for 2020).
+so that summing $v_{i,t}$ over forest pixels (9 hectares each) reproduces the statewide level proxy. This extrapolates the local +10\% WTP price linearly all the way to zero diversity; it is not measured total WTP, a market price, or a demonstrated forest-attributable value. The source explicitly finds nonlinear, loss-averse preferences; the extrapolation and the transfer from nongame habitat quality to bird diversity and from the survey counties to all Minnesota households are substantial assumptions. Household counts are year-specific Census estimates (ACS 1-year table B11001 for 2005, 2010, 2015, and 2025; the 2020 Decennial Census for 2020).
 
-Table~\ref{tab:biodiversity-results} summarizes the five composites. Predicted forest landbird diversity lies below the 1966--1970 baseline in every target year, consistent with documented long-run North American avifauna declines, so the valuation is a statewide welfare \emph{loss}. For 2025, the mean habitat-quality change across mapped forest is \textbf{$-5.62\%$}, valued at \textbf{$-\$18.55$ million/year} across 2.39 million households, or $-\$3.09$/ha/year on average. The loss deepens over time through both continued diversity decline (from $-3.91\%$ in 2005 to $-5.62\%$ in 2025) and household growth; at fixed 2005 households the 2025 total would be $-\$15.67$ million/year.
+Table~\ref{tab:biodiversity-results} summarizes the five composites. The survey-area anchor is approximately 29.92 effective species, giving an illustrative price of \$4.61 per household per effective species per year. For 2025, predicted forest diversity averages 27.10 effective species, yielding a level proxy of approximately \textbf{\$298.94 million/year}, or \$49.86/ha/year. The increase in the proxy from 2005 reflects household growth; at fixed 2005 households the 2025 proxy would be approximately \$252.48 million/year.
 
 \begin{table}[htbp]
 \centering
-\caption{BBS landbird-diversity habitat-quality changes and WTP-valued annual losses.}
+\caption{BBS landbird diversity and extrapolated annual habitat-quality GEP proxy.}
 \label{tab:biodiversity-results}
 \small
 \begin{tabular}{@{}rrrrrr@{}}
@@ -679,48 +679,39 @@ Table~\ref{tab:biodiversity-results} summarizes the five composites. Predicted f
 Target & Mean effective & Mean change & Households & Mean value & Total value \\
 year & species & vs.\ 1966--70 (\%) & (million) & (\$/ha/year) & (million \$/year) \\
 \midrule
-2005 & 27.76 & $-3.91$ & 2.020 & $-1.85$ & $-10.89$ \\
-2010 & 27.48 & $-4.87$ & 2.092 & $-2.33$ & $-14.05$ \\
-2015 & 27.28 & $-5.46$ & 2.147 & $-2.70$ & $-16.18$ \\
-2020 & 27.17 & $-5.59$ & 2.254 & $-2.90$ & $-17.38$ \\
-2025 & 27.10 & $-5.62$ & 2.392 & $-3.09$ & $-18.55$ \\
+2005 & 27.76 & $-3.91$ & 2.020 & 43.87 & 258.63 \\
+2010 & 27.48 & $-4.87$ & 2.092 & 44.00 & 265.04 \\
+2015 & 27.28 & $-5.46$ & 2.147 & 45.01 & 270.18 \\
+2020 & 27.17 & $-5.59$ & 2.254 & 47.08 & 282.38 \\
+2025 & 27.10 & $-5.62$ & 2.392 & 49.86 & 298.94 \\
 \bottomrule
 \end{tabular}
 
 \smallskip
 \begin{minipage}{0.95\linewidth}
-\footnotesize Source: \path{outputs/tables/biodiversity-time-series.csv}. WTP of \$1.15/household/month per 10\% change (\$1.38/household/year per percentage point) in nominal survey-period USD; the source study does not state a price year. Each row uses its own ESA forest mask (2025 uses ESA 2022; approximately 6.0 million forest hectares throughout). Pixel-level changes range from roughly $-26\%$ to $+73\%$ in 2025; the statewide mean nets gains in the northwest and southeast against losses in the north-central forest.
+\footnotesize Source: \path{outputs/tables/biodiversity-time-series.csv}. The price is extrapolated from \$1.15/household/month for a 10\% increase; the source does not state a price year. Each row uses its own ESA forest mask (2025 uses ESA 2022; approximately 6.0 million forest hectares throughout).
 \end{minipage}
 \end{table}
 
-Figure~\ref{fig:biodiversity-maps} maps the signed 2025 value density and its absolute difference from 2005 on shared forest pixels. Losses concentrate in the north-central forested counties, while pixels in northwestern and southeastern Minnesota show predicted diversity gains relative to their 1966--1970 baselines. The value difference combines diversity change with household growth; it does not isolate ecological change.
+Figure~\ref{fig:biodiversity-maps} maps the 2025 level proxy and its absolute difference from 2005 on shared forest pixels. The difference combines diversity change with household growth; it does not isolate ecological change.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.49\textwidth]{../outputs/maps/biodiversity-value-2025.pdf}
 \hfill
 \includegraphics[width=0.49\textwidth]{../outputs/maps/biodiversity-value-change-2005-2025.pdf}
-\caption{Exploratory nongame habitat-quality valuation. (A) Signed 2025 annual value density from BBS landbird diversity relative to the 1966--1970 baseline, on the ESA 2022 forest mask. (B) Absolute difference in annual value density between 2005 and 2025 on shared forest pixels. Blue indicates gains; red indicates losses. Gray cells are outside the eligible mapped support. Surfaces are smoothed model interpolations of roadside survey routes, not censuses of biodiversity.}
+\caption{Exploratory nongame habitat-quality GEP proxy. (A) Extrapolated 2025 annual level value density on the ESA 2022 forest mask. (B) Absolute difference in the proxy between 2005 and 2025 on shared forest pixels; blue indicates increases and red decreases. Gray cells are outside the eligible mapped support. Surfaces are smoothed model interpolations of roadside survey routes, not censuses of biodiversity.}
 \label{fig:biodiversity-maps}
 \end{figure}
 
-Figure~\ref{fig:biodiversity-series} separates the diversity trajectory from its valuation. Modeled statewide mean effective species declines gradually from about 29 in the baseline window to about 27 in 2025. The valued loss grows faster than the diversity decline because households increase by 18\% over the period. Route-year observations scatter widely around the smoothed mean, reflecting route-level habitat differences and observer variation absorbed by the model's random effects.
+Figure~\ref{fig:biodiversity-series} separates the diversity trajectory from the level proxy. Modeled statewide mean effective species declines gradually from about 29 in the baseline window to about 27 in 2025. Route-year observations scatter widely around the smoothed mean, reflecting route-level habitat differences and observer variation absorbed by the model's random effects.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{../outputs/figures/biodiversity-time-series.pdf}
-\caption{BBS route-year landbird diversity near Minnesota and the statewide WTP-valued habitat-quality change. The upper panel shows route-year effective species, the model's statewide forest mean, and the 1966--1970 baseline window. The lower panel compares target-year households with a fixed 2005-household valuation. The 2020 BBS field season was largely cancelled, so 2020 is a model interpolation. Connecting lines are descriptive rather than annual observations.}
+\caption{BBS route-year landbird diversity near Minnesota and the statewide extrapolated habitat-quality level proxy. The upper panel shows route-year effective species, the model's statewide forest mean, and the 1966--1970 baseline window. The lower panel compares target-year households with a fixed 2005-household valuation. The 2020 BBS field season was largely cancelled, so 2020 is a model interpolation. Connecting lines are descriptive rather than annual observations.}
 \label{fig:biodiversity-series}
 \end{figure}
-
-% \paragraph{Differences between the proposed and implemented valuation.}
-% \begin{enumerate}
-% \item \textbf{Community indicator instead of species-specific habitat models.} The proposal specified species-specific habitat-suitability scores $H_{is}$ from FIA composition and structure with species-specific prices $u_s$. The implementation instead uses a single community-level indicator---breeding-season landbird diversity from roadside BBS routes---as a proxy for nongame habitat quality. Shannon-based effective species is dominated by common species, responds weakly to rare or threatened species, and does not track non-avian taxa; roadside sampling under-represents interior forest and urban cores. No FIA structural attributes enter the quantity.
-% \item \textbf{Single statewide WTP instead of species-specific prices, and no $\lambda_i$.} A single stated-preference WTP for ``nongame species habitat quality'' replaces species-specific willingness-to-pay or restoration costs. The ForCAST estimate comes from an 11-county survey and is transferred to all Minnesota households without benefit-transfer adjustment. WTP is scaled linearly per percentage point and symmetrically for losses, although the source study reports non-linear and loss-averse preferences (its stated WTP for a 10\% \emph{decrease} is $-\$13.33$/household/month, an order of magnitude larger than the $+\$1.15$ used here); the implemented loss values are therefore conservative in magnitude. The forest-attributable share is implicitly $\lambda_i=1$: no forest-versus-counterfactual habitat comparison or family-ownership overlay is applied, and bird communities on forest pixels also reflect surrounding nonforest land.
-% \item \textbf{Change valuation against a 1966--1970 baseline.} The proposal valued quality-adjusted habitat \emph{levels}; the implementation values \emph{changes} relative to each pixel's 1966--1970 predicted baseline, because the WTP instrument prices percentage changes rather than levels. Totals are statewide annual WTP for the net change, not the asset value of existing habitat, and should not be added to level-based habitat values. Negative totals represent foregone welfare relative to the baseline rather than an observed market loss.
-% \item \textbf{Interpolation and uncertainty.} The diversity surface is a smoothed GAM interpolation of 184 routes; pixels far from routes are weakly informed, and predictions inherit the roadside sampling frame. Statewide WTP is allocated to forest pixels in proportion to their predicted change, which spreads a population-level value over the forest footprint rather than estimating pixel-level demand. The saved standard-error layer covers only the target-year prediction on the log scale, ignoring baseline-prediction and price uncertainty; downstream regressions using these surfaces face a generated-regressor problem. The 2020 BBS season was largely cancelled, so the 2020 composite is a pure model interpolation. The 1966--1970 baseline predates taxonomic revisions and relies on the model's earliest, sparsest data.
-% \end{enumerate}
-
 
 
 % -----------------------------------------------------

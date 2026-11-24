@@ -1,20 +1,20 @@
 # Fdb version 4
-["bibtex report"] 1795455525.91088 "report.aux" "report.bbl" "report" 1795455528.45284 0
+["bibtex report"] 1795553387.42601 "report.aux" "report.bbl" "report" 1795553395.14769 0
   "./references.bib" 1789515211 0 d41d8cd98f00b204e9800998ecf8427e ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1775449944 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1795455530 22912 538385423b5056b600f3e4ddd23b5c46 "pdflatex"
+  "report.aux" 1795553396 22792 2790268eddb7d104be127c78a23acd73 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1795455525.99059 "f:/mfrc/papers/report.tex" "report.pdf" "report" 1795455528.45389 0
-  "../outputs/figures/biodiversity-time-series.pdf" 1794413738 316797 ef042d9a998acecbca2a64ea2b22d08e ""
+["pdflatex"] 1795553391.66866 "f:/mfrc/papers/report.tex" "report.pdf" "report" 1795553395.14823 0
+  "../outputs/figures/biodiversity-time-series.pdf" 1795553306 316813 f14dd874f1f6c40194534f0c6c1a7559 ""
   "../outputs/figures/carbon-sequestration-time-series.pdf" 1794358396 5753 9e36cf53ca61f604003a02297a702afe ""
   "../outputs/figures/carbon-stock-value-time-series.pdf" 1794355984 6131 6694ea9ece18157fb30a3408cae27098 ""
   "../outputs/figures/fema-implied-riparian-time-series.pdf" 1795455512 5942 3def9c707fb7b5dfd39ecf475a92f274 ""
   "../outputs/figures/timber-valuation-time-series-2005-2025.pdf" 1794413050 6016 955051d162b125e132fa0a5322d2ee92 ""
-  "../outputs/maps/biodiversity-value-2025.pdf" 1794413730 683948 d9353bdfd8c7cb410fe99b3502d081c9 ""
-  "../outputs/maps/biodiversity-value-change-2005-2025.pdf" 1794413738 696275 0e852925d970f60d90862bcbab9052dc ""
+  "../outputs/maps/biodiversity-value-2025.pdf" 1795553302 674351 55eb16836dffaa13f598759c88ffae11 ""
+  "../outputs/maps/biodiversity-value-change-2005-2025.pdf" 1795553306 677943 7999aaa7cd18aab3cbf0afead94bea72 ""
   "../outputs/maps/carbon-sequestration-value-2025.pdf" 1794358384 739986 ed7ad0ccdc3cd547808bef992bad467b ""
   "../outputs/maps/carbon-sequestration-value-change-2010-2025.pdf" 1794358396 749233 2e706f0da1c3721f4bcdc5d51dc2351d ""
   "../outputs/maps/carbon-stock-value-hotspots-2025.pdf" 1794355970 756045 6ae0b3f2bac6afe5de4be57f9e0c6c7e ""
@@ -69,10 +69,8 @@
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1775449724 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1775449724 32762 7fee39e011c23b3589931effd97b9702 ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1775449724 32726 39f0f9e62e84beb801509898a605dbd5 ""
-  "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb" 1775449724 33993 9b89b85fd2d9df0482bd47194d1d3bf3 ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1775449724 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1775449724 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
-  "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb" 1775449724 32442 c975af247b6702f7ca0c299af3616b80 ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1775449759 40635 c40361e206be584d448876bba8a64a3b ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty" 1775449760 33961 6b5c75130e435b2bfdb9f480a09a39f9 ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty" 1775449802 8371 9d55b8bd010bc717624922fb3477d92e ""
@@ -143,12 +141,12 @@
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1792426980 14040 4b523015a4b6a2d46fbcc280301a380e ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1775450301 2292610 ca12910ece71a4b357544769d9c1002e ""
   "c:/Users/ryanm/AppData/Roaming/TinyTeX/texmf.cnf" 1767260738 903 164c5b127cd0d6dc91abad2f62421ea2 ""
-  "f:/mfrc/papers/report.tex" 1795455518 89341 a1b34bdab6824f7262150146963c799f ""
-  "report.aux" 1795455530 22912 538385423b5056b600f3e4ddd23b5c46 "pdflatex"
-  "report.bbl" 1795455526 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex report"
-  "report.out" 1795455530 5604 b8d5dbbd7c98a04a0a60b5da42c423ea "pdflatex"
-  "report.tex" 1795455518 89341 a1b34bdab6824f7262150146963c799f ""
-  "report.toc" 1795455530 3800 12638c705746fbaca46c3de33e131b44 "pdflatex"
+  "f:/mfrc/papers/report.tex" 1795553390 86220 640083da043f214e9393bc976c1b2768 ""
+  "report.aux" 1795553396 22792 2790268eddb7d104be127c78a23acd73 "pdflatex"
+  "report.bbl" 1795553388 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex report"
+  "report.out" 1795553396 5604 b8d5dbbd7c98a04a0a60b5da42c423ea "pdflatex"
+  "report.tex" 1795553390 86220 640083da043f214e9393bc976c1b2768 ""
+  "report.toc" 1795553396 3800 3280279e3cb70db1099b7adfe93aef19 "pdflatex"
   (generated)
   "report.aux"
   "report.log"
