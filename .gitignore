@@ -9,3 +9,5 @@
 /papers/*
 !/papers/*.tex
 !/papers/*.pdf
+# Ignore Tests 
+/scripts/tests/

@@ -852,6 +852,93 @@ Figure~\ref{fig:fema-implied-series} traces the implied value over the five comp
 \end{figure}
 
 % -----------------------------------------------------
+% 		ESVD Values
+% -----------------------------------------------------
+\subsubsection{ESVD Implied Values}
+
+\paragraph{Data.}
+As a second, highly exploratory benchmark, the \href{https://www.esvd.net/}{Ecosystem Services Valuation Database} (ESVD), version SEP2026V1.0, provides standardized observations in 2020 international dollars per hectare per year (Int\$2020/ha/year). International dollars are purchasing-power-parity-adjusted units, not nominal US dollars; these results are not directly comparable to FEMA's 2021 USD values. The database citation is Brander, de Groot, Guisado Go\~ni, van 't Hoff, Sch\"agner, Horsten, Ballell Carl, Solomonides, McVittie, Eppink, Sposato, Do, Ghermandi, and Sinclair (2026), \emph{Ecosystem Services Valuation Database}, Foundation for Sustainable Development and Brander Environmental Economics.
+
+The forest export is restricted to observations with one service and only forest biomes, including observations covering multiple forest biomes. We retain records with a standardized value and \texttt{Value\_Change} marked \texttt{Total}, exclude records with \texttt{Incl\_Excl} equal to 0, and remove identical duplicate records by value identifier. Bundled services and mixed forest--nonforest biome records are excluded rather than attributing their full values to each component. For genetic resources, biological control, maintenance of life cycles, inspiration, and spiritual experience, no qualifying forest values are present; selected single-service, single-biome observations from the all-ecoregions export supplement these categories. The selection yields 619 forest and 120 all-biome observations across 21 services. Aesthetic information and ornamental resources lack qualifying forest values and are not supplemented; their omission is not evidence that these services are absent. The selected records are listed in \path{outputs/tables/evsd-implied-selected-records.csv}.
+
+\paragraph{Valuation Approach.}
+For each service $s$, the unweighted arithmetic mean $\overline{p}_s$ is calculated across selected observations, not across equally weighted studies. The illustrative rate and statewide total are
+\[
+p^{\mathrm{ESVD}}=\sum_s \overline{p}_s,\qquad
+V_t^{\mathrm{ESVD}}=A_t^F p^{\mathrm{ESVD}}
+\quad [\mathrm{Int\$2020/year}],
+\]
+where $A_t^F$ is the mapped forest area in hectares. The same rate is applied uniformly to every forest pixel and every year. There is no separate riparian rate, adjustment for forest condition, Minnesota-specific calibration, or family-forest attribution. The database's \href{https://www.esvd.info/ourdatabase}{guidance} cautions against applying general summary statistics as value transfers. Moreover, service categories and valuation methods may overlap even after excluding explicitly bundled records. The sum is therefore a sensitivity-prone illustrative calculation, not a validated total GEP estimate; it must not be added to FEMA or other service-specific estimates.
+
+\paragraph{Estimated Value.}
+The selected service means sum to \textbf{Int\$94,812/ha/year}, yielding approximately \textbf{Int\$568.4 billion/year} on the 2025 forest mask (5.995 million hectares). This number is particularly sensitive to extreme observations: the mean existence/bequest value of Int\$52,109 per hectare per year comes from only four observations, one of which is Int\$208,204/ha/year. The all-biome inspiration mean is Int\$14,509/ha/year, compared with a median of only Int\$0.093/ha/year. The arithmetic mean weights multiple observations from the same study separately, and the fallback values may not represent forest services in Minnesota.
+
+\begin{table}[htbp]
+\centering
+\caption{Selected ESVD service-level means and illustrative 2025 forest-area contributions.}
+\label{tab:esvd-implied}
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Service & Observations & Mean & 2025 contribution \\
+ & & (Int\$2020/ha/year) & (million Int\$2020/year) \\
+\midrule
+Food & 22 & 397 & 2,383 \\
+Water & 30 & 580 & 3,475 \\
+Raw materials & 24 & 3,387 & 20,307 \\
+Genetic resources$^*$ & 12 & 358 & 2,146 \\
+Medicinal resources & 1 & 1,153 & 6,915 \\
+Air quality regulation & 315 & 1,263 & 7,570 \\
+Climate regulation & 38 & 4,738 & 28,406 \\
+Moderation of extreme events & 6 & 208 & 1,247 \\
+Regulation of water flows & 8 & 3,684 & 22,088 \\
+Waste treatment & 7 & 176 & 1,054 \\
+Erosion prevention & 17 & 3,986 & 23,898 \\
+Maintenance of soil fertility & 17 & 83 & 495 \\
+Pollination & 9 & 540 & 3,240 \\
+Biological control$^*$ & 27 & 1,290 & 7,737 \\
+Maintenance of life cycles$^*$ & 50 & 5,290 & 31,714 \\
+Maintenance of genetic diversity & 1 & 498 & 2,989 \\
+Recreation and tourism & 119 & 450 & 2,698 \\
+Inspiration for culture, art and design$^*$ & 29 & 14,509 & 86,985 \\
+Spiritual experience$^*$ & 2 & 67 & 404 \\
+Information for cognitive development & 1 & 45 & 272 \\
+Existence, bequest values & 4 & 52,109 & 312,410 \\
+\midrule
+Illustrative sum & 739 & 94,812 & 568,433 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.95\linewidth}
+\footnotesize Source: \path{outputs/tables/evsd-implied-service-values.csv}. Asterisks mark all-biome fallbacks; all other rows use forest-biome observations. Means and contributions are rounded independently. Service contributions are not proven independent and the displayed sum should not be interpreted as measured Minnesota welfare or added to the FEMA estimate.
+\end{minipage}
+\end{table}
+
+Figure~\ref{fig:esvd-boxplots} shows the variation underlying the arithmetic means, including the extreme values that drive the benchmark. Figure~\ref{fig:esvd-map} shows only the distribution of mapped forest area: every eligible cell has the same value density. Figure~\ref{fig:esvd-series} varies from Int\$558.9 billion/year in 2005 to Int\$568.4 billion/year in 2025 ($+1.7\%$); because rates are fixed, this change reflects the mapped forest area rather than a measured change in ecosystem services.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{../outputs/figures/evsd-implied-service-boxplots.pdf}
+\caption{Selected ESVD standardized values by service. Boxes, whiskers, and outliers are computed on the $\log_{10}(1+x)$ scale so zero values remain visible. Red diamonds are arithmetic means on the original scale; asterisks identify all-biome fallbacks. The distributions summarize observations, not independent studies or uncertainty intervals.}
+\label{fig:esvd-boxplots}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../outputs/maps/evsd-implied-value-2025.pdf}
+\caption{Illustrative ESVD implied value on the ESA 2022 forest mask. All forest cells use the same global rate; gray is outside the mapped forest mask. The map does not measure local variation in service production.}
+\label{fig:esvd-map}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{../outputs/figures/evsd-implied-time-series.pdf}
+\caption{Illustrative ESVD implied value over the five forest composites. Fixed Int\$2020 rates mean that differences between years reflect mapped forest area alone.}
+\label{fig:esvd-series}
+\end{figure}
+
+% -----------------------------------------------------
 % 		Recreation: Hunting
 % -----------------------------------------------------
 % \subsubsection{Ecosystem 5: Recreation---Hunting}

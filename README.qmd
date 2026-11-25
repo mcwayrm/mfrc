@@ -32,11 +32,17 @@ To use this project, follow these steps:
 6. Record any issues or questions in the `logs/` directory that arise during the execution of the scripts.
 
 The pipeline runs the implemented forest-layer, ownership, carbon, timber,
-biodiversity, and FEMA valuation and visualization tasks before rendering the
+biodiversity, FEMA, and ESVD valuation and visualization tasks before rendering the
 logs. Air- and water-quality task files are planning notes and are not run.
 Install each task's required packages and provide its external input data first.
 Several tasks refuse to overwrite existing outputs, so a rerun stops unless those
 outputs are moved or removed deliberately; the pipeline does not delete them.
+
+The ESVD benchmark requires the forest and all-ecoregion CSV exports in
+`data/EVSD/`. It uses 2020 international dollars and is an illustrative,
+non-additive benefit-transfer benchmark, not a Minnesota-specific valuation.
+Its selection rules, service summaries, maps, and limitations are documented in
+the ESVD section of `papers/report.tex`.
 
 # Downloading Minnesota FIA data
 

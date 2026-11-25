@@ -104,6 +104,9 @@ run_step "$SCRIPT_DIR/task-value-biodiversity.R" \
 # Task: Estimate GEP from FEMA Conservation Values
 run_step "$SCRIPT_DIR/task-value-fema-implied.R" \
     Rscript "$SCRIPT_DIR/task-value-fema-implied.R"
+# Task: Estimate GEP benchmark from ESVD values
+run_step "$SCRIPT_DIR/task-value-EVSD-implied.R" \
+    Rscript "$SCRIPT_DIR/task-value-EVSD-implied.R"
 
 # Air- and water-quality task files are planning notes, not executable scripts.
 
